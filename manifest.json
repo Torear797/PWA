@@ -5,7 +5,7 @@
   "short_name": "Шифрование",
   "scope": "/PWA/index.html",
   "display": "standalone",
-  "start_url": "https://torear797.github.io/PWA/",
+  "start_url": "https://torear797.github.io/PWA/index.html",
   "background_color": "transparent",
   "theme_color": "transparent",
   "description": "Все современные алгоритмы шифрования и хеширования",

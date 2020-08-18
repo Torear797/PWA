@@ -138,29 +138,6 @@
 </form>
 
 <script type="text/javascript">
-    function ReplaceBlock(id) {
-        //  document.getElementById('content').innerHTML = document.getElementById('base64Block').innerHTML;
-
-        switch (id) {
-            case 0: {
-                //    $('#content').add(html($('#base64Block')));
-                // $('#content').html($('#base64Block'));
-                //  document.getElementById('content').innerHTML = document.getElementById('base64Block').innerHTML;
-                document.getElementById("content").innerHTML = '<object type="text/html" data="base64Form.html" ></object>';
-
-                break
-            }
-            case 1: {
-                // $('#content').html($('#SHA512'));
-                document.getElementById('content').innerHTML = document.getElementById('SHA512').innerHTML;
-                //  document.getElementById("content").innerHTML='<object type="text/html" data="document.getElementById(\'SHA512\').innerHTML" ></object>';
-                break
-            }
-        }
-
-        $('.mdl-layout__obfuscator').click();
-    }
-
     function utf8_to_b64(str) {
         return window.btoa(unescape(encodeURIComponent(str)));
     }
@@ -172,32 +149,33 @@
         }
     }
 
-    function Click(Choice, idInputText, idCryptText, idInputLabel, idOutputLabel) {
+    function Click(Choice) {
         // 0 - кодировать, 1 - декодировать
-        const inputText = document.getElementById(idInputText).value;
+        const inputText = document.getElementById("InputText").value;
         if (inputText.length > 0) {
-            NewClick(idCryptText);
+            NewClick();
             switch (Choice) {
                 case 0: {
-                    document.getElementById(idCryptText).value = utf8_to_b64(inputText);
+                    document.getElementById("CryptText").value = utf8_to_b64(inputText);
                     break
                 }
                 case 1: {
-                    document.getElementById(idCryptText).value = b64_to_utf8(inputText);
+                    document.getElementById("CryptText").value = b64_to_utf8(inputText);
                     break
                 }
             }
-            document.getElementById(idCryptText).select();
-            setCharCounter(idInputText, idCryptText, idInputLabel, idOutputLabel);
+            document.getElementById("CryptText").focus();
+            document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+            setCharCounter();
         }
     }
 
-    function setCharCounter(idInputText, idCryptText, idInputLabel, idOutputLabel) {
-        var inputField = document.getElementById(idInputText).value.length;
-        var outputField = document.getElementById(idCryptText).value.length;
+    function setCharCounter() {
+        const inputField = document.getElementById("InputText").value.length;
+        const outputField = document.getElementById("CryptText").value.length;
 
-        var inputLabel = document.getElementById(idInputLabel);
-        var outputLabel = document.getElementById(idOutputLabel);
+        const inputLabel = document.getElementById("LabelText");
+        const outputLabel = document.getElementById("CryptLabel");
 
         if (inputField !== 0 && outputField !== 0) {
             inputLabel.innerHTML = "Текст" + " (" + inputField + ")";
@@ -208,22 +186,26 @@
         }
     }
 
-    function NewClick(idCryptText) {
-        document.getElementById(idCryptText).value = "";
+    function NewClick() {
+        document.getElementById("CryptText").value = "";
     }
 
-    function ClearFields(idInputText, idCryptText, idInputLabel, idOutputLabel) {
-        document.getElementById(idCryptText).value = '';
-        document.getElementById(idInputText).value = '';
-        document.getElementById(idInputText).blur();
-        document.getElementById(idCryptText).blur();
+    function ClearFields() {
+        document.getElementById("CryptText").value = '';
+        document.getElementById("InputText").value = '';
+        document.getElementById("InputText").blur();
+        document.getElementById("CryptText").blur();
 
-        setCharCounter(idInputText, idCryptText, idInputLabel, idOutputLabel);
+
+        document.getElementById("CryptText").parentNode.classList.remove('is-dirty');
+        document.getElementById("InputText").parentNode.classList.remove('is-dirty');
+
+        setCharCounter();
     }
 
-    function copyToClipboard(id) {
-        if (document.getElementById(id).value.length > 0) {
-            document.getElementById(id).select();
+    function copyToClipboard() {
+        if (document.getElementById("CryptText").value.length > 0) {
+            document.getElementById("CryptText").select();
             document.execCommand('copy');
             window.getSelection().removeAllRanges();
         }

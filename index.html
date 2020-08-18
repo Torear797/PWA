@@ -5,22 +5,11 @@
     <link rel='manifest' href='manifest.json'>
 
     <script>
-        const CACHE = "pwabuilder-offline";
+    import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
 
-        importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
+    const el = document.createElement('pwa-update');
+    document.body.appendChild(el);
 
-        self.addEventListener("message", (event) => {
-            if (event.data && event.data.type === "SKIP_WAITING") {
-                self.skipWaiting();
-            }
-        });
-
-        workbox.routing.registerRoute(
-            new RegExp('/*'),
-            new workbox.strategies.StaleWhileRevalidate({
-                cacheName: CACHE
-            })
-        );
     </script>
     <script src="scripts/pwabuilder-sw-register.js" type="text/javascript"></script>
 

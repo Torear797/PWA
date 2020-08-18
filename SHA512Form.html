@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="mdl-js" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Шифрование</title>
+
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-deep_purple.min.css"/>
+
+
+    <style type="text/css">
+        .mdl-textfield {
+            width: 100%;
+        }
+
+        .mdl-layout__header {
+            background-color: rgba(255, 255, 255, 0.96);
+            color: black;
+        }
+
+        .mdl-layout__header .mdl-layout__drawer-button {
+            color: black;
+        }
+
+        .mdl-layout__header-row .mdl-navigation__link {
+            color: black;
+        }
+
+        html, body {
+            font-family: 'Roboto', 'Helvetica', sans-serif;
+        }
+
+        .demo-content {
+            max-width: 1080px;
+        }
+
+        .demo-charts {
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .CryptHeader {
+            text-align: left;
+            margin-bottom: 5px;
+            -moz-margin-start: 20px;
+            -webkit-margin-start: 20px;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .mdl-navigation__link {
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .or_horizontal {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .mdl-button {
+            margin-right: 20px;
+        }
+
+        .CryptTitle {
+            font-size: x-large;
+            margin: 0 auto;
+            text-align: center;
+
+
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+    </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="CryptTitle">SHA512
+    <div id="sha512Icon" class="icon material-icons">info_outline</div>
+    <div class="mdl-tooltip mdl-tooltip--large" for="sha512Icon">
+        SHA-256 и SHA-512, и, в меньшей степени, SHA-224 и SHA-384 подвержены атакам расширения длины, делая его
+        небезопасным для некоторых приложений. Поэтому обычно рекомендуется переключиться на SHA-3 для 512-битных
+        хэшей и использовать SHA-512/224 и SHA-512/256 вместо SHA-224 и SHA-256. Это также происходит быстрее, чем
+        SHA-224 и SHA-256 на x86-64, так как SHA-512 работает на 64 бит вместо 32 битных слов.
+    </div>
+</div>
+
+<form action="#">
+
+    <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+        <textarea class="mdl-textfield__input" type="text" rows="5" id="InputText"></textarea>
+        <label id="LabelText" class="mdl-textfield__label" for="InputText">Текст</label>
+    </div>
+
+    <div class="or_horizontal">
+        <button onclick="Click(0,'InputText','CryptText','LabelText','CryptLabel')"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Кодировать
+        </button>
+
+        <button onclick="Click(1,'InputText','CryptText','LabelText','CryptLabel')"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Декодировать
+        </button>
+    </div>
+
+    <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+        <textarea class="mdl-textfield__input" type="text" rows="5" id="CryptText"></textarea>
+        <label id="CryptLabel" class="mdl-textfield__label" for="CryptText">Результат</label>
+    </div>
+
+    <div class="or_horizontal">
+        <button onclick="copyToClipboard('CryptText')"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Копировать
+        </button>
+
+        <button onclick="ClearFields('InputText','CryptText','LabelText','CryptLabel')"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Очистить
+        </button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    function ReplaceBlock(id) {
+        //  document.getElementById('content').innerHTML = document.getElementById('base64Block').innerHTML;
+
+        switch (id) {
+            case 0: {
+                //    $('#content').add(html($('#base64Block')));
+                // $('#content').html($('#base64Block'));
+                //  document.getElementById('content').innerHTML = document.getElementById('base64Block').innerHTML;
+                document.getElementById("content").innerHTML = '<object type="text/html" data="base64Form.html" ></object>';
+
+                break
+            }
+            case 1: {
+                // $('#content').html($('#SHA512'));
+                document.getElementById('content').innerHTML = document.getElementById('SHA512').innerHTML;
+                //  document.getElementById("content").innerHTML='<object type="text/html" data="document.getElementById(\'SHA512\').innerHTML" ></object>';
+                break
+            }
+        }
+
+        $('.mdl-layout__obfuscator').click();
+    }
+
+    function utf8_to_b64(str) {
+        return window.btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function b64_to_utf8(str) {
+        try {
+            return decodeURIComponent(escape(window.atob(str)));
+        } catch (e) {
+        }
+    }
+
+    function Click(Choice, idInputText, idCryptText, idInputLabel, idOutputLabel) {
+        // 0 - кодировать, 1 - декодировать
+        const inputText = document.getElementById(idInputText).value;
+        if (inputText.length > 0) {
+            NewClick(idCryptText);
+            switch (Choice) {
+                case 0: {
+                    document.getElementById(idCryptText).value = utf8_to_b64(inputText);
+                    break
+                }
+                case 1: {
+                    document.getElementById(idCryptText).value = b64_to_utf8(inputText);
+                    break
+                }
+            }
+            document.getElementById(idCryptText).select();
+            setCharCounter(idInputText, idCryptText, idInputLabel, idOutputLabel);
+        }
+    }
+
+    function setCharCounter(idInputText, idCryptText, idInputLabel, idOutputLabel) {
+        var inputField = document.getElementById(idInputText).value.length;
+        var outputField = document.getElementById(idCryptText).value.length;
+
+        var inputLabel = document.getElementById(idInputLabel);
+        var outputLabel = document.getElementById(idOutputLabel);
+
+        if (inputField !== 0 && outputField !== 0) {
+            inputLabel.innerHTML = "Текст" + " (" + inputField + ")";
+            outputLabel.innerHTML = "Результат" + " (" + outputField + ")";
+        } else {
+            inputLabel.innerHTML = "Текст";
+            outputLabel.innerHTML = "Результат";
+        }
+    }
+
+    function NewClick(idCryptText) {
+        document.getElementById(idCryptText).value = "";
+    }
+
+    function ClearFields(idInputText, idCryptText, idInputLabel, idOutputLabel) {
+        document.getElementById(idCryptText).value = '';
+        document.getElementById(idInputText).value = '';
+        document.getElementById(idInputText).blur();
+        document.getElementById(idCryptText).blur();
+
+        setCharCounter(idInputText, idCryptText, idInputLabel, idOutputLabel);
+    }
+
+    function copyToClipboard(id) {
+        if (document.getElementById(id).value.length > 0) {
+            document.getElementById(id).select();
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+        }
+    }
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="mdl-js" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Шифрование</title>
+
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-deep_purple.min.css"/>
+
+
+    <style type="text/css">
+        .mdl-textfield {
+            width: 100%;
+        }
+
+        html, body {
+            font-family: 'Roboto', 'Helvetica', sans-serif;
+        }
+
+        .or_horizontal {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .mdl-button {
+            margin-right: 20px;
+        }
+
+        .CryptTitle {
+            font-size: x-large;
+            margin: 0 auto;
+            text-align: center;
+
+
+            -ms-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+    </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="CryptTitle">Base64
+    <div id="toolTip" class="icon material-icons">info_outline</div>
+    <div class="mdl-tooltip mdl-tooltip--large" for="toolTip">
+        Base64 - это группа аналогичных схем кодирования двоичного текста, которые представляют двоичные данные
+        в формате строки ASCII путем перевода их в представление radix-64. Термин Base64 происходит от
+        определенной кодировки передачи содержимого MIME.
+
+        Каждая цифра base64 представляет ровно 6 бит данных. Таким образом, три 8-битных байта (т. е. всего 24
+        бита) могут быть представлены четырьмя 6-битными цифрами base64.
+    </div>
+</div>
+
+<form action="#">
+
+    <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+        <textarea class="mdl-textfield__input" type="text" rows="5" id="InputText"></textarea>
+        <label id="LabelText" class="mdl-textfield__label" for="InputText">Текст</label>
+    </div>
+
+    <div class="or_horizontal">
+        <button onclick="Click(0); return false;"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Кодировать
+        </button>
+
+        <button onclick="Click(1); return false;"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Декодировать
+        </button>
+    </div>
+
+    <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+        <textarea class="mdl-textfield__input" type="text" rows="5" id="CryptText"></textarea>
+        <label id="CryptLabel" class="mdl-textfield__label" for="CryptText">Результат</label>
+    </div>
+
+    <div class="or_horizontal">
+        <button onclick="copyToClipboard(); return false;"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Копировать
+        </button>
+
+        <button onclick="ClearFields(); return false;"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Очистить
+        </button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    function utf8_to_b64(str) {
+        return window.btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function b64_to_utf8(str) {
+        try {
+            return decodeURIComponent(escape(window.atob(str)));
+        } catch (e) {
+        }
+    }
+
+    function Click(Choice) {
+        // 0 - кодировать, 1 - декодировать
+        const inputText = document.getElementById("InputText").value;
+        if (inputText.length > 0) {
+            NewClick();
+            switch (Choice) {
+                case 0: {
+                    document.getElementById("CryptText").value = utf8_to_b64(inputText);
+                    break
+                }
+                case 1: {
+                    document.getElementById("CryptText").value = b64_to_utf8(inputText);
+                    break
+                }
+            }
+            document.getElementById("CryptText").focus();
+            document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+            setCharCounter();
+        }
+    }
+
+    function setCharCounter() {
+        const inputField = document.getElementById("InputText").value.length;
+        const outputField = document.getElementById("CryptText").value.length;
+
+        const inputLabel = document.getElementById("LabelText");
+        const outputLabel = document.getElementById("CryptLabel");
+
+        if (inputField !== 0 && outputField !== 0) {
+            inputLabel.innerHTML = "Текст" + " (" + inputField + ")";
+            outputLabel.innerHTML = "Результат" + " (" + outputField + ")";
+        } else {
+            inputLabel.innerHTML = "Текст";
+            outputLabel.innerHTML = "Результат";
+        }
+    }
+
+    function NewClick() {
+        document.getElementById("CryptText").value = "";
+    }
+
+    function ClearFields() {
+        document.getElementById("CryptText").value = '';
+        document.getElementById("InputText").value = '';
+        document.getElementById("InputText").blur();
+        document.getElementById("CryptText").blur();
+
+
+        document.getElementById("CryptText").parentNode.classList.remove('is-dirty');
+        document.getElementById("InputText").parentNode.classList.remove('is-dirty');
+
+        setCharCounter();
+    }
+
+    function copyToClipboard() {
+        if (document.getElementById("CryptText").value.length > 0) {
+            document.getElementById("CryptText").select();
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+        }
+    }
+</script>
+</body>
+</html>
+
+

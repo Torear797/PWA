@@ -7,7 +7,7 @@
   "display": "standalone",
   "start_url": "https://torear797.github.io/PWA/index.html",
   "background_color": "#ffffff",
-  "theme_color": "transparent",
+  "theme_color": "#ffffff",
   "description": "Все современные алгоритмы шифрования и хеширования",
   "orientation": "any",
   "related_applications": [],

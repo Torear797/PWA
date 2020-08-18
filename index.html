@@ -9,6 +9,7 @@
     const el = document.createElement('pwa-update');
     document.body.appendChild(el);
     </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"></script>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -80,9 +81,6 @@
     <script src="scripts/jquery-latest.min.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        function InstalPWA() {
-
-        }
         function ReplaceBlock(id) {
             //  document.getElementById('content').innerHTML = document.getElementById('base64Block').innerHTML;
 
@@ -260,12 +258,11 @@
                             называемыми закрытыми ключами).
                         </p>
 
-                        <button onclick="InstalPWA(); return false;"
+                        <button onclick="openPrompt()"
                                 class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                             Установить приложение!
                         </button>
 
-                        <pwa-install>Install</pwa-install>
                     </div>
 
                 </div>
@@ -275,7 +272,5 @@
     </div>
 
 </div>
-
-<script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"></script>
 </body>
 </html>

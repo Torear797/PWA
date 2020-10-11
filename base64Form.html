@@ -103,7 +103,7 @@
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="coded"
                    onclick="Click(0); return false;">Кодировать</a>
 
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="decoded"
                    onclick="Click(1); return false;">Декодировать</a>
                 <div class="mdl-layout-spacer"></div>
 
@@ -153,6 +153,10 @@
 </div>
 
 <script type="text/javascript">
+
+    document.getElementById("coded").addEventListener("touchstart", Click(0), false);
+    document.getElementById("decoded").addEventListener("touchstart", Click(1), false);
+
     function Click(Choice) {
         // 0 - кодировать, 1 - декодировать
         const inputText = document.getElementById("InputText").value;

@@ -1,6 +1,8 @@
 <meta charset="UTF-8">
 <script src="scripts/material.min.js"></script>
 <script src="scripts/jquery-latest.min.js" type="text/javascript"></script>
+<script src="scripts/CryptFunc.js" type="text/javascript"></script>
+
 
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -98,8 +100,9 @@
 
 
             <div class="mdl-card__actions">
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="coded"
                    onclick="Click(0); return false;">Кодировать</a>
+
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                    onclick="Click(1); return false;">Декодировать</a>
                 <div class="mdl-layout-spacer"></div>
@@ -150,17 +153,6 @@
 </div>
 
 <script type="text/javascript">
-    function utf8_to_b64(str) {
-        return window.btoa(unescape(encodeURIComponent(str)));
-    }
-
-    function b64_to_utf8(str) {
-        try {
-            return decodeURIComponent(escape(window.atob(str)));
-        } catch (e) {
-        }
-    }
-
     function Click(Choice) {
         // 0 - кодировать, 1 - декодировать
         const inputText = document.getElementById("InputText").value;

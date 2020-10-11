@@ -68,6 +68,19 @@
     body {
         height: 100%
     }
+
+    .onlyMobile{
+        visibility: collapse;
+    }
+    @media (max-width: 400px) {
+        .onlyMobile{
+            visibility: visible;
+        }
+        .onlyPC{
+            visibility: collapse;
+        }
+    }
+
 </style>
 
 <div class="mdl-grid demo-content">
@@ -100,11 +113,21 @@
 
 
             <div class="mdl-card__actions">
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="coded"
+                <button class="mdl-button mdl-button--icon mdl-button--colored onlyMobile"
+                        onclick="Click(0); return false;"><i class="material-icons">switch_left</i>
+                </button>
+
+                <button class="mdl-button mdl-button--icon mdl-button--colored onlyMobile" style="margin-right: 1%"
+                        onclick="Click(1); return false;">
+                    <i class="material-icons">switch_right</i>
+                </button>
+
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect onlyPC" id="coded"
                    onclick="Click(0); return false;">Кодировать</a>
 
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="decoded"
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect onlyPC" id="decoded"
                    onclick="Click(1); return false;">Декодировать</a>
+
                 <div class="mdl-layout-spacer"></div>
 
                 <button class="mdl-button mdl-button--icon mdl-button--colored"
@@ -113,7 +136,7 @@
 
                 <button class="mdl-button mdl-button--icon mdl-button--colored" style="margin-right: 1%"
                         onclick="ClearFields(); return false;">
-                    <i class="material-icons">delete_outlined</i>
+                    <i class="material-icons">clear</i>
                 </button>
             </div>
         </div>

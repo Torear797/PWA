@@ -126,6 +126,9 @@
             height: 100%;
             position: relative;
         }
+        .mdl-layout{
+            overflow: hidden;
+        }
 
     </style>
     <script src="scripts/jquery-latest.min.js" type="text/javascript"></script>
@@ -133,7 +136,6 @@
 </head>
 
 <body>
-<div class="mdl-layout__container">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-upgraded">
         <header class="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600 is-casting-shadow">
             <div class="mdl-layout__header-row">
@@ -176,7 +178,7 @@
         </div>
 
     </div>
-</div>
+
 </body>
 <script type="text/javascript">
     var page = JSON.parse(localStorage.getItem("currentPage"));
@@ -200,7 +202,8 @@
                     'style="' +
                     'width:100%; ' +
                     'height: 100%; ' +
-                    '"></object>';
+                    '"' +
+                    '></object>';
                 localStorage.setItem("currentPage", JSON.stringify(1));
                 break;
             }

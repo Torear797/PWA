@@ -64,22 +64,6 @@
         margin: 0
     }
 
-    body {
-        height: 100%
-    }
-
-    .onlyMobile{
-        visibility: collapse;
-    }
-    @media (max-width: 400px) {
-        .onlyMobile {
-            visibility: visible;
-        }
-        .onlyPC {
-            visibility: collapse;
-        }
-    }
-
 </style>
 
 <div class="mdl-grid demo-content">
@@ -112,20 +96,12 @@
 
 
             <div class="mdl-card__actions">
-<!--                <button class="mdl-button mdl-button&#45;&#45;icon mdl-button&#45;&#45;colored onlyMobile"-->
-<!--                        onclick="Click(0); return false;"><i class="material-icons">switch_left</i>-->
-<!--                </button>-->
 
-<!--                <button class="mdl-button mdl-button&#45;&#45;icon mdl-button&#45;&#45;colored onlyMobile" style="margin-right: 1%"-->
-<!--                        onclick="Click(1); return false;">-->
-<!--                    <i class="material-icons">switch_right</i>-->
-<!--                </button>-->
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                   onclick="Click(0); return false;">Encode</a>
 
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="coded"
-                   onclick="Click(0); return false;">Кодировать</a>
-
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="decoded"
-                   onclick="Click(1); return false;">Декодировать</a>
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                   onclick="Click(1); return false;">Decode</a>
 
                 <div class="mdl-layout-spacer"></div>
 

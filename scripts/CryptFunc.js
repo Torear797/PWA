@@ -6,5 +6,6 @@ function b64_to_utf8(str) {
     try {
         return decodeURIComponent(escape(window.atob(str)));
     } catch (e) {
+        return "Error";
     }
 }

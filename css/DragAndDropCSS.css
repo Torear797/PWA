@@ -1,0 +1,165 @@
+.container {
+    width: 100%;
+    max-width: 680px; /* 800 */
+    text-align: center;
+    margin: 0 auto;
+}
+
+.box {
+    font-size: 1.25rem; /* 20 */
+    padding: 100px 20px;
+
+    border: dashed;
+    border-color: currentcolor;
+    border-style: dashed;
+    border-width: medium;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+
+    position: relative;
+    box-sizing: border-box;
+    min-height: 250px;
+    border-color: #C8C8C8;
+    background-color: #F0F0F0;
+}
+
+.box.is-dragover {
+    background-color: #fff;
+
+    border: solid;
+    border-color: currentcolor;
+    animation-name: dragAndDropAnimation !important;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    border-color: #7986cb;
+    background-size: 150% 100%;
+    background-image: repeating-linear-gradient(-45deg, #fff, #fff 25px, rgba(0, 0, 0, 0.12) 25px, rgba(0, 0, 0, 0.12) 50px);
+}
+
+.box__dragndrop,
+.box__icon {
+    display: none;
+}
+
+.box.has-advanced-upload .box__dragndrop {
+    display: block;
+}
+
+.box.has-advanced-upload .box__icon {
+    width: 100%;
+    height: 80px;
+    fill: #92b0b3;
+    display: block;
+    margin-bottom: 40px;
+}
+
+#dad_buttons {
+    margin-top: 20px;
+}
+
+
+@keyframes dragAndDropAnimation {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -70px 0;
+    }
+}
+
+@-webkit-keyframes dragAndDropAnimation {
+    from {
+        -webkit-background-position: 0 0;
+    }
+    to {
+        -webkit-background-position: -70px 0;
+    }
+}
+
+@-webkit-keyframes appear-from-inside {
+    from {
+        -webkit-transform: translateY(-50%) scale(0);
+    }
+    75% {
+        -webkit-transform: translateY(-50%) scale(1.1);
+    }
+    to {
+        -webkit-transform: translateY(-50%) scale(1);
+    }
+}
+
+@keyframes appear-from-inside {
+    from {
+        transform: translateY(-50%) scale(0);
+    }
+    75% {
+        transform: translateY(-50%) scale(1.1);
+    }
+    to {
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+.box__file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.box__file + label {
+    max-width: 80%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.box__file + label:hover strong,
+.box__file:focus + label strong,
+.box__file.has-focus + label strong {
+    color: #39bfd3;
+}
+
+.box__file:focus + label,
+.box__file.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.box__file + label * {
+    /* pointer-events: none; */ /* in case of FastClick lib use */
+}
+
+.no-js .box__file + label {
+    display: none;
+}
+
+.no-js .box__button {
+    display: block;
+}
+
+.box__button {
+    font-weight: 700;
+    color: #e5edf1;
+    background-color: #39bfd3;
+    display: none;
+    padding: 8px 16px;
+    margin: 40px auto 0;
+}
+
+.box__button:hover,
+.box__button:focus {
+    background-color: #0f3c4b;
+}

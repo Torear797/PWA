@@ -59,10 +59,18 @@
             </p>
         </div>
 
-        <div id="installBtn" class="mdl-card__actions mdl-card--border">
+        <div id="installBtn" class="mdl-card__actions mdl-card--border" onclick="checkPWA()">
             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                 Красивая кнопка
             </a>
         </div>
     </div>
 </div>
+
+<script>
+    function checkPWA() {
+        if ('serviceWorker' in navigator)
+            alert("Вы зашли с PWA приложения");
+        else alert("Вы зашли на Сайт");
+    }
+</script>

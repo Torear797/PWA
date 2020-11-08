@@ -154,6 +154,17 @@
             box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
         }
 
+        .section-header{
+            margin: 0;
+
+            color: #606060;
+            display: block;
+            padding: 0px 24px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: .007px;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -170,6 +181,8 @@
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock(0, false); return false;">Главная</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                       onclick="ReplaceBlock(2, false); return false;">AES</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock(1, false); return false;">base64</a>
                 </nav>
             </div>
@@ -181,18 +194,26 @@
         <nav class=" mdl-navigation">
             <a class="mdl-navigation__link mdl-typography--text-uppercase mdl-navigation__link"
                onclick="ReplaceBlock(0); return false;">Главная</a>
+
             <div class="drawer-separator"></div>
+            <h3 class="section-header">Без ключа</h3>
+
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock(1); return false;">base64</a>
+
+
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">SHA256</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock(2); return false;">SHA512</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">SHA384</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">SHA256</a>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">SHA3</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">Стрибог</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">BLAKE2b</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">SHA3</a>
+
             <div class="drawer-separator"></div>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">AES (Rijndael)</a>
+            <h3 class="section-header">Симметричные</h3>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(2); return false;">AES (Rijndael)</a>
+            <div class="drawer-separator"></div>
+            <h3 class="section-header">Асимметричные</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">RSA</a>
             <!--                SHA256: 32 байта (5618 МС)-->
             <!--                SHA384: 48 байт (3839 МС)-->
@@ -214,7 +235,7 @@
     function ReplaceBlock(id, isOpenMenu = true) {
         switch (id) {
             case 0: {
-                document.getElementById("content").innerHTML = '<object type="text/html" data="home.html" ' +
+                document.getElementById("content").innerHTML = '<object type="text/html" data="forms/home.html" ' +
                     'style="' +
                     'width:100%; ' +
                     'height: 100%; ' +
@@ -223,7 +244,7 @@
                 break;
             }
             case 1: {
-                document.getElementById("content").innerHTML = '<object type="text/html" data="base64Form.html" ' +
+                document.getElementById("content").innerHTML = '<object type="text/html" data="forms/base64Form.html" ' +
                     'style="' +
                     'width:100%; ' +
                     'height: 100%; ' +
@@ -232,16 +253,16 @@
                 localStorage.setItem("currentPage", JSON.stringify(1));
                 break;
             }
-            // case 2: {
-            //     document.getElementById("content").innerHTML = '<object type="text/html" data="SHA512Form.html" ' +
-            //         'style="' +
-            //         'width:60%; ' +
-            //         'height: 100%; ' +
-            //         'margin:0 25% 0 25%;' +
-            //         '"></object>';
-            //     localStorage.setItem("currentPage", JSON.stringify(2));
-            //     break;
-            // }
+            case 2: {
+                    document.getElementById("content").innerHTML = '<object type="text/html" data="forms/AES.html" ' +
+                        'style="' +
+                        'width:100%; ' +
+                        'height: 100%; ' +
+                        '"' +
+                        '></object>';
+                    localStorage.setItem("currentPage", JSON.stringify(2));
+                    break;
+            }
         }
 
         if (isOpenMenu)

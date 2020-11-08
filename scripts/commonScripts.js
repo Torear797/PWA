@@ -7,19 +7,32 @@ function copyToClipboard() {
     }
 }
 
-function setCharCounter() {
+function setCharCounter(isPassword = false) {
     const inputField = document.getElementById("InputText").value.length;
     const outputField = document.getElementById("CryptText").value.length;
 
     const inputLabel = document.getElementById("LabelText");
     const outputLabel = document.getElementById("CryptLabel");
 
-    if (inputField !== 0 && outputField !== 0) {
-        inputLabel.innerHTML = "Текст" + " (" + inputField + ")";
+    if (outputField !== 0) {
         outputLabel.innerHTML = "Результат" + " (" + outputField + ")";
     } else {
-        inputLabel.innerHTML = "Текст";
         outputLabel.innerHTML = "Результат";
+    }
+
+    if (inputField !== 0) {
+        inputLabel.innerHTML = "Текст" + " (" + inputField + ")";
+    } else {
+        inputLabel.innerHTML = "Текст";
+    }
+
+    if (isPassword) {
+        const passField = document.getElementById("password").value.length;
+        const passLabel = document.getElementById("password_label");
+        if (passField !== 0)
+            passLabel.innerHTML = "Пароль" + " (" + passField + ")";
+        else
+            passLabel.innerHTML = "Пароль";
     }
 }
 
@@ -27,7 +40,7 @@ function NewClick() {
     document.getElementById("CryptText").value = "";
 }
 
-function ClearFields() {
+function ClearFields(isPassword = false) {
     var cryptText = document.getElementById("CryptText");
     var inputText = document.getElementById("InputText");
 
@@ -40,7 +53,14 @@ function ClearFields() {
         cryptText.parentNode.classList.remove('is-dirty');
         inputText.parentNode.classList.remove('is-dirty');
 
-        setCharCounter();
+        if(isPassword) {
+            var password = document.getElementById("password");
+            password.value = '';
+            password.blur();
+            password.parentNode.classList.remove('is-dirty');
+        }
+
+        setCharCounter(true);
         showToast("Поля очищены");
     }
 }

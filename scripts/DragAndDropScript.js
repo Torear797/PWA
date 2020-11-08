@@ -15,6 +15,8 @@
             cancel = form.querySelector('#box_cancel'),
             encode = form.querySelector('#box_encode'),
             decode = form.querySelector('#box_decode'),
+            passBlock = form.querySelector('#enterPassword'),
+            passEdit = form.querySelector('#password_file'),
             SelectFiles = null,
             showFiles = function (files) {
                 if (files.length > 1) {
@@ -24,6 +26,8 @@
 
                 SelectFiles = files;
                 buttons.classList.remove('hidden');
+                if(passBlock !== null)
+                passBlock.classList.remove('hidden');
             };
 
         // letting the server side to know we are going to make an Ajax request
@@ -67,24 +71,39 @@
 
         cancel.addEventListener('click', function (e) {
             buttons.classList.add('hidden');
+            if(passBlock !== null)
+            passBlock.classList.add('hidden');
             label.innerHTML = ('<strong>Выбирете файл</strong><span\n' +
                 '                            class="box__dragndrop"> или перетащите его</span>');
             SelectFiles = null;
         });
 
         encode.addEventListener('click', function (e) {
-            for (var i = 0; i < Object.keys(SelectFiles).length; i++){
-                fileAction(0, SelectFiles[i]);
+            $('#loading').removeClass('hidden');
+            if (passEdit !== null && passEdit.value === "") {
+                alert("Введите пароль!");
+                passEdit.focus();
+                passEdit.classList.add('is-dirty');
+            } else {
+                for (var i = 0; i < Object.keys(SelectFiles).length; i++) {
+                    fileAction(0, SelectFiles[i], passEdit.value);
+                }
             }
-
+            $('#loading').addClass('hidden');
         });
 
         decode.addEventListener('click', function (e) {
-            //  fileAction(1, (SelectFiles[0]));
-
-            for (var i = 0; i < Object.keys(SelectFiles).length; i++){
-                fileAction(1, SelectFiles[i]);
+            $('#loading').removeClass('hidden');
+            if (passEdit !== null && passEdit.value === "") {
+                alert("Введите пароль!");
+                passEdit.focus();
+                passEdit.classList.add('is-dirty');
+            } else {
+                for (var i = 0; i < Object.keys(SelectFiles).length; i++) {
+                    fileAction(1, SelectFiles[i], passEdit.value);
+                }
             }
+            $('#loading').addClass('hidden');
         });
 
         // Firefox focus bug fix for file input

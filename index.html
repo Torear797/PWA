@@ -11,7 +11,6 @@
           content="Сайт для быстрого шифрования и дешифрования текстов и файлов любых форматов."/>
     <meta name="description"
           content="Помогает быстро и качественно шифровать данные."/>
-    <meta name="yandex-verification" content="313258251d9a0205" />
 
     <!--    Подключение PWA-->
     <link rel='manifest' href='manifest.json'>
@@ -22,7 +21,7 @@
         document.body.appendChild(el);
     </script>
     <script type="module"
-            src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall@latest/dist/pwa-install.min.js"></script>
+            src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall@lat est/dist/pwa-install.min.js"></script>
     <link rel="apple-touch-icon" href="img/pwa_icons/180x180.png"/>
     <link rel="icon" href="img/pwa_icons/44x44.png" type="image/x-icon">
 
@@ -156,7 +155,6 @@
 
         .section-header{
             margin: 0;
-
             color: #606060;
             display: block;
             padding: 0px 24px;
@@ -173,7 +171,7 @@
     <header class="crypt-header mdl-layout__header mdl-color-text--grey-600 is-casting-shadow">
         <div class="mdl-layout__header-row">
             <span class="crypt-title mdl-layout-title">
-               <img class="crypt-logo-image" src="img/logo.png">
+               <img class="crypt-logo-image" src="img/logo.png" alt="logo">
             </span>
             <div class="mdl-layout-spacer"></div>
             <div class="crypt-navigation-container">
@@ -227,7 +225,7 @@
 </div>
 </body>
 <script type="text/javascript">
-    var page = JSON.parse(localStorage.getItem("currentPage"));
+    const page = JSON.parse(localStorage.getItem("currentPage"));
     if (page)
         ReplaceBlock(page, false);
     else ReplaceBlock(0, false);
@@ -240,7 +238,6 @@
                     'width:100%; ' +
                     'height: 100%; ' +
                     '"></object>';
-
                 localStorage.setItem("currentPage", JSON.stringify(0));
                 break;
             }

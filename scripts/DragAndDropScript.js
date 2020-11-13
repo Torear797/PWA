@@ -1,17 +1,17 @@
 'use strict';
 
 ;(function (document, window, index) {
-    var isAdvancedUpload = function () {
-        var div = document.createElement('div');
+    const isAdvancedUpload = function () {
+        const div = document.createElement('div');
         return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
     }();
 
     // applying the effect for every form
-    var forms = document.querySelectorAll('.box');
+    const forms = document.querySelectorAll('.box');
     Array.prototype.forEach.call(forms, function (form) {
-        var input = form.querySelector('input[type="file"]'),
+        let input = form.querySelector('input[type="file"]'),
             label = form.querySelector('label'),
-            buttons = form.querySelector( '#dad_buttons'),
+            buttons = form.querySelector('#dad_buttons'),
             cancel = form.querySelector('#box_cancel'),
             encode = form.querySelector('#box_encode'),
             decode = form.querySelector('#box_decode'),
@@ -26,12 +26,12 @@
 
                 SelectFiles = files;
                 buttons.classList.remove('hidden');
-                if(passBlock !== null)
-                passBlock.classList.remove('hidden');
+                if (passBlock !== null)
+                    passBlock.classList.remove('hidden');
             };
 
         // letting the server side to know we are going to make an Ajax request
-        var ajaxFlag = document.createElement('input');
+        const ajaxFlag = document.createElement('input');
         ajaxFlag.setAttribute('type', 'hidden');
         ajaxFlag.setAttribute('name', 'ajax');
         ajaxFlag.setAttribute('value', 1);
@@ -79,31 +79,42 @@
         });
 
         encode.addEventListener('click', function (e) {
-            $('#loading').removeClass('hidden');
+            const el = document.getElementById("loading");
+            el.classList.remove('hidden');
+            let password = "";
             if (passEdit !== null && passEdit.value === "") {
                 alert("Введите пароль!");
                 passEdit.focus();
                 passEdit.classList.add('is-dirty');
             } else {
-                for (var i = 0; i < Object.keys(SelectFiles).length; i++) {
-                    fileAction(0, SelectFiles[i], passEdit.value);
+                if (passEdit !== null)
+                    password = passEdit.value;
+
+                for (let i = 0; i < Object.keys(SelectFiles).length; i++) {
+                    fileAction(0, SelectFiles[i], password);
                 }
             }
-            $('#loading').addClass('hidden');
+            el.classList.add('hidden');
         });
 
+        if(decode !== null)
         decode.addEventListener('click', function (e) {
-            $('#loading').removeClass('hidden');
+            const el = document.getElementById("loading");
+            el.classList.remove('hidden');
+            let password = "";
             if (passEdit !== null && passEdit.value === "") {
                 alert("Введите пароль!");
                 passEdit.focus();
                 passEdit.classList.add('is-dirty');
             } else {
-                for (var i = 0; i < Object.keys(SelectFiles).length; i++) {
-                    fileAction(1, SelectFiles[i], passEdit.value);
+                if (passEdit !== null)
+                    password = passEdit.value;
+
+                for (let i = 0; i < Object.keys(SelectFiles).length; i++) {
+                    fileAction(1, SelectFiles[i], password);
                 }
             }
-            $('#loading').addClass('hidden');
+            el.classList.add('hidden');
         });
 
         // Firefox focus bug fix for file input

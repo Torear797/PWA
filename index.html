@@ -183,6 +183,8 @@
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock(2, false); return false;">AES</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                       onclick="ReplaceBlock(3, false); return false;">SHA</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock(1, false); return false;">base64</a>
                 </nav>
             </div>
@@ -201,11 +203,9 @@
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock(1); return false;">base64</a>
 
-
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">SHA256</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock(2); return false;">SHA512</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">SHA3</a>
+               onclick="ReplaceBlock(3); return false;">SHA</a>
+
             <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">Стрибог</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">BLAKE2b</a>
 
@@ -262,6 +262,16 @@
                         '></object>';
                     localStorage.setItem("currentPage", JSON.stringify(2));
                     break;
+            }
+            case 3: {
+                document.getElementById("content").innerHTML = '<object type="text/html" data="forms/SHA.html" ' +
+                    'style="' +
+                    'width:100%; ' +
+                    'height: 100%; ' +
+                    '"' +
+                    '></object>';
+                localStorage.setItem("currentPage", JSON.stringify(3));
+                break;
             }
         }
 

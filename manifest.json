@@ -111,5 +111,9 @@
   ],
   "url": "https://torear797.github.io/PWA/index.html",
   "screenshots": [],
-  "categories": ["шифры", "AES", "SHA"]
+  "categories": [
+    "шифры",
+    "AES",
+    "SHA"
+  ]
 }

@@ -79,8 +79,6 @@
         });
 
         encode.addEventListener('click', function (e) {
-            const el = document.getElementById("loading");
-            el.classList.remove('hidden');
             let password = "";
             if (passEdit !== null && passEdit.value === "") {
                 alert("Введите пароль!");
@@ -94,13 +92,10 @@
                     fileAction(0, SelectFiles[i], password);
                 }
             }
-            el.classList.add('hidden');
         });
 
         if(decode !== null)
         decode.addEventListener('click', function (e) {
-            const el = document.getElementById("loading");
-            el.classList.remove('hidden');
             let password = "";
             if (passEdit !== null && passEdit.value === "") {
                 alert("Введите пароль!");
@@ -114,7 +109,6 @@
                     fileAction(1, SelectFiles[i], password);
                 }
             }
-            el.classList.add('hidden');
         });
 
         // Firefox focus bug fix for file input

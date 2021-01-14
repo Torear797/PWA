@@ -16,6 +16,7 @@
     <link rel='manifest' href='manifest.json'>
     <script type="module">
         import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
         const el = document.createElement('pwa-update');
         document.body.appendChild(el);
     </script>
@@ -75,7 +76,7 @@
                 display: none;
             }
 
-            .crypt-title{
+            .crypt-title {
                 display: none !important;
             }
         }
@@ -148,10 +149,10 @@
         }
 
         .is-casting-shadow {
-            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
         }
 
-        .section-header{
+        .section-header {
             margin: 0;
             color: #606060;
             display: block;
@@ -198,22 +199,25 @@
 
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock(1); return false;">base64</a>
-
-            <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock(3); return false;">SHA</a>
-
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">Стрибог</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">BLAKE2b</a>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(3); return false;">SHA</a>
+<!--            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">Стрибог</a>-->
+<!--            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">BLAKE2b</a>-->
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Симметричные</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(2); return false;">AES (Rijndael)</a>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(2); return false;">AES
+                (Rijndael)</a>
             <div class="drawer-separator"></div>
+
             <h3 class="section-header">Асимметричные</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">RSA</a>
-            <!--                SHA256: 32 байта (5618 МС)-->
-            <!--                SHA384: 48 байт (3839 МС)-->
-            <!--                SHA512: 64 байта (3820 МС)-->
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">RSA (В разработке)</a>
+
+            <h3 class="section-header">Математические</h3>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(4); return false;">Математические функции</a>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(5); return false;">Системы счисления BIN/OCT/DEC/HEX</a>
+
+            <h3 class="section-header">Утилиты</h3>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(6); return false;">Timestamp в дату</a>
         </nav>
     </div>
 
@@ -250,14 +254,14 @@
                 break;
             }
             case 2: {
-                    document.getElementById("content").innerHTML = '<object type="text/html" data="forms/AES.html" ' +
-                        'style="' +
-                        'width:100%; ' +
-                        'height: 100%; ' +
-                        '"' +
-                        '></object>';
-                    localStorage.setItem("currentPage", JSON.stringify(2));
-                    break;
+                document.getElementById("content").innerHTML = '<object type="text/html" data="forms/AES.html" ' +
+                    'style="' +
+                    'width:100%; ' +
+                    'height: 100%; ' +
+                    '"' +
+                    '></object>';
+                localStorage.setItem("currentPage", JSON.stringify(2));
+                break;
             }
             case 3: {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="forms/SHA.html" ' +
@@ -267,6 +271,36 @@
                     '"' +
                     '></object>';
                 localStorage.setItem("currentPage", JSON.stringify(3));
+                break;
+            }
+            case 4: {
+                document.getElementById("content").innerHTML = '<object type="text/html" data="forms/mathFunc.html" ' +
+                    'style="' +
+                    'width:100%; ' +
+                    'height: 100%; ' +
+                    '"' +
+                    '></object>';
+                localStorage.setItem("currentPage", JSON.stringify(4));
+                break;
+            }
+            case 5: {
+                document.getElementById("content").innerHTML = '<object type="text/html" data="forms/mathSystems.html" ' +
+                    'style="' +
+                    'width:100%; ' +
+                    'height: 100%; ' +
+                    '"' +
+                    '></object>';
+                localStorage.setItem("currentPage", JSON.stringify(5));
+                break;
+            }
+            case 6: {
+                document.getElementById("content").innerHTML = '<object type="text/html" data="forms/timestamp.html" ' +
+                    'style="' +
+                    'width:100%; ' +
+                    'height: 100%; ' +
+                    '"' +
+                    '></object>';
+                localStorage.setItem("currentPage", JSON.stringify(6));
                 break;
             }
         }

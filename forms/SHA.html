@@ -8,7 +8,6 @@
 <script defer src="../scripts/material.min.js"></script>
 
 <!--Подключение своих скриптов-->
-<script src="../scripts/CryptFunc.js" type="text/javascript"></script>
 <script src="../scripts/commonScripts.js" type="text/javascript"></script>
 
 <!--Подключение SHA-->
@@ -107,7 +106,6 @@
     }
 </style>
 
-<div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate hidden"></div>
 <div class="mdl-grid demo-content">
 
     <div class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--4dp">
@@ -181,9 +179,15 @@
             <h2 class="mdl-card__title-text">Описание</h2>
         </div>
         <div class="mdl-card__supporting-text no-padding">
+            <p>
+                SHA256: 32 байта (5618 МС)
+                SHA384: 48 байт (3839 МС)
+                SHA512: 64 байта (3820 МС)
+            </p>
             <p>SHA256 - хеш-функция из семейства алгоритмов SHA-2 предназначена для создания «отпечатков» или
                 «дайджестов» для сообщений произвольной длины. Применяется в различных приложениях или компонентах,
                 связанных с защитой информации.
+            </p>
             <p>SHA-2 включает значительные изменения от своего предшественника, SHA-1. SHA-2 семья состоит из шести
                 хэш-функции с дайджест (хэш-значений), которые находятся 224, 256, 384 или 512 бит: алгоритм SHA-224,
                 SHA-256, SHA-384, алгоритм SHA-512, алгоритм SHA-512/224, алгоритм SHA-512/256.

@@ -36,13 +36,15 @@ function ClearFields(isPassword = false) {
     const cryptText = document.getElementById("CryptText");
     const inputText = document.getElementById("InputText");
 
-    if (cryptText.value !== '' || inputText.value !== '') {
-        cryptText.value = '';
+    if (inputText.value !== '') {
+        if(cryptText !== null && cryptText.value !== ''){
+            cryptText.value = '';
+            cryptText.blur();
+            cryptText.parentNode.classList.remove('is-dirty');
+        }
+
         inputText.value = '';
         inputText.blur();
-        cryptText.blur();
-
-        cryptText.parentNode.classList.remove('is-dirty');
         inputText.parentNode.classList.remove('is-dirty');
 
         if (isPassword) {
@@ -52,7 +54,7 @@ function ClearFields(isPassword = false) {
             password.parentNode.classList.remove('is-dirty');
         }
 
-        setCharCounter(true);
+        setCharCounter(isPassword);
         showToast("Поля очищены");
     }
 }

@@ -1,0 +1,178 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--Подключение библиотеки Material-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-deep_purple.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script defer src="../scripts/material.min.js"></script>
+
+<!--Подключение своих скриптов-->
+<script src="../scripts/commonScripts.js" type="text/javascript"></script>
+
+<style type="text/css">
+
+    .center {
+        padding: 1%;
+    }
+
+    .demo-content {
+        max-width: 1080px;
+    }
+
+    .mdl-textfield--floating-label {
+        width: 100%;
+    }
+
+    .mdl-textfield__input {
+        min-height: 40px;
+        font-family: 'Roboto', 'Helvetica', sans-serif;
+        font-weight: 400;
+
+    }
+
+    .mdl-card__actions {
+        display: flex;
+        box-sizing: border-box;
+        align-items: center;
+    }
+
+    .mdl-card__actions > .mdl-button--icon {
+        margin-right: 5px;
+        margin-left: 5px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .mdl-layout-spacer h1 {
+        text-align: center;
+    }
+
+    h1 {
+        -webkit-align-self: flex-end;
+        -ms-flex-item-align: end;
+        align-self: flex-end;
+        color: inherit;
+        display: block;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: normal;
+        overflow: hidden;
+        -webkit-transform-origin: 149px 48px;
+        transform-origin: 149px 48px;
+        margin: 0
+    }
+
+    .mdl-mega-footer {
+        padding: 16px 40px;
+        color: #9e9e9e;
+        background-color: #fafafa;
+        position: relative;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    }
+
+    .alCenter {
+        margin: 0 auto;
+        width: 160px;
+    }
+
+    .mdl-card__supporting-text p {
+        text-align: justify;
+    }
+</style>
+
+<div class="mdl-grid demo-content">
+
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="center">
+
+            <div class="mdl-card__actions">
+                <div class="mdl-layout-spacer"><h1>QR код</h1></div>
+            </div>
+
+            <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows="5" id="InputText"></textarea>
+                <label id="LabelText" class="mdl-textfield__label" for="InputText">Текст (0)</label>
+            </div>
+
+            <div id="qrCodeOutput" style="margin: auto"></div>
+
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                   onclick="Click(); return false;">Кодировать</a>
+                <div class="mdl-layout-spacer"></div>
+                <button class="mdl-button mdl-button--icon mdl-button--colored" style="margin-right: 1%"
+                        onclick="ClearFields(); return false;">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="mdl-cell mdl-cell--12-col  mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Описание</h2>
+        </div>
+        <div class="mdl-card__supporting-text no-padding">
+            <p>QR-код (сокращенно от Quick Response Code) является товарным знаком для типа штрих-кода матрицы (или
+                двумерного штрих-кода), впервые предназначенного для а втомобильной промышленности в Японии. Штрих-код -
+                это машиночитаемая оптическая этикетка, содержащая информацию о товаре, к которому он прикреплен. QR-код
+                использует четыре стандартных режима кодирования (числовой, буквенно-цифровой, байт / двоичный и кандзи
+                для эффективного хранения данных; также могут использоваться расширения.
+            </p>
+            <p>Система быстрого реагирования (QR code) стала популярной за пределами автомобильной промышленности
+                благодаря своей быстрой читаемости и большей емкости хранения по сравнению со стандартными штрих-кодами
+                UPC. Приложения включают отслеживание товара, идентификация товара, учет рабочего времени,
+                документооборот, маркетинг.
+            </p>
+            <p>
+                QR-код состоит из черных квадратов, расположенных в квадратной сетке на белом фоне, которые могут быть
+                считаны с помощью устройства визуализации, такого как камера, и обрабатываются с помощью исправления
+                ошибок Рида–Соломона, пока изображение не может быть соответствующим образом интерпретировано. Затем
+                необходимые данные извлекаются из шаблонов, которые присутствуют как в горизонтальном, так и в
+                вертикальном компонентах изображения.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<footer class="mdl-mega-footer">
+    <div class="alCenter">
+            <span class="crypt-title mdl-layout-title">
+                 <p class="mdl-typography--font-light">Created by </p>
+               <img class="crypt-logo-image" src="../img/amb_tor.png" alt="ambigramma">
+            </span>
+    </div>
+</footer>
+
+<div id="toast" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
+<!-- QR -->
+<script defer src="../scripts/qr.js"></script>
+
+<script type="text/javascript">
+    const qrCodeOutput = document.getElementById("qrCodeOutput");
+
+    document.addEventListener('DOMContentLoaded', function () {
+        createQRCode("Привет");
+    }, false);
+
+    function Click() {
+        const inputText = document.getElementById("InputText").value;
+        if (inputText.length > 0) {
+            createQRCode(inputText);
+            setCharCounter();
+        }
+    }
+
+    function createQRCode(text) {
+        qrCodeOutput.innerHTML = "";
+        qrCodeOutput.append(QRCode.generateHTML(text, {}));
+    }
+</script>

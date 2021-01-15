@@ -163,6 +163,7 @@
             text-transform: uppercase;
         }
     </style>
+    <script src="scripts/qr.js"></script>
 </head>
 
 <body>
@@ -183,6 +184,8 @@
                        onclick="ReplaceBlock(3, false); return false;">SHA</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock(1, false); return false;">base64</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                       onclick="ReplaceBlock(7, false); return false;">QR код</a>
                 </nav>
             </div>
         </div>
@@ -218,6 +221,7 @@
 
             <h3 class="section-header">Утилиты</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(6); return false;">Timestamp в дату</a>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(7); return false;">QR код</a>
         </nav>
     </div>
 
@@ -301,6 +305,16 @@
                     '"' +
                     '></object>';
                 localStorage.setItem("currentPage", JSON.stringify(6));
+                break;
+            }
+            case 7: {
+                document.getElementById("content").innerHTML = '<object type="text/html" data="forms/qr.html" ' +
+                    'style="' +
+                    'width:100%; ' +
+                    'height: 100%; ' +
+                    '"' +
+                    '></object>';
+                localStorage.setItem("currentPage", JSON.stringify(7));
                 break;
             }
         }

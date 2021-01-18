@@ -136,9 +136,9 @@
             position: relative;
         }
 
-        /*.mdl-layout {*/
-        /*    overflow: hidden;*/
-        /*}*/
+        .mdl-layout {
+            overflow: hidden;
+        }
 
         .mdl-layout__container {
             background-color: #f5f5f5 !important;
@@ -162,18 +162,6 @@
             font-weight: 500;
             letter-spacing: .007px;
             text-transform: uppercase;
-        }
-
-        .mdl-card__supporting-text p {
-            text-align: justify;
-        }
-
-        .mdl-mega-footer {
-            padding: 16px 40px;
-            color: #9e9e9e;
-            background-color: #fafafa;
-            position: relative;
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
         }
     </style>
 </head>
@@ -253,80 +241,14 @@
     else ReplaceBlock(0, false);
 
     function ReplaceBlock(id, isOpenMenu = true) {
-        $('.mdl-layout').css('overflow', 'hidden');
-
         switch (id) {
             case 0: {
-                // document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/home.html" ' +
-                //     'style="' +
-                //     'width:100%; ' +
-                //     'height: 100%; ' +
-                //     '"></object>';
-                $('.mdl-layout').css('overflow', '');
+                document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/home.html" ' +
+                    'style="' +
+                    'width:100%; ' +
+                    'height: 100%; ' +
+                    '"></object>';
 
-                $('#content').html("<div class=\"mdl-grid\" style=\"max-width: 1080px\">\n" +
-                    "    <div class=\"mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp\">\n" +
-                    "        <div class=\"mdl-card__title\">\n" +
-                    "            <h2 class=\"mdl-card__title-text\">Описание</h2>\n" +
-                    "        </div>\n" +
-                    "        <div class=\"mdl-card__media\">\n" +
-                    "            <img src=\"public/img/crypt.png\" alt=\"Изображение шифрования\"\n" +
-                    "                 style=\"width: 100%; height: auto;\"\n" +
-                    "            >\n" +
-                    "        </div>\n" +
-                    "        <div class=\"mdl-card__supporting-text no-padding\">\n" +
-                    "            <p>В криптографии шифрование - это процесс кодирования сообщения или информации таким образом,\n" +
-                    "                что\n" +
-                    "                только авторизованные стороны могут получить к нему доступ, а те, кто не авторизован, не\n" +
-                    "                могут.\n" +
-                    "                Шифрование само по себе не предотвращает помехи, но отрицает понятное содержимое\n" +
-                    "                потенциальному\n" +
-                    "                перехватчику. В схеме шифрования предполагаемая информация или сообщение, называемое\n" +
-                    "                открытым\n" +
-                    "                текстом, шифруется с помощью алгоритма шифрования - шифровального зашифрованного текста,\n" +
-                    "                который\n" +
-                    "                может быть прочитан только при расшифровке. По техническим причинам схема шифрования обычно\n" +
-                    "                использует псевдослучайный ключ шифрования, сгенерированный алгоритмом. Расшифровать\n" +
-                    "                сообщение в\n" +
-                    "                принципе можно без ключа, но для хорошо продуманной схемы шифрования требуются значительные\n" +
-                    "                вычислительные ресурсы и навыки. Авторизованный получатель может легко расшифровать\n" +
-                    "                сообщение с\n" +
-                    "                помощью ключа, предоставленного отправителем получателям, но не неавторизованным\n" +
-                    "                пользователям.\n" +
-                    "            </p>\n" +
-                    "            <p>\n" +
-                    "                В схемах симметричного ключа ключи шифрования и дешифрования одинаковы. Сообщающиеся стороны\n" +
-                    "                должны иметь один и тот же ключ для обеспечения безопасной связи.\n" +
-                    "            </p>\n" +
-                    "            <p>\n" +
-                    "                Схемы шифрования с открытым ключом ключ шифрования публикуется для всех, кто использует и\n" +
-                    "                шифрует сообщения. Однако только получающая сторона имеет доступ к ключу расшифровки,\n" +
-                    "                который\n" +
-                    "                позволяет читать сообщения. Шифрование с открытым ключом было впервые описано в секретном\n" +
-                    "                документе в 1973 году; до этого все схемы шифрования были симметричными ключами (также\n" +
-                    "                называемыми закрытыми ключами).\n" +
-                    "            </p>\n" +
-                    "        </div>\n" +
-                    "\n" +
-                    "        <div class=\"mdl-card__actions mdl-card--border\">\n" +
-                    "            <a class=\"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect\" onclick=\"checkSupportPWA()\">\n" +
-                    "                Проверка поддержки PWA\n" +
-                    "            </a>\n" +
-                    "            <a class=\"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect\" onclick=\"checkPWA()\">\n" +
-                    "                Проверка PWA\n" +
-                    "            </a>\n" +
-                    "        </div>\n" +
-                    "    </div>\n" +
-                    "</div>\n" +
-                    "\n" +
-                    "<footer class=\"mdl-mega-footer\">\n" +
-                    "    <div style=\"margin: 0 auto; width: 160px\">\n" +
-                    "            <span class=\"mdl-layout-title\">\n" +
-                    "                 <p class=\"mdl-typography--font-light\">Created by </p>\n" +
-                    "               <img src=\"public/img/amb_tor.png\" alt=\"футер\">\n" +
-                    "            </span>\n" +
-                    "    </div>\n" +
-                    "</footer>");
                 localStorage.setItem("currentPage", JSON.stringify(0));
                 break;
             }
@@ -404,19 +326,6 @@
 
         if (isOpenMenu)
             $('.mdl-layout__obfuscator').click();
-    }
-
-    function checkPWA() {
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            alert("Вы зашли с приложения PWA");
-        } else
-            alert("Вы зашли на сайт");
-    }
-
-    function checkSupportPWA() {
-        if ('serviceWorker' in navigator)
-            alert("Ваше устройство поддерживает PWA");
-        else alert("Ваше устройство не поддерживает PWA");
     }
 </script>
 </html>

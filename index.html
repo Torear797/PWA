@@ -177,15 +177,17 @@
             <div class="crypt-navigation-container">
                 <nav class="crypt-navigation mdl-navigation">
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock(0, false); return false;">Главная</a>
+                       href="?page=Home">Главная</a>
+                    <!--    <a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase"
+                           onclick="ReplaceBlock(2, false); return false;">AES</a>-->
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock(2, false); return false;">AES</a>
+                       href="?page=AES">AES</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock(3, false); return false;">SHA</a>
+                       href="?page=SHA">SHA</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock(1, false); return false;">base64</a>
+                       href="?page=base64">base64</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock(7, false); return false;">QR код</a>
+                       href="?page=QR">QR код</a>
                 </nav>
             </div>
         </div>
@@ -195,20 +197,21 @@
         <span class="mdl-layout-title">Шифры</span>
         <nav class=" mdl-navigation">
             <a class="mdl-navigation__link mdl-typography--text-uppercase mdl-navigation__link"
-               onclick="ReplaceBlock(0); return false;">Главная</a>
+               onclick="ReplaceBlock('Home'); return false;">Главная</a>
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Без ключа</h3>
 
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock(1); return false;">base64</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(3); return false;">SHA</a>
+               onclick="ReplaceBlock('base64'); return false;">base64</a>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+               onclick="ReplaceBlock('SHA'); return false;">SHA</a>
             <!--            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">Стрибог</a>-->
             <!--            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">BLAKE2b</a>-->
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Симметричные</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(2); return false;">AES
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('AES'); return false;">AES
                 (Rijndael)</a>
             <div class="drawer-separator"></div>
 
@@ -216,15 +219,18 @@
             <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">RSA (В разработке)</a>
 
             <h3 class="section-header">Математические</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(4); return false;">Математические
+            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+               onclick="ReplaceBlock('mathFunc'); return false;">Математические
                 функции</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(5); return false;">Системы
+            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+               onclick="ReplaceBlock('mathSystems'); return false;">Системы
                 счисления BIN/OCT/DEC/HEX</a>
 
             <h3 class="section-header">Утилиты</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(6); return false;">Timestamp
+            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+               onclick="ReplaceBlock('timestamp'); return false;">Timestamp
                 в дату</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock(7); return false;">QR
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('QR'); return false;">QR
                 код</a>
         </nav>
     </div>
@@ -235,14 +241,17 @@
 </div>
 </body>
 <script type="text/javascript">
-    const page = JSON.parse(localStorage.getItem("currentPage"));
-    if (page)
+    // const page = JSON.parse(localStorage.getItem("currentPage"));
+    const page = $_GET("page");
+    if (page) {
         ReplaceBlock(page, false);
-    else ReplaceBlock(0, false);
+    } else {
+        ReplaceBlock("Home", false);
+    }
 
     function ReplaceBlock(id, isOpenMenu = true) {
         switch (id) {
-            case 0: {
+            case "Home": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/home.html" ' +
                     'style="' +
                     'width:100%; ' +
@@ -252,7 +261,7 @@
                 localStorage.setItem("currentPage", JSON.stringify(0));
                 break;
             }
-            case 1: {
+            case "base64": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/base64Form.html" ' +
                     'style="' +
                     'width:100%; ' +
@@ -262,7 +271,7 @@
                 localStorage.setItem("currentPage", JSON.stringify(1));
                 break;
             }
-            case 2: {
+            case "AES": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/AES.html" ' +
                     'style="' +
                     'width:100%; ' +
@@ -272,7 +281,7 @@
                 localStorage.setItem("currentPage", JSON.stringify(2));
                 break;
             }
-            case 3: {
+            case "SHA": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/SHA.html" ' +
                     'style="' +
                     'width:100%; ' +
@@ -282,7 +291,7 @@
                 localStorage.setItem("currentPage", JSON.stringify(3));
                 break;
             }
-            case 4: {
+            case "mathFunc": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/mathFunc.html" ' +
                     'style="' +
                     'width:100%; ' +
@@ -292,7 +301,7 @@
                 localStorage.setItem("currentPage", JSON.stringify(4));
                 break;
             }
-            case 5: {
+            case "mathSystems": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/mathSystems.html" ' +
                     'style="' +
                     'width:100%; ' +
@@ -302,7 +311,7 @@
                 localStorage.setItem("currentPage", JSON.stringify(5));
                 break;
             }
-            case 6: {
+            case "timestamp": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/timestamp.html" ' +
                     'style="' +
                     'width:100%; ' +
@@ -312,7 +321,7 @@
                 localStorage.setItem("currentPage", JSON.stringify(6));
                 break;
             }
-            case 7: {
+            case "QR": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/qr.html" ' +
                     'style="' +
                     'width:100%; ' +
@@ -326,6 +335,12 @@
 
         if (isOpenMenu)
             $('.mdl-layout__obfuscator').click();
+    }
+
+    function $_GET(key) {
+        let p = window.location.search;
+        p = p.match(new RegExp(key + '=([^&=]+)'));
+        return p ? p[1] : false;
     }
 </script>
 </html>

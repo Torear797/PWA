@@ -9,9 +9,9 @@
     <!--    Для индексации-->
     <title>Шифрование ONLINE</title>
     <meta name="keywords"
-          content="Сайт для быстрого шифрования и дешифрования текстов и файлов любых форматов."/>
+          content="torear, torear797, Шифрование, AES, base64, SHA, Кодирование, Декодирование"/>
     <meta name="description"
-          content="Помогает быстро и качественно шифровать данные."/>
+          content="Шифруем файлы и текст"/>
 
     <!--    Подключение PWA-->
     <link rel='manifest' href='manifest.json'>
@@ -32,7 +32,7 @@
     <script defer src="public/js/material.min.js"></script>
 
     <!--Подключение jquery-->
-    <script src="public/js/jquery-latest.min.js" type="text/javascript"></script>
+<!--    <script src="public/js/jquery-latest.min.js" type="text/javascript"></script>-->
 
     <style type="text/css">
         .crypt-navigation-container {
@@ -177,17 +177,15 @@
             <div class="crypt-navigation-container">
                 <nav class="crypt-navigation mdl-navigation">
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       href="?page=Home">Главная</a>
-                    <!--    <a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase"
-                           onclick="ReplaceBlock(2, false); return false;">AES</a>-->
+                       onclick="ReplaceBlock('Home', false); return false;">Главная</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       href="?page=AES">AES</a>
+                       onclick="ReplaceBlock('AES', false); return false;">AES</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       href="?page=SHA">SHA</a>
+                       onclick="ReplaceBlock('SHA', false); return false;">SHA</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       href="?page=base64">base64</a>
+                       onclick="ReplaceBlock('base64', false); return false;">base64</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       href="?page=QR">QR код</a>
+                       onclick="ReplaceBlock('QR', false); return false;">QR код</a>
                 </nav>
             </div>
         </div>
@@ -237,16 +235,36 @@
 
     <div id="content">
         <!--            JS-->
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=Home">Главная</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=AES">AES</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=SHA">SHA</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=base64">base64</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=QR">QR код</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=mathFunc">mathFunc</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=mathSystems">mathSystems</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=timestamp">timestamp</a>
     </div>
 </div>
 </body>
 <script type="text/javascript">
-    // const page = JSON.parse(localStorage.getItem("currentPage"));
     const page = $_GET("page");
     if (page) {
         ReplaceBlock(page, false);
     } else {
-        ReplaceBlock("Home", false);
+        const localPage = JSON.parse(localStorage.getItem("currentPage"));
+        if (localPage) {
+            ReplaceBlock(localPage, false);
+        } else {
+            ReplaceBlock("Home", false);
+        }
     }
 
     function ReplaceBlock(id, isOpenMenu = true) {
@@ -258,7 +276,6 @@
                     'height: 100%; ' +
                     '"></object>';
 
-                localStorage.setItem("currentPage", JSON.stringify(0));
                 break;
             }
             case "base64": {
@@ -268,7 +285,6 @@
                     'height: 100%; ' +
                     '"' +
                     '></object>';
-                localStorage.setItem("currentPage", JSON.stringify(1));
                 break;
             }
             case "AES": {
@@ -278,7 +294,6 @@
                     'height: 100%; ' +
                     '"' +
                     '></object>';
-                localStorage.setItem("currentPage", JSON.stringify(2));
                 break;
             }
             case "SHA": {
@@ -288,7 +303,6 @@
                     'height: 100%; ' +
                     '"' +
                     '></object>';
-                localStorage.setItem("currentPage", JSON.stringify(3));
                 break;
             }
             case "mathFunc": {
@@ -298,7 +312,6 @@
                     'height: 100%; ' +
                     '"' +
                     '></object>';
-                localStorage.setItem("currentPage", JSON.stringify(4));
                 break;
             }
             case "mathSystems": {
@@ -308,7 +321,6 @@
                     'height: 100%; ' +
                     '"' +
                     '></object>';
-                localStorage.setItem("currentPage", JSON.stringify(5));
                 break;
             }
             case "timestamp": {
@@ -318,7 +330,6 @@
                     'height: 100%; ' +
                     '"' +
                     '></object>';
-                localStorage.setItem("currentPage", JSON.stringify(6));
                 break;
             }
             case "QR": {
@@ -328,13 +339,16 @@
                     'height: 100%; ' +
                     '"' +
                     '></object>';
-                localStorage.setItem("currentPage", JSON.stringify(7));
                 break;
             }
         }
 
-        if (isOpenMenu)
-            $('.mdl-layout__obfuscator').click();
+        localStorage.setItem("currentPage", JSON.stringify(id));
+
+        if (isOpenMenu) {
+            document.querySelector(".mdl-layout__obfuscator").click();
+            // $('.mdl-layout__obfuscator').click();
+        }
     }
 
     function $_GET(key) {

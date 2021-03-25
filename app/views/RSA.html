@@ -1,0 +1,286 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--&lt;!&ndash;Подключение jquery&ndash;&gt;-->
+<!--<script src="../js/jquery-latest.min.js" type="text/javascript"></script>-->
+
+<!--Подключение библиотеки Material-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-deep_purple.min.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script defer src="../../public/js/material.min.js"></script>
+
+<!--Подключение своих скриптов-->
+<script src="../../public/js/commonScripts.js" type="text/javascript"></script>
+
+<!--Подключение AES-->
+<script src="../../public/js/jsencrypt.min.js" type="text/javascript"></script>
+
+<style type="text/css">
+    .center {
+        padding: 1%;
+    }
+
+    .demo-content {
+        max-width: 1080px;
+    }
+
+    .mdl-textfield--floating-label {
+        width: 100%;
+    }
+
+    .mdl-textfield__input {
+        min-height: 40px;
+        font-family: 'Roboto', 'Helvetica', sans-serif;
+        font-weight: 400;
+    }
+
+    .mdl-card__actions {
+        display: flex;
+        box-sizing: border-box;
+        align-items: center;
+    }
+
+    .mdl-card__actions > .mdl-button--icon {
+        margin-right: 5px;
+        margin-left: 5px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .material-icons {
+        font-size: 26px;
+    }
+
+    .mdl-layout-spacer h1 {
+        text-align: center;
+    }
+
+    h1 {
+        -webkit-align-self: flex-end;
+        -ms-flex-item-align: end;
+        align-self: flex-end;
+        color: inherit;
+        display: block;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: normal;
+        overflow: hidden;
+        -webkit-transform-origin: 149px 48px;
+        transform-origin: 149px 48px;
+        margin: 0
+    }
+
+    .mdl-mega-footer {
+        padding: 16px 40px;
+        color: #9e9e9e;
+        background-color: #fafafa;
+        position: relative;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    }
+
+    .alCenter {
+        margin: 0 auto;
+        width: 160px;
+    }
+
+    .mdl-card__supporting-text p {
+        text-align: justify;
+    }
+</style>
+
+<div class="mdl-grid demo-content">
+
+    <div class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--4dp">
+        <div class="center">
+            <div class="mdl-card__actions">
+                <div class="mdl-layout-spacer"><h1>RSA</h1></div>
+            </div>
+
+            <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+                <textarea class="mdl-textfield__input" rows="5" id="InputText"></textarea>
+                <label id="LabelText" class="mdl-textfield__label" for="InputText">Текст (0)</label>
+            </div>
+
+            <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+                <label class="mdl-textfield__label" for="public-key">Открытый ключ (0)</label>
+                <textarea class="mdl-textfield__input" rows="10" id="public-key"></textarea>
+            </div>
+
+            <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+                <label class="mdl-textfield__label" for="private-key">Секретный ключ (0)</label>
+                <textarea class="mdl-textfield__input" rows="10" id="private-key"></textarea>
+            </div>
+
+            <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+                <textarea class="mdl-textfield__input" rows="5" id="CryptText"></textarea>
+                <label id="CryptLabel" class="mdl-textfield__label" for="CryptText">Результат (0)</label>
+            </div>
+
+            <div class="mdl-card__actions">
+
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                   onclick="generateKeys()">Generate Keys</a>
+
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                   onclick="Click(0); return false;">Encode</a>
+
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                   onclick="Click(1); return false;">Decode</a>
+
+                <div class="mdl-layout-spacer"></div>
+
+                <button class="mdl-button mdl-button--icon mdl-button--colored"
+                        onclick="copyToClipboard(); return false;"><i class="material-icons">content_copy</i>
+                </button>
+
+                <button class="mdl-button mdl-button--icon mdl-button--colored" style="margin-right: 1%"
+                        onclick="ClearFields(true); return false;">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mdl-cell mdl-cell--8-col  mdl-cell--4-col-desktop mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Загрузка файлов</h2>
+        </div>
+
+        <div class="container">
+            <form class="box" method="post" action="" enctype="multipart/form-data">
+                <div class="box__input">
+                    <svg class="box__icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                         role="presentation">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"></path>
+                    </svg>
+
+                    <input class="box__file" type="file" name="files[]" id="file"
+                           data-multiple-caption="Выбрано {count} файл{prefix}" multiple/>
+
+                    <label id="dad_label" for="file"><strong>Выберите файл</strong><span
+                            class="box__dragndrop"> или перетащите его</span></label>
+
+                    <button class="box__button" type="submit">Загрузить</button>
+                </div>
+
+                <div id="dad_buttons" class="hidden box_buttons">
+                    <button id="box_encode" type="button" class="mdl-chip">
+                        <span class="mdl-chip__text">Кодировать</span>
+                    </button>
+                    <button id="box_decode" type="button" class="mdl-chip">
+                        <span class="mdl-chip__text">Декодировать</span>
+                    </button>
+                    <button id="box_cancel" type="button" class="mdl-chip">
+                        <span class="mdl-chip__text">Отмена</span>
+                    </button>
+                </div>
+
+                <div id="enterPassword" class="hidden mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+                    <input class="mdl-textfield__input" type="text" id="password_file">
+                    <label class="mdl-textfield__label" for="password_file">Пароль</label>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col  mdl-card mdl-shadow--4dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Описание</h2>
+        </div>
+        <div class="mdl-card__supporting-text no-padding">
+
+        </div>
+    </div>
+
+</div>
+
+<div id="toast" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
+<!--Подключение DragAndDrop Zone-->
+<script src="../../public/js/DragAndDropScript.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../../public/css/DragAndDropCSS.css" type="text/css">
+
+<script type="text/javascript">
+    function generateKeys() {
+        //var sKeySize = $('#key-size').attr('data-value');
+        //var keySize = parseInt(sKeySize);
+
+        var crypt = new JSEncrypt({default_key_size: 512});
+        crypt.getKey();
+        document.getElementById("public-key").value = crypt.getPublicKey();
+        document.getElementById("private-key").value = crypt.getPrivateKey();
+    }
+
+    function Click(Choice, isFile = false) {
+        // 0 - кодировать, 1 - декодировать
+        NewClick();
+
+        const inputText = document.getElementById("InputText").value;
+        const cryptedText = document.getElementById("CryptText").value;
+
+        var publicKey = document.getElementById("public-key").value;
+        var privateKey = document.getElementById("private-key").value;
+
+        switch (Choice) {
+            case 0: {
+                if (publicKey !== '' && inputText !== '') {
+                    var encrypt = new JSEncrypt();
+                    encrypt.setPublicKey(publicKey);
+                    var encrypted = encrypt.encrypt(inputText);
+                    document.getElementById("CryptText").value = encrypted.toString();
+                } else {
+                    document.getElementById("public-key").parentNode.classList.add('is-dirty');
+                }
+                break;
+            }
+            case 1: {
+                if (privateKey !== '' && cryptedText !== '') {
+                    var decrypt = new JSEncrypt();
+                    decrypt.setPrivateKey(privateKey);
+                    var decrypted = decrypt.decrypt(cryptedText);
+                    document.getElementById("CryptText").value = decrypted.toString();
+                } else {
+                    document.getElementById("private-key").parentNode.classList.add('is-dirty');
+                }
+                break;
+            }
+        }
+        if (document.getElementById("CryptText").value !== "") {
+            document.getElementById("CryptText").focus();
+            document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+        }
+        // setCharCounter(true);
+    }
+
+    function fileAction(action = 0, file, password = '') {
+        const reader = new FileReader();
+        if (action === 0) {
+            reader.onload = function (e) {
+                const encrypted = CryptoJS.AES.encrypt(e.target.result, password);
+                const link = document.createElement('a');
+                link.setAttribute('href', 'data:application/octet-stream,' + encrypted);
+                link.setAttribute('download', file.name + '.encrypted');
+                link.click();
+            };
+
+            reader.readAsDataURL(file);
+        } else if (action === 1) {
+            reader.onload = function (e) {
+                const decrypted = CryptoJS.AES.decrypt(e.target.result, password)
+                    .toString(CryptoJS.enc.Utf8);
+                const link = document.createElement('a');
+                link.setAttribute('href', decrypted);
+                link.setAttribute('download', file.name.replace('.encrypted', ''));
+                link.click();
+            };
+            reader.readAsText(file);
+        }
+    }
+</script>

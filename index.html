@@ -9,7 +9,7 @@
     <!--    Для индексации-->
     <title>Шифрование ONLINE</title>
     <meta name="keywords"
-          content="torear, torear797, Шифрование, AES, base64, SHA, Кодирование, Декодирование, online, ONLINE"/>
+          content="Шифрование, AES, base64, SHA, Кодирование, Декодирование, online, ONLINE"/>
     <meta name="description"
           content="Шифруем файлы и текст"/>
 
@@ -181,6 +181,8 @@
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock('AES', false); return false;">AES</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                       onclick="ReplaceBlock('RSA', false); return false;">RSA</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock('SHA', false); return false;">SHA</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock('base64', false); return false;">base64</a>
@@ -214,7 +216,7 @@
             <div class="drawer-separator"></div>
 
             <h3 class="section-header">Асимметричные</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">RSA (В разработке)</a>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('RSA'); return false;">RSA</a>
 
             <h3 class="section-header">Математические</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
@@ -239,6 +241,8 @@
            href="?page=Home">Главная</a>
         <a class="mdl-navigation__link mdl-typography--text-uppercase"
            href="?page=AES">AES</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase"
+           href="?page=RSA">RSA</a>
         <a class="mdl-navigation__link mdl-typography--text-uppercase"
            href="?page=SHA">SHA</a>
         <a class="mdl-navigation__link mdl-typography--text-uppercase"
@@ -334,6 +338,15 @@
             }
             case "QR": {
                 document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/qr.html" ' +
+                    'style="' +
+                    'width:100%; ' +
+                    'height: 100%; ' +
+                    '"' +
+                    '></object>';
+                break;
+            }
+            case "RSA": {
+                document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/RSA.html" ' +
                     'style="' +
                     'width:100%; ' +
                     'height: 100%; ' +

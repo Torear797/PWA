@@ -62,3 +62,53 @@ function ClearFields(isPassword = false) {
 function showToast(text) {
     document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: text});
 }
+
+function generateRSAKeys() {
+    //var sKeySize = $('#key-size').attr('data-value');
+    //var keySize = parseInt(sKeySize);
+
+    var crypt = new JSEncrypt({default_key_size: 512});
+    crypt.getKey();
+    document.getElementById("public-key").value = crypt.getPublicKey();
+    document.getElementById("private-key").value = crypt.getPrivateKey();
+}
+
+function actionRSA(Choice, isFile = false) {
+    // 0 - кодировать, 1 - декодировать
+
+    const inputText = document.getElementById("InputText").value;
+    const cryptedText = document.getElementById("CryptText").value;
+
+    var publicKey = document.getElementById("public-key").value;
+    var privateKey = document.getElementById("private-key").value;
+
+    switch (Choice) {
+        case 0: {
+            if (publicKey !== '' && inputText !== '') {
+                var encrypt = new JSEncrypt();
+                encrypt.setPublicKey(publicKey);
+                var encrypted = encrypt.encrypt(inputText);
+                document.getElementById("CryptText").value = encrypted.toString();
+            } else {
+                document.getElementById("public-key").parentNode.classList.add('is-dirty');
+            }
+            break;
+        }
+        case 1: {
+            if (privateKey !== '' && cryptedText !== '') {
+                var decrypt = new JSEncrypt();
+                decrypt.setPrivateKey(privateKey);
+                var decrypted = decrypt.decrypt(cryptedText);
+                document.getElementById("CryptText").value = decrypted.toString();
+            } else {
+                document.getElementById("private-key").parentNode.classList.add('is-dirty');
+            }
+            break;
+        }
+    }
+    if (document.getElementById("CryptText").value !== "") {
+        document.getElementById("CryptText").focus();
+        document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+    }
+    // setCharCounter(true);
+}

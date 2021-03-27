@@ -95,32 +95,37 @@ function ClearFieldsRSA() {
     const public_key = document.getElementById("public_key");
     const private_key = document.getElementById("private_key");
 
-    if (public_key !== null && public_key.value !== "") {
-        public_key.value = '';
-        public_key.blur();
-        public_key.parentNode.classList.remove('is-dirty');
-    }
+    if ((cryptText !== null && cryptText.value !== '') ||
+        (public_key !== null && public_key.value !== "") ||
+        (private_key !== null && private_key.value !== "") || (inputText !== null && inputText.value !== "")) {
 
-    if (private_key !== null && private_key.value !== "") {
-        private_key.value = '';
-        private_key.blur();
-        private_key.parentNode.classList.remove('is-dirty');
-    }
+        if (public_key !== null && public_key.value !== "") {
+            public_key.value = '';
+            public_key.blur();
+            public_key.parentNode.classList.remove('is-dirty');
+        }
 
-    if (inputText !== null && inputText.value !== "") {
-        inputText.value = '';
-        inputText.blur();
-        inputText.parentNode.classList.remove('is-dirty');
-    }
+        if (private_key !== null && private_key.value !== "") {
+            private_key.value = '';
+            private_key.blur();
+            private_key.parentNode.classList.remove('is-dirty');
+        }
 
-    if (cryptText !== null && cryptText.value !== '') {
-        cryptText.value = '';
-        cryptText.blur();
-        cryptText.parentNode.classList.remove('is-dirty');
-    }
+        if (inputText !== null && inputText.value !== "") {
+            inputText.value = '';
+            inputText.blur();
+            inputText.parentNode.classList.remove('is-dirty');
+        }
 
-    setCharCounterRSA();
-    showToast("Поля очищены");
+        if (cryptText !== null && cryptText.value !== '') {
+            cryptText.value = '';
+            cryptText.blur();
+            cryptText.parentNode.classList.remove('is-dirty');
+        }
+
+        setCharCounterRSA();
+        showToast("Поля очищены");
+    }
 }
 
 function showToast(text) {
@@ -143,35 +148,31 @@ function actionRSA(Choice, isFile = false) {
     // 0 - кодировать, 1 - декодировать
 
     const inputText = document.getElementById("InputText").value;
-    const cryptedText = document.getElementById("CryptText").value;
 
     const publicKey = document.getElementById("public_key").value;
     const privateKey = document.getElementById("private_key").value;
 
     switch (Choice) {
         case 0: {
-            if (publicKey !== '' && inputText !== '') {
-                var encrypt = new JSEncrypt();
+            if (publicKey !== '' && inputText !== '' && privateKey !== '') {
+                const encrypt = new JSEncrypt();
                 encrypt.setPublicKey(publicKey);
-                var encrypted = encrypt.encrypt(inputText);
+                const encrypted = encrypt.encrypt(inputText);
                 document.getElementById("CryptText").value = encrypted.toString();
-            } else {
-                document.getElementById("public-key").parentNode.classList.add('is-dirty');
             }
             break;
         }
         case 1: {
-            if (privateKey !== '' && cryptedText !== '') {
+            if (privateKey !== '' && publicKey !== '' && inputText !== '') {
                 const decrypt = new JSEncrypt();
                 decrypt.setPrivateKey(privateKey);
-                const decrypted = decrypt.decrypt(cryptedText);
+                const decrypted = decrypt.decrypt(inputText);
                 document.getElementById("CryptText").value = decrypted.toString();
-            } else {
-                document.getElementById("private_key").parentNode.classList.add('is-dirty');
             }
             break;
         }
     }
+
     if (document.getElementById("CryptText").value !== "") {
         document.getElementById("CryptText").focus();
         document.getElementById("CryptText").parentNode.classList.add('is-dirty');

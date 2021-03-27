@@ -28,6 +28,35 @@ function setCharCounter(isPassword = false) {
     }
 }
 
+function setCharCounterRSA() {
+    const outputField = document.getElementById("CryptText");
+    const inputField = document.getElementById("InputText");
+
+    const public_key = document.getElementById("public_key");
+    const private_key = document.getElementById("private_key");
+
+    if (inputField !== null) {
+        const inputtLabel = document.getElementById("LabelText");
+        inputtLabel.innerHTML = "Результат" + " (" + inputField.value.length + ")";
+    }
+
+    if (outputField !== null) {
+        const outputLabel = document.getElementById("CryptLabel");
+        outputLabel.innerHTML = "Текст" + " (" + outputField.value.length + ")";
+    }
+
+    if (public_key !== null) {
+        const publicKeyLabel = document.getElementById("public-key-label");
+        publicKeyLabel.innerHTML = "Открытый ключ" + " (" + public_key.value.length + ")";
+    }
+
+    if (private_key !== null) {
+        const privateKeyLabel = document.getElementById("private-key-label");
+        privateKeyLabel.innerHTML = "Секретный ключ" + " (" + private_key.value.length + ")";
+    }
+
+}
+
 function NewClick() {
     document.getElementById("CryptText").value = "";
 }
@@ -37,7 +66,7 @@ function ClearFields(isPassword = false) {
     const inputText = document.getElementById("InputText");
 
     if (inputText.value !== '') {
-        if(cryptText !== null && cryptText.value !== ''){
+        if (cryptText !== null && cryptText.value !== '') {
             cryptText.value = '';
             cryptText.blur();
             cryptText.parentNode.classList.remove('is-dirty');
@@ -59,18 +88,55 @@ function ClearFields(isPassword = false) {
     }
 }
 
+function ClearFieldsRSA() {
+    const cryptText = document.getElementById("CryptText");
+    const inputText = document.getElementById("InputText");
+
+    const public_key = document.getElementById("public_key");
+    const private_key = document.getElementById("private_key");
+
+    if (public_key !== null && public_key.value !== "") {
+        public_key.value = '';
+        public_key.blur();
+        public_key.parentNode.classList.remove('is-dirty');
+    }
+
+    if (private_key !== null && private_key.value !== "") {
+        private_key.value = '';
+        private_key.blur();
+        private_key.parentNode.classList.remove('is-dirty');
+    }
+
+    if (inputText !== null && inputText.value !== "") {
+        inputText.value = '';
+        inputText.blur();
+        inputText.parentNode.classList.remove('is-dirty');
+    }
+
+    if (cryptText !== null && cryptText.value !== '') {
+        cryptText.value = '';
+        cryptText.blur();
+        cryptText.parentNode.classList.remove('is-dirty');
+    }
+
+    setCharCounterRSA();
+    showToast("Поля очищены");
+}
+
 function showToast(text) {
     document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: text});
 }
 
 function generateRSAKeys() {
-    //var sKeySize = $('#key-size').attr('data-value');
-    //var keySize = parseInt(sKeySize);
-
-    var crypt = new JSEncrypt({default_key_size: 512});
+    const crypt = new JSEncrypt({default_key_size: 512});
     crypt.getKey();
-    document.getElementById("public-key").value = crypt.getPublicKey();
-    document.getElementById("private-key").value = crypt.getPrivateKey();
+    document.getElementById("public_key").value = crypt.getPublicKey();
+    document.getElementById("private_key").value = crypt.getPrivateKey();
+
+    document.getElementById("private-key-label").parentNode.classList.add('is-dirty');
+    document.getElementById("public-key-label").parentNode.classList.add('is-dirty');
+
+    setCharCounterRSA()
 }
 
 function actionRSA(Choice, isFile = false) {
@@ -79,8 +145,8 @@ function actionRSA(Choice, isFile = false) {
     const inputText = document.getElementById("InputText").value;
     const cryptedText = document.getElementById("CryptText").value;
 
-    var publicKey = document.getElementById("public-key").value;
-    var privateKey = document.getElementById("private-key").value;
+    const publicKey = document.getElementById("public_key").value;
+    const privateKey = document.getElementById("private_key").value;
 
     switch (Choice) {
         case 0: {
@@ -96,12 +162,12 @@ function actionRSA(Choice, isFile = false) {
         }
         case 1: {
             if (privateKey !== '' && cryptedText !== '') {
-                var decrypt = new JSEncrypt();
+                const decrypt = new JSEncrypt();
                 decrypt.setPrivateKey(privateKey);
-                var decrypted = decrypt.decrypt(cryptedText);
+                const decrypted = decrypt.decrypt(cryptedText);
                 document.getElementById("CryptText").value = decrypted.toString();
             } else {
-                document.getElementById("private-key").parentNode.classList.add('is-dirty');
+                document.getElementById("private_key").parentNode.classList.add('is-dirty');
             }
             break;
         }
@@ -110,5 +176,5 @@ function actionRSA(Choice, isFile = false) {
         document.getElementById("CryptText").focus();
         document.getElementById("CryptText").parentNode.classList.add('is-dirty');
     }
-    // setCharCounter(true);
+    setCharCounterRSA()
 }

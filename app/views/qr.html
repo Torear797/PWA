@@ -175,4 +175,6 @@
         qrCodeOutput.innerHTML = "";
         qrCodeOutput.append(QRCode.generateHTML(text, {}));
     }
+
+    InputText.oninput = function() {setCharCounter()};
 </script>

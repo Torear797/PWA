@@ -95,13 +95,13 @@
             </div>
 
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
-                <label class="mdl-textfield__label" for="public-key">Открытый ключ (0)</label>
-                <textarea class="mdl-textfield__input" rows="10" id="public-key"></textarea>
+                <input class="mdl-textfield__input" type="text" id="public_key">
+                <label class="mdl-textfield__label" for="public_key" id="public-key-label">Открытый ключ (0)</label>
             </div>
 
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
-                <label class="mdl-textfield__label" for="private-key">Секретный ключ (0)</label>
-                <textarea class="mdl-textfield__input" rows="10" id="private-key"></textarea>
+                <input class="mdl-textfield__input" type="text" id="private_key">
+                <label class="mdl-textfield__label" for="private_key" id="private-key-label">Секретный ключ (0)</label>
             </div>
 
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
@@ -127,7 +127,7 @@
                 </button>
 
                 <button class="mdl-button mdl-button--icon mdl-button--colored" style="margin-right: 1%"
-                        onclick="ClearFields(true); return false;">
+                        onclick="ClearFieldsRSA(); return false;">
                     <i class="material-icons">clear</i>
                 </button>
             </div>
@@ -250,4 +250,9 @@
             reader.readAsText(file);
         }
     }
+
+    InputText.oninput = function() {setCharCounterRSA()};
+    CryptText.oninput = function() {setCharCounterRSA()};
+    public_key.oninput = function() {setCharCounterRSA()};
+    private_key.oninput = function() {setCharCounterRSA()};
 </script>

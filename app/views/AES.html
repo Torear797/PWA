@@ -294,4 +294,8 @@
             reader.readAsText(file);
         }
     }
+
+    InputText.oninput = function() {setCharCounter(true)};
+    CryptText.oninput = function() {setCharCounter(true)};
+    password.oninput = function() {setCharCounter(true)};
 </script>

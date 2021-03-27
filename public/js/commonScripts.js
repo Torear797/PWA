@@ -37,12 +37,12 @@ function setCharCounterRSA() {
 
     if (inputField !== null) {
         const inputtLabel = document.getElementById("LabelText");
-        inputtLabel.innerHTML = "Результат" + " (" + inputField.value.length + ")";
+        inputtLabel.innerHTML = "Текст" + " (" + inputField.value.length + ")";
     }
 
     if (outputField !== null) {
         const outputLabel = document.getElementById("CryptLabel");
-        outputLabel.innerHTML = "Текст" + " (" + outputField.value.length + ")";
+        outputLabel.innerHTML = "Результат" + " (" + outputField.value.length + ")";
     }
 
     if (public_key !== null) {

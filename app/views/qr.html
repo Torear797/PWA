@@ -168,6 +168,9 @@
         if (inputText.length > 0) {
             createQRCode(inputText);
             setCharCounter();
+        } else {
+            showToast("Введите текст");
+            document.getElementById("InputText").focus();
         }
     }
 

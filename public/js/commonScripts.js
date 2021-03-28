@@ -219,3 +219,39 @@ function actionRSA(Choice, isFile = false) {
         showToast("Ключи заполнены некорректно!")
     }
 }
+
+/*Математические функции*/
+function ClickMathFunc() {
+    const inputText = document.getElementById("InputText").value;
+    if (inputText !== "") {
+        if(parseInt(inputText) || parseFloat(inputText)) {
+            let text = "";
+            text += "<p>x * π / 180 = " + (inputText * Math.PI) / 180 + "</p>";
+            text += "<p>x * 180 / π = " + (inputText * 180) / Math.PI + "</p>";
+
+            text += "<br><p>sin x = " + Math.sin(inputText * Math.PI / 180) + "</p>";
+            text += "<p>cos x = " + Math.cos(inputText * Math.PI / 180) + "</p>";
+            text += " <p>tg x = " + Math.tan(inputText * Math.PI / 180) + "</p>";
+
+            text += "<p>arcsin x = " + radToDeg(Math.asin(inputText)) + "</p>";
+            text += "<p>arccos x = " + radToDeg(Math.acos(inputText)) + "</p>";
+            text += "<p>arctg x = " + radToDeg(Math.atan(inputText)) + "</p>";
+
+            text += "<br><p>e^x = " + Math.exp(inputText) + "</p>";
+            text += "<p>log e^x = " + Math.log(inputText) + "</p>";
+            text += "<p>√ x = " + Math.sqrt(inputText) + "</p>";
+            text += "<p>1 / x = " + 1 / inputText + "</p>";
+
+            document.getElementById('hash_answers').innerHTML = text;
+        } else {
+            showToast("Введите число!")
+        }
+    } else {
+        showToast("Значение не введено!")
+        document.getElementById("InputText").focus();
+    }
+}
+
+function radToDeg(rad) {
+    return rad / Math.PI * 180;
+}

@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script defer src="../../public/js/material.min.js"></script>
 
+<!--Подключение общих скриптов-->
+<script defer src="../../public/js/commonScripts.js"></script>
+
 <style type="text/css">
     .hashBlock {
         padding: 7px 5px;
@@ -88,8 +91,9 @@
             </div>
 
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
-                <input class="mdl-textfield__input" type="text" id="InputText">
+                <input class="mdl-textfield__input" type="text" id="InputText" pattern="-?[0-9]*(\.[0-9]+)?">
                 <label class="mdl-textfield__label" for="InputText">Исходное значение</label>
+                <span class="mdl-textfield__error">Это не число!</span>
             </div>
 
             <div class="hashBlock mdl-grid">
@@ -131,7 +135,7 @@
 
             <div class="mdl-card__actions mdl-card--border">
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                   onclick="Click(); return false;">Encode</a>
+                   onclick="ClickMathFunc(); return false;">Encode</a>
                 <div class="mdl-layout-spacer"></div>
             </div>
 
@@ -152,6 +156,11 @@
 
 </div>
 
+<div id="toast" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
 <footer class="mdl-mega-footer">
     <div class="alCenter">
             <span class="crypt-title mdl-layout-title">
@@ -160,33 +169,3 @@
             </span>
     </div>
 </footer>
-
-<script type="text/javascript">
-    function Click() {
-        const inputText = document.getElementById("InputText").value;
-        if (inputText.length > 0) {
-            let text = "";
-            text += "<p>x * π / 180 = " + (inputText * Math.PI) / 180 + "</p>";
-            text += "<p>x * 180 / π = " + (inputText * 180) / Math.PI + "</p>";
-
-            text += "<br><p>sin x = " + Math.sin(inputText * Math.PI / 180) + "</p>";
-            text += "<p>cos x = " + Math.cos(inputText * Math.PI / 180) + "</p>";
-            text += " <p>tg x = " + Math.tan(inputText * Math.PI / 180) + "</p>";
-
-            text += "<p>arcsin x = " + radToDeg(Math.asin(inputText)) + "</p>";
-            text += "<p>arccos x = " + radToDeg(Math.acos(inputText)) + "</p>";
-            text += "<p>arctg x = " + radToDeg(Math.atan(inputText)) + "</p>";
-
-            text += "<br><p>e^x = " + Math.exp(inputText) + "</p>";
-            text += "<p>log e^x = " + Math.log(inputText) + "</p>";
-            text += "<p>√ x = " + Math.sqrt(inputText) + "</p>";
-            text += "<p>1 / x = " + 1 / inputText + "</p>";
-
-            document.getElementById('hash_answers').innerHTML = text;
-        }
-    }
-
-    function radToDeg(rad) {
-        return rad / Math.PI * 180;
-    }
-</script>

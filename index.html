@@ -273,7 +273,6 @@
     }
 
     function ReplaceBlock(id, isOpenMenu = true) {
-
         document.getElementById("content").innerHTML = '<object type="text/html" data="app/views/' + id + '.html"' +
             'style="' +
             'width:100%; ' +
@@ -284,7 +283,6 @@
 
         if (isOpenMenu) {
             document.querySelector(".mdl-layout__obfuscator").click();
-            // $('.mdl-layout__obfuscator').click();
         }
     }
 

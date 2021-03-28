@@ -33,7 +33,9 @@ function setCharCounterRSA() {
     const inputField = document.getElementById("InputText");
 
     const public_key = document.getElementById("public_key");
+
     const private_key = document.getElementById("private_key");
+    const lengthKey = document.getElementById("lengthKey");
 
     if (inputField !== null) {
         const inputtLabel = document.getElementById("LabelText");
@@ -53,6 +55,11 @@ function setCharCounterRSA() {
     if (private_key !== null) {
         const privateKeyLabel = document.getElementById("private-key-label");
         privateKeyLabel.innerHTML = "Секретный ключ" + " (" + private_key.value.length + ")";
+    }
+
+    if (lengthKey !== null) {
+        const lengthKeyLabel = document.getElementById("lengthKeyLabel");
+        lengthKeyLabel.innerHTML = "Длина ключей (бит)" + " (" + lengthKey.value.length + ")";
     }
 
 }
@@ -95,6 +102,8 @@ function ClearFieldsRSA() {
     const public_key = document.getElementById("public_key");
     const private_key = document.getElementById("private_key");
 
+    const lengthKey = document.getElementById("lengthKey");
+
     if ((cryptText !== null && cryptText.value !== '') ||
         (public_key !== null && public_key.value !== "") ||
         (private_key !== null && private_key.value !== "") || (inputText !== null && inputText.value !== "")) {
@@ -123,6 +132,12 @@ function ClearFieldsRSA() {
             cryptText.parentNode.classList.remove('is-dirty');
         }
 
+        if (lengthKey !== null && lengthKey.value !== "") {
+            lengthKey.value = '';
+            lengthKey.blur();
+            lengthKey.parentNode.classList.remove('is-dirty');
+        }
+
         setCharCounterRSA();
         showToast("Поля очищены");
     }
@@ -133,54 +148,74 @@ function showToast(text) {
 }
 
 function generateRSAKeys() {
-    const crypt = new JSEncrypt({default_key_size: 512});
-    crypt.getKey();
-    document.getElementById("public_key").value = crypt.getPublicKey();
-    document.getElementById("private_key").value = crypt.getPrivateKey();
+    const lengthKey = document.getElementById("lengthKey").value;
+    if (lengthKey !== null && lengthKey !== "") {
+        if (!parseInt(lengthKey)) {
+            showToast("Длина ключей задана не верно!");
+        } else {
+            const crypt = new JSEncrypt({default_key_size: lengthKey});
+            crypt.getKey();
+            document.getElementById("public_key").value = crypt.getPublicKey();
+            document.getElementById("private_key").value = crypt.getPrivateKey();
 
-    document.getElementById("private-key-label").parentNode.classList.add('is-dirty');
-    document.getElementById("public-key-label").parentNode.classList.add('is-dirty');
+            document.getElementById("private-key-label").parentNode.classList.add('is-dirty');
+            document.getElementById("public-key-label").parentNode.classList.add('is-dirty');
 
-    setCharCounterRSA()
+            setCharCounterRSA()
+        }
+    } else {
+        showToast("Длина ключей не введена!");
+    }
 }
 
 function actionRSA(Choice, isFile = false) {
     // 0 - кодировать, 1 - декодировать
 
     const inputText = document.getElementById("InputText").value;
-    const cryptText = document.getElementById("CryptText");
 
     const publicKey = document.getElementById("public_key").value;
     const privateKey = document.getElementById("private_key").value;
 
-    switch (Choice) {
-        case 0: {
-            if (publicKey !== '' && inputText !== '' && privateKey !== '' && cryptText.value !== null) {
-                const encrypt = new JSEncrypt();
-                encrypt.setPublicKey(publicKey);
-                const encrypted = encrypt.encrypt(inputText);
-                if(encrypted !== null) {
-                    cryptText.value = encrypted.toString();
-                }
-            }
-            break;
-        }
-        case 1: {
-            if (privateKey !== '' && publicKey !== '' && inputText !== '' && cryptText.value !== null) {
-                const decrypt = new JSEncrypt();
-                decrypt.setPrivateKey(privateKey);
-                const decrypted = decrypt.decrypt(inputText);
-                if(decrypted !== null) {
-                    cryptText.value = decrypted.toString();
-                }
-            }
-            break;
-        }
-    }
+    if (publicKey !== null && privateKey !== null && publicKey !== "" && privateKey !== "") {
+        if (inputText !== null && inputText !== "") {
+            const cryptText = document.getElementById("CryptText");
+            if (cryptText.value !== null) {
 
-    if (cryptText.value !== "" && cryptText.value !== null) {
-        cryptText.focus();
-        cryptText.parentNode.classList.add('is-dirty');
+                switch (Choice) {
+                    case 0: {
+                        if (cryptText.value !== null) {
+                            const encrypt = new JSEncrypt();
+                            encrypt.setPublicKey(publicKey);
+                            const encrypted = encrypt.encrypt(inputText);
+                            if (encrypted !== null) {
+                                cryptText.value = encrypted.toString();
+                            }
+                        }
+                        break;
+                    }
+                    case 1: {
+                        if (cryptText.value !== null) {
+                            const decrypt = new JSEncrypt();
+                            decrypt.setPrivateKey(privateKey);
+                            const decrypted = decrypt.decrypt(inputText);
+                            if (decrypted !== null) {
+                                cryptText.value = decrypted.toString();
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                if (cryptText.value !== "" && cryptText.value !== null) {
+                    cryptText.focus();
+                    cryptText.parentNode.classList.add('is-dirty');
+                }
+                setCharCounterRSA()
+            }
+        } else {
+            showToast("Текст для шифрования не введен!")
+        }
+    } else {
+        showToast("Ключи заполнены некорректно!")
     }
-    setCharCounterRSA()
 }

@@ -81,7 +81,7 @@
         encode.addEventListener('click', function (e) {
             let password = "";
             if (passEdit !== null && passEdit.value === "") {
-                alert("Введите пароль!");
+                showToast("Введите пароль!");
                 passEdit.focus();
                 passEdit.classList.add('is-dirty');
             } else {
@@ -98,7 +98,7 @@
         decode.addEventListener('click', function (e) {
             let password = "";
             if (passEdit !== null && passEdit.value === "") {
-                alert("Введите пароль!");
+                showToast("Введите пароль!");
                 passEdit.focus();
                 passEdit.classList.add('is-dirty');
             } else {

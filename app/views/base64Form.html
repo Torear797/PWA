@@ -238,6 +238,9 @@
             document.getElementById("CryptText").focus();
             document.getElementById("CryptText").parentNode.classList.add('is-dirty');
             setCharCounter();
+        } else {
+            showToast("Введите текст");
+            document.getElementById("InputText").focus();
         }
     }
 

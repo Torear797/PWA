@@ -169,7 +169,7 @@
                     </button>
                 </div>
 
-                <div id = "enterPassword" class="hidden mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
+                <div id="enterPassword" class="hidden mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
                     <input class="mdl-textfield__input" type="text" id="password_file">
                     <label class="mdl-textfield__label" for="password_file">Пароль</label>
                 </div>
@@ -234,26 +234,22 @@
 <link rel="stylesheet" href="../../public/css/DragAndDropCSS.css" type="text/css">
 
 <script type="text/javascript">
-    function Click(Choice, isFile = false) {
+    function Click(Choice) {
         // 0 - кодировать, 1 - декодировать
         const inputText = document.getElementById("InputText").value;
         if (inputText.length > 0) {
             NewClick();
-          //  let password = $('#password').val();
-            let password =  document.getElementById("password").value;
-            if(isFile)
-                // password = $('#password_file').val();
-            password =  document.getElementById("password_file").value;
+            let password = document.getElementById("password").value;
+
+            if (password === "") {
+                showToast("Введите пароль");
+                document.getElementById("password").focus();
+                return;
+            }
 
             switch (Choice) {
                 case 0: {
-                    if (password !== '') {
-                        document.getElementById("CryptText").value = CryptoJS.AES.encrypt(inputText, password);
-                    } else {
-                        alert("Введите пароль");
-                        document.getElementById("password").focus();
-                        document.getElementById("password").parentNode.classList.add('is-dirty');
-                    }
+                    document.getElementById("CryptText").value = CryptoJS.AES.encrypt(inputText, password);
                     break;
                 }
                 case 1: {
@@ -267,6 +263,9 @@
                 document.getElementById("CryptText").parentNode.classList.add('is-dirty');
             }
             setCharCounter(true);
+        } else {
+            showToast("Текст не введен");
+            document.getElementById("InputText").focus();
         }
     }
 
@@ -295,7 +294,13 @@
         }
     }
 
-    InputText.oninput = function() {setCharCounter(true)};
-    CryptText.oninput = function() {setCharCounter(true)};
-    password.oninput = function() {setCharCounter(true)};
+    InputText.oninput = function () {
+        setCharCounter(true)
+    };
+    CryptText.oninput = function () {
+        setCharCounter(true)
+    };
+    password.oninput = function () {
+        setCharCounter(true)
+    };
 </script>

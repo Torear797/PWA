@@ -241,6 +241,9 @@
                 document.getElementById('hash_answers').innerHTML = text;
             }
             setCharCounter();
+        } else{
+            showToast("Введите текст");
+            document.getElementById("InputText").focus();
         }
     }
 

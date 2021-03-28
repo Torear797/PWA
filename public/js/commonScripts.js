@@ -165,6 +165,7 @@ function generateRSAKeys() {
         }
     } else {
         showToast("Длина ключей не введена!");
+        document.getElementById("lengthKey").focus();
     }
 }
 
@@ -183,24 +184,20 @@ function actionRSA(Choice, isFile = false) {
 
                 switch (Choice) {
                     case 0: {
-                        if (cryptText.value !== null) {
-                            const encrypt = new JSEncrypt();
-                            encrypt.setPublicKey(publicKey);
-                            const encrypted = encrypt.encrypt(inputText);
-                            if (encrypted !== null) {
-                                cryptText.value = encrypted.toString();
-                            }
+                        const encrypt = new JSEncrypt();
+                        encrypt.setPublicKey(publicKey);
+                        const encrypted = encrypt.encrypt(inputText);
+                        if (encrypted !== null) {
+                            cryptText.value = encrypted.toString();
                         }
                         break;
                     }
                     case 1: {
-                        if (cryptText.value !== null) {
-                            const decrypt = new JSEncrypt();
-                            decrypt.setPrivateKey(privateKey);
-                            const decrypted = decrypt.decrypt(inputText);
-                            if (decrypted !== null) {
-                                cryptText.value = decrypted.toString();
-                            }
+                        const decrypt = new JSEncrypt();
+                        decrypt.setPrivateKey(privateKey);
+                        const decrypted = decrypt.decrypt(inputText);
+                        if (decrypted !== null) {
+                            cryptText.value = decrypted.toString();
                         }
                         break;
                     }
@@ -213,10 +210,11 @@ function actionRSA(Choice, isFile = false) {
                 setCharCounterRSA()
             }
         } else {
-            showToast("Текст для шифрования не введен!")
+            showToast("Текст для шифрования не введен!");
+            document.getElementById("InputText").focus();
         }
     } else {
-        showToast("Ключи заполнены некорректно!")
+        showToast("Ключи заполнены некорректно!");
     }
 }
 
@@ -224,7 +222,7 @@ function actionRSA(Choice, isFile = false) {
 function ClickMathFunc() {
     const inputText = document.getElementById("InputText").value;
     if (inputText !== "") {
-        if(parseInt(inputText) || parseFloat(inputText)) {
+        if (parseInt(inputText) || parseFloat(inputText)) {
             let text = "";
             text += "<p>x * π / 180 = " + (inputText * Math.PI) / 180 + "</p>";
             text += "<p>x * 180 / π = " + (inputText * 180) / Math.PI + "</p>";

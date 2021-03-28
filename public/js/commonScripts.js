@@ -148,34 +148,35 @@ function actionRSA(Choice, isFile = false) {
     // 0 - кодировать, 1 - декодировать
 
     const inputText = document.getElementById("InputText").value;
+    const cryptText = document.getElementById("CryptText");
 
     const publicKey = document.getElementById("public_key").value;
     const privateKey = document.getElementById("private_key").value;
 
     switch (Choice) {
         case 0: {
-            if (publicKey !== '' && inputText !== '' && privateKey !== '') {
+            if (publicKey !== '' && inputText !== '' && privateKey !== '' && cryptText.value !== null) {
                 const encrypt = new JSEncrypt();
                 encrypt.setPublicKey(publicKey);
                 const encrypted = encrypt.encrypt(inputText);
-                document.getElementById("CryptText").value = encrypted.toString();
+                cryptText.value = encrypted.toString();
             }
             break;
         }
         case 1: {
-            if (privateKey !== '' && publicKey !== '' && inputText !== '') {
+            if (privateKey !== '' && publicKey !== '' && inputText !== '' && cryptText.value !== null) {
                 const decrypt = new JSEncrypt();
                 decrypt.setPrivateKey(privateKey);
                 const decrypted = decrypt.decrypt(inputText);
-                document.getElementById("CryptText").value = decrypted.toString();
+                cryptText.value = decrypted.toString();
             }
             break;
         }
     }
 
-    if (document.getElementById("CryptText").value !== "") {
-        document.getElementById("CryptText").focus();
-        document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+    if (cryptText.value !== "" && cryptText.value !== null) {
+        cryptText.focus();
+        cryptText.parentNode.classList.add('is-dirty');
     }
     setCharCounterRSA()
 }

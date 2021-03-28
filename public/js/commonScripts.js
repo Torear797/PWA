@@ -159,7 +159,9 @@ function actionRSA(Choice, isFile = false) {
                 const encrypt = new JSEncrypt();
                 encrypt.setPublicKey(publicKey);
                 const encrypted = encrypt.encrypt(inputText);
-                cryptText.value = encrypted.toString();
+                if(encrypted !== null) {
+                    cryptText.value = encrypted.toString();
+                }
             }
             break;
         }
@@ -168,7 +170,9 @@ function actionRSA(Choice, isFile = false) {
                 const decrypt = new JSEncrypt();
                 decrypt.setPrivateKey(privateKey);
                 const decrypted = decrypt.decrypt(inputText);
-                cryptText.value = decrypted.toString();
+                if(decrypted !== null) {
+                    cryptText.value = decrypted.toString();
+                }
             }
             break;
         }

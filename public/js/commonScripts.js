@@ -253,3 +253,16 @@ function ClickMathFunc() {
 function radToDeg(rad) {
     return rad / Math.PI * 180;
 }
+
+function checkPWA() {
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+        alert("Вы зашли с приложения PWA");
+    } else
+        alert("Вы зашли на сайт");
+}
+
+function checkSupportPWA() {
+    if ('serviceWorker' in navigator)
+        alert("Ваше устройство поддерживает PWA");
+    else alert("Ваше устройство не поддерживает PWA");
+}

@@ -172,10 +172,16 @@
                 break;
             }
             case 1: {
+                let date = 0;
+
                 if (inputText.length > 0)
-                    document.getElementById("CryptText").value = new Date(Number.parseInt(inputText)).toLocaleString();
+                    date = new Date(Number.parseInt(inputText) * 1000);
                 else
-                    document.getElementById("CryptText").value = new Date().toLocaleString();
+                    date = new Date();
+
+                const iso = date.toISOString().match(/(\d{4}\-\d{2}\-\d{2})T(\d{2}:\d{2}:\d{2})/);
+
+                document.getElementById("CryptText").value = iso[1] + ' ' + iso[2];
                 break;
             }
         }

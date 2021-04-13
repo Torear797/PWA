@@ -129,6 +129,7 @@
             <h2 class="mdl-card__title-text">Описание</h2>
         </div>
         <div class="mdl-card__supporting-text no-padding">
+            <p>Время в формате: 2021-01-01 03:31:39</p>
             <p>Timestamp - время Unix (также известное как время POSIX или Время эпохи UNIX) - это система для описания
                 момента времени, определяемая как количество секунд, прошедших с 00:00:00 по универсальному
                 Координированному времени (UTC), четверг, 1 января 1970 года, минус количество високосных секунд,
@@ -158,33 +159,36 @@
     function Click(Choice) {
         // 0 - кодировать, 1 - декодировать
         const inputText = document.getElementById("InputText").value;
-        if (inputText.length > 0) {
-            NewClick();
-            switch (Choice) {
-                case 0: {
+        NewClick();
 
-                    const data = inputText.split("-");
-                    const newDate = new Date(data[2], data[1] - 1, data[0]);
-
-                    document.getElementById("CryptText").value = newDate.getTime();
-                    break
-                }
-                case 1: {
-                    document.getElementById("CryptText").value = timestampToDate(inputText);
-                    break
-                }
+        switch (Choice) {
+            case 0: {
+                let value = "";
+                if (inputText.length > 0)
+                    value = String(Date.parse(inputText) / 1000);
+                else
+                    value = String(new Date().getTime() / 1000);
+                document.getElementById("CryptText").value = value.replace(".", "");
+                break;
             }
-            document.getElementById("CryptText").focus();
-            document.getElementById("CryptText").parentNode.classList.add('is-dirty');
-            setCharCounter();
+            case 1: {
+                if (inputText.length > 0)
+                    document.getElementById("CryptText").value = new Date(Number.parseInt(inputText)).toLocaleString();
+                else
+                    document.getElementById("CryptText").value = new Date().toLocaleString();
+                break;
+            }
         }
-    }
-    function timestampToDate(ts) {
-        const d = new Date();
-        d.setTime(ts);
-        return ('0' + d.getDate()).slice(-2) + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + d.getFullYear();
+
+        document.getElementById("CryptText").focus();
+        document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+        setCharCounter();
     }
 
-    InputText.oninput = function() {setCharCounter(true)};
-    CryptText.oninput = function() {setCharCounter(true)};
+    InputText.oninput = function () {
+        setCharCounter(false)
+    };
+    CryptText.oninput = function () {
+        setCharCounter(false)
+    };
 </script>

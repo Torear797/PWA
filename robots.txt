@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+Host: https://torear797.github.io/PWA/
+Sitemap:https://torear797.github.io/PWA/sitemap.xml

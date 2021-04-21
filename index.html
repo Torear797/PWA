@@ -177,17 +177,17 @@
             <div class="crypt-navigation-container">
                 <nav class="crypt-navigation mdl-navigation">
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock('home', false); return false;">Главная</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                       onclick="ReplaceBlock('home', false); return false;" href="?page=home">Главная</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="?page=AES"
                        onclick="ReplaceBlock('AES', false); return false;">AES</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock('RSA', false); return false;">RSA</a>
+                       onclick="ReplaceBlock('RSA', false); return false;" href="?page=RSA">RSA</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock('SHA', false); return false;">SHA</a>
+                       onclick="ReplaceBlock('SHA', false); return false;" href="?page=SHA">SHA</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock('base64Form', false); return false;">base64</a>
+                       onclick="ReplaceBlock('base64Form', false); return false;" href="?page=base64Form">base64</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock('qr', false); return false;">QR код</a>
+                       onclick="ReplaceBlock('qr', false); return false;" href="?page=qr">QR код</a>
                 </nav>
             </div>
         </div>
@@ -197,41 +197,41 @@
         <span class="mdl-layout-title">Шифры</span>
         <nav class=" mdl-navigation">
             <a class="mdl-navigation__link mdl-typography--text-uppercase mdl-navigation__link"
-               onclick="ReplaceBlock('home'); return false;">Главная</a>
+               onclick="ReplaceBlock('home'); return false;" href="?page=home">Главная</a>
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Без ключа</h3>
 
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('base64Form'); return false;">base64</a>
+               onclick="ReplaceBlock('base64Form'); return false;" href="?page=base64Form">base64</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('SHA'); return false;">SHA</a>
+               onclick="ReplaceBlock('SHA'); return false;" href="?page=SHA">SHA</a>
             <!--            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">Стрибог</a>-->
             <!--            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">BLAKE2b</a>-->
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Симметричные</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('AES'); return false;">AES
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('AES'); return false;" href="?page=AES">AES
                 (Rijndael)</a>
             <div class="drawer-separator"></div>
 
             <h3 class="section-header">Асимметричные</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('RSA'); return false;">RSA</a>
+               onclick="ReplaceBlock('RSA'); return false;" href="?page=RSA">RSA</a>
 
             <h3 class="section-header">Математические</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('mathFunc'); return false;">Математические
+               onclick="ReplaceBlock('mathFunc'); return false;" href="?page=mathFunc">Математические
                 функции</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('mathSystems'); return false;">Системы
+               onclick="ReplaceBlock('mathSystems'); return false;" href="?page=mathSystems">Системы
                 счисления BIN/OCT/DEC/HEX</a>
 
             <h3 class="section-header">Утилиты</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('timestamp'); return false;">Timestamp
+               onclick="ReplaceBlock('timestamp'); return false;" href="?page=timestamp">Timestamp
                 в дату</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('qr'); return false;">QR
+            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('qr'); return false;" href="?page=qr">QR
                 код</a>
         </nav>
     </div>

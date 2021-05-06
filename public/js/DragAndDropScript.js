@@ -79,6 +79,7 @@
         });
 
         encode.addEventListener('click', function (e) {
+            let typeDecode =  document.getElementById("fileTitle");
             let password = "";
             if (passEdit !== null && passEdit.value === "") {
                 showToast("Введите пароль!");
@@ -89,13 +90,27 @@
                     password = passEdit.value;
 
                 for (let i = 0; i < Object.keys(SelectFiles).length; i++) {
-                    fileAction(0, SelectFiles[i], password);
+                    switch (typeDecode.textContent){
+                        case "AES (Rijndael)":{
+                            fileActionAES(0, SelectFiles[i], password);
+                            break;
+                        }
+                        case "Base64":{
+                            fileActionBase64(0, SelectFiles[i]);
+                            break;
+                        }
+                        case "SHA":{
+                            fileActionSHA(0, SelectFiles[i]);
+                            break;
+                        }
+                    }
                 }
             }
         });
 
         if(decode !== null)
         decode.addEventListener('click', function (e) {
+            let typeDecode =  document.getElementById("fileTitle");
             let password = "";
             if (passEdit !== null && passEdit.value === "") {
                 showToast("Введите пароль!");
@@ -106,7 +121,16 @@
                     password = passEdit.value;
 
                 for (let i = 0; i < Object.keys(SelectFiles).length; i++) {
-                    fileAction(1, SelectFiles[i], password);
+                    switch (typeDecode.textContent){
+                        case "AES (Rijndael)":{
+                            fileActionAES(1, SelectFiles[i], password);
+                            break;
+                        }
+                        case "Base64":{
+                            fileActionBase64(1, SelectFiles[i]);
+                            break;
+                        }
+                    }
                 }
             }
         });

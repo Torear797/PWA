@@ -1,15 +1,3 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!--Подключение библиотеки Material-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-<link rel="stylesheet" href="../../public/css/material.indigo-deep_purple.min.css" type="text/css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<script defer src="../../public/js/material.min.js"></script>
-
-<!--Подключение общих скриптов-->
-<script defer src="../../public/js/commonScripts.js"></script>
-
 <style type="text/css">
     .hashBlock {
         padding: 7px 5px;
@@ -101,7 +89,7 @@
 
             <div class="mdl-card__actions mdl-card--border">
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                   onclick="Click(); return false;">Encode</a>
+                   onclick="ClickMathSystem(); return false;">Encode</a>
                 <div class="mdl-layout-spacer"></div>
             </div>
 
@@ -121,37 +109,3 @@
     </div>
 
 </div>
-
-<div id="toast" class="mdl-js-snackbar mdl-snackbar">
-    <div class="mdl-snackbar__text"></div>
-    <button class="mdl-snackbar__action" type="button"></button>
-</div>
-
-<script type="text/javascript">
-    function Click() {
-        const inputText = document.getElementById("InputText").value;
-        const sys1 = document.getElementById("sys1").value;
-        const sys2 = document.getElementById("sys2").value;
-        if (inputText.length !== "" && sys1 !== "" && sys2 !== "") {
-            document.getElementById('hash_answers').innerHTML = "<p>Результат: " + parseInt(inputText, sys1).toString(sys2) + "</p>";
-        } else {
-            if (inputText === "") {
-                showToast("Введите текст");
-                document.getElementById("InputText").focus();
-                return;
-            }
-
-            if (sys1 === "") {
-                showToast("Введите текст");
-                document.getElementById("sys1").focus();
-                return;
-            }
-
-            if (sys2 === "") {
-                showToast("Введите текст");
-                document.getElementById("sys2").focus();
-                return;
-            }
-        }
-    }
-</script>

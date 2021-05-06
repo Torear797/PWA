@@ -1,3 +1,4 @@
+
 function copyToClipboard() {
     if (document.getElementById("CryptText").value.length > 0) {
         document.getElementById("CryptText").select();
@@ -265,4 +266,228 @@ function checkSupportPWA() {
     if ('serviceWorker' in navigator)
         alert("Ваше устройство поддерживает PWA");
     else alert("Ваше устройство не поддерживает PWA");
+}
+
+/*AES*/
+function ClickAES(Choice) {
+    // 0 - кодировать, 1 - декодировать
+    const inputText = document.getElementById("InputText").value;
+    if (inputText.length > 0) {
+        NewClick();
+        let password = document.getElementById("password").value;
+
+        if (password === "") {
+            showToast("Введите пароль");
+            document.getElementById("password").focus();
+            return;
+        }
+
+        switch (Choice) {
+            case 0: {
+                document.getElementById("CryptText").value = CryptoJS.AES.encrypt(inputText, password);
+                break;
+            }
+            case 1: {
+                const decrypted = CryptoJS.AES.decrypt(inputText, password);
+                document.getElementById("CryptText").value = decrypted.toString(CryptoJS.enc.Utf8);
+                break;
+            }
+        }
+        if (document.getElementById("CryptText").value !== "") {
+            document.getElementById("CryptText").focus();
+            document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+        }
+        setCharCounter(true);
+    } else {
+        showToast("Текст не введен");
+        document.getElementById("InputText").focus();
+    }
+}
+
+function ClickBase64(Choice) {
+    // 0 - кодировать, 1 - декодировать
+    const inputText = document.getElementById("InputText").value;
+    if (inputText.length > 0) {
+        NewClick();
+        switch (Choice) {
+            case 0: {
+                document.getElementById("CryptText").value = utf8_to_b64(inputText);
+                break
+            }
+            case 1: {
+                document.getElementById("CryptText").value = b64_to_utf8(inputText);
+                break
+            }
+        }
+        document.getElementById("CryptText").focus();
+        document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+        setCharCounter();
+    } else {
+        showToast("Введите текст");
+        document.getElementById("InputText").focus();
+    }
+}
+
+function ClickMathSystem() {
+    const inputText = document.getElementById("InputText").value;
+    const sys1 = document.getElementById("sys1").value;
+    const sys2 = document.getElementById("sys2").value;
+    if (inputText.length !== "" && sys1 !== "" && sys2 !== "") {
+        document.getElementById('hash_answers').innerHTML = "<p>Результат: " + parseInt(inputText, sys1).toString(sys2) + "</p>";
+    } else {
+        if (inputText === "") {
+            showToast("Введите текст");
+            document.getElementById("InputText").focus();
+            return;
+        }
+
+        if (sys1 === "") {
+            showToast("Введите текст");
+            document.getElementById("sys1").focus();
+            return;
+        }
+
+        if (sys2 === "") {
+            showToast("Введите текст");
+            document.getElementById("sys2").focus();
+            return;
+        }
+    }
+}
+
+function ClickQR() {
+    const inputText = document.getElementById("InputText").value;
+    if (inputText.length > 0) {
+        createQRCode(inputText);
+        setCharCounter();
+    } else {
+        showToast("Введите текст");
+        document.getElementById("InputText").focus();
+    }
+}
+
+function createQRCode(text) {
+    const qrCodeOutput = document.getElementById("qrCodeOutput");
+    qrCodeOutput.innerHTML = "";
+    qrCodeOutput.append(QRCode.generateHTML(text, {}));
+}
+
+function ClickSHA(Choice) {
+    // 0 - кодировать, 1 - декодировать
+    const inputText = document.getElementById("InputText").value;
+    if (inputText.length > 0) {
+        if (Choice === 0) {
+            let text = "";
+            text += "<p>SHA 224: " + CryptoJS.SHA224(inputText) + "<p>";
+            text += "<p>SHA 256: " + CryptoJS.SHA256(inputText) + "<p>";
+            text += "<p>SHA 384: " + CryptoJS.SHA384(inputText) + "<p>";
+            text += "<p>SHA 512: " + CryptoJS.SHA512(inputText) + "<p>";
+            text += "<p>SHA 3: " + CryptoJS.SHA3(inputText);
+            document.getElementById('hash_answers').innerHTML = text;
+        }
+        setCharCounter();
+    } else{
+        showToast("Введите текст");
+        document.getElementById("InputText").focus();
+    }
+}
+
+function ClickTimeStamp(Choice) {
+    // 0 - кодировать, 1 - декодировать
+    const inputText = document.getElementById("InputText").value;
+    NewClick();
+
+    switch (Choice) {
+        case 0: {
+            let value = "";
+            if (inputText.length > 0)
+                value = String(Date.parse(inputText) / 1000);
+            else
+                value = String(new Date().getTime() / 1000);
+            document.getElementById("CryptText").value = value.replace(".", "");
+            break;
+        }
+        case 1: {
+            let date = 0;
+
+            if (inputText.length > 0)
+                date = new Date(Number.parseInt(inputText) * 1000);
+            else
+                date = new Date();
+
+            const iso = date.toISOString().match(/(\d{4}\-\d{2}\-\d{2})T(\d{2}:\d{2}:\d{2})/);
+
+            document.getElementById("CryptText").value = iso[1] + ' ' + iso[2];
+            break;
+        }
+    }
+
+    document.getElementById("CryptText").focus();
+    document.getElementById("CryptText").parentNode.classList.add('is-dirty');
+    setCharCounter();
+}
+
+function fileActionAES(action = 0, file, password = '') {
+    const reader = new FileReader();
+    if (action === 0) {
+        reader.onload = function (e) {
+            const encrypted = CryptoJS.AES.encrypt(e.target.result, password);
+            const link = document.createElement('a');
+            link.setAttribute('href', 'data:application/octet-stream,' + encrypted);
+            link.setAttribute('download', file.name + '.encrypted');
+            link.click();
+        };
+
+        reader.readAsDataURL(file);
+    } else if (action === 1) {
+        reader.onload = function (e) {
+            const decrypted = CryptoJS.AES.decrypt(e.target.result, password)
+                .toString(CryptoJS.enc.Utf8);
+            const link = document.createElement('a');
+            link.setAttribute('href', decrypted);
+            link.setAttribute('download', file.name.replace('.encrypted', ''));
+            link.click();
+        };
+        reader.readAsText(file);
+    }
+}
+
+function fileActionBase64(action = 0, file) {
+    const reader = new FileReader();
+    console.log(action);
+    if (action === 0) {
+        reader.onload = function (e) {
+            const encrypted = utf8_to_b64(e.target.result);
+            const link = document.createElement('a');
+            link.setAttribute('href', 'data:application/octet-stream,' + encrypted);
+            link.setAttribute('download', file.name + '.encrypted');
+            link.click();
+        };
+        reader.readAsDataURL(file);
+    } else if (action === 1) {
+        reader.onload = function (e) {
+            const decrypted = b64_to_utf8(e.target.result).toString();
+            const link = document.createElement('a');
+            link.setAttribute('href', decrypted);
+            link.setAttribute('download', file.name.replace('.encrypted', ''));
+            link.click();
+        };
+        reader.readAsText(file);
+    }
+}
+
+function fileActionSHA(action = 0, file) {
+    const reader = new FileReader();
+    if (action === 0) {
+        reader.onload = function (e) {
+            let text = "";
+            text += "<p>SHA 224: " + CryptoJS.SHA224(e.target.result) + "<p>";
+            text += "<p>SHA 256: " + CryptoJS.SHA256(e.target.result) + "<p>";
+            text += "<p>SHA 384: " + CryptoJS.SHA384(e.target.result) + "<p>";
+            text += "<p>SHA 512: " + CryptoJS.SHA512(e.target.result) + "<p>";
+            text += "<p>SHA 3: " + CryptoJS.SHA3(e.target.result);
+            document.getElementById('hash_answers').innerHTML = text;
+        };
+        reader.readAsDataURL(file);
+    }
 }

@@ -68,6 +68,10 @@
             border: 0;
         }
 
+        #title{
+            margin-left: 10px;
+        }
+
         .crypt-header .mdl-menu__container {
             z-index: 50;
             margin: 0 !important;
@@ -159,14 +163,15 @@
         }
 
         /**** Mobile layout ****/
-        @media (max-width: 700px) {
+        @media (max-width: 950px) {
             .crypt-navigation-container {
                 display: none;
             }
 
-            .crypt-title {
-                display: none !important;
+            #titleImg{
+                display: none;
             }
+
         }
 
         .mdl-layout__header {
@@ -348,8 +353,11 @@
 
     <header class="crypt-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
-            <span class="crypt-title mdl-layout-title">
-               <img class="crypt-logo-image" src="public/img/logo.webp" alt="logo">
+            <span id="titleImg" class="crypt-title mdl-layout-title">
+                <img class="crypt-logo-image" src="public/img/logo.webp" alt="logo">
+            </span>
+            <span id ="title" class="crypt-title mdl-layout-title">
+
             </span>
             <div class="mdl-layout-spacer"></div>
             <div class="crypt-navigation-container">
@@ -457,8 +465,8 @@
 
             if (xhr.status === 200 && document.getElementById("content").innerHTML !== xhr.response) {
                 document.getElementById("content").innerHTML = xhr.response
-                document.title = "Шифрование онлайн | " + id;
                 load_js();
+                setTitle(id);
             }
         };
 
@@ -490,6 +498,38 @@
         script.src = 'public/js/DragAndDropScript.js';
         script.id = 'DragAndDropScript';
         head.appendChild(script);
+    }
+
+    function setTitle(id){
+        let pageTitle = "";
+
+        switch (id) {
+            case "home": {
+                pageTitle = "Главная";
+                break;
+            }
+            case "base64Form": {
+                pageTitle = "Base 64";
+                break;
+            }
+            case "mathFunc": {
+                pageTitle = "Математические функции";
+                break;
+            }
+            case "mathSystems": {
+                pageTitle = "Системы счисления";
+                break;
+            }
+            case "qr": {
+                pageTitle = "Генератор QR";
+                break;
+            }
+            default : {
+                pageTitle = id;
+            }
+        }
+        document.title = "Шифрование онлайн | " + pageTitle;
+        document.getElementById("title").innerHTML = pageTitle;
     }
 
 </script>

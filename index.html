@@ -132,7 +132,7 @@
         }
 
         /**** Mobile layout ****/
-        @media (max-width: 650px) {
+        @media (max-width: 700px) {
             .crypt-navigation-container {
                 display: none;
             }
@@ -277,6 +277,49 @@
         .mdl-card__supporting-text p {
             text-align: justify;
         }
+
+
+        .more-section {
+            padding-top: 20px;
+            max-width: 1044px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .more-section .section-title {
+            margin-left: 12px;
+            padding-bottom: 24px;
+        }
+
+        .card-container .mdl-card__media img {
+            width: 100%;
+        }
+
+        .card-container .mdl-card__title {
+            background: transparent;
+            height: auto;
+        }
+
+        .card-container .mdl-card__title-text {
+            color: black;
+            height: auto;
+        }
+
+        .card-container .mdl-card__supporting-text {
+            height: auto;
+            color: black;
+            padding-bottom: 56px;
+        }
+
+        .card-container .mdl-card__actions {
+            position: absolute;
+            bottom: 0;
+        }
+
+        .card-container .mdl-card__actions a {
+            border-top: none;
+            font-size: 16px;
+        }
     </style>
 </head>
 
@@ -393,7 +436,9 @@
 
             if (xhr.status === 200 && document.getElementById("content").innerHTML !== xhr.response) {
                 document.getElementById("content").innerHTML = xhr.response
+                document.title = "Шифрование онлайн | " + id;
                 load_js();
+                document.documentElement.scrollIntoView(true);
             }
         };
 

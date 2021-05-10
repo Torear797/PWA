@@ -467,6 +467,8 @@
                 document.getElementById("content").innerHTML = xhr.response
                 load_js();
                 setTitle(id);
+
+                document.getElementById("content").scrollTop = 0;
             }
         };
 

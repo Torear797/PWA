@@ -507,3 +507,57 @@ function b64_to_utf8(str) {
 function closeMenu(){
     document.querySelector(".mdl-layout__obfuscator").click();
 }
+
+function setPageMarkers(oldId, newId){
+    document.getElementById("menu_"+oldId).classList.remove('menuItemSelected');
+    document.getElementById("menu_"+newId).classList.add('menuItemSelected');
+}
+
+function load_js() {
+    const head = document.getElementsByTagName('head')[0];
+
+    if (!(typeof (componentHandler) == 'undefined')) {
+        componentHandler.upgradeAllRegistered();
+    }
+
+    if (document.getElementById("DragAndDropScript") !== undefined) {
+        head.removeChild(document.getElementById("DragAndDropScript"));
+    }
+
+    const script = document.createElement('script');
+    script.src = 'public/js/DragAndDropScript.js';
+    script.id = 'DragAndDropScript';
+    head.appendChild(script);
+}
+
+function setTitle(id) {
+    let pageTitle;
+
+    switch (id) {
+        case "home": {
+            pageTitle = "Главная";
+            break;
+        }
+        case "base64Form": {
+            pageTitle = "Base 64";
+            break;
+        }
+        case "mathFunc": {
+            pageTitle = "Математические функции";
+            break;
+        }
+        case "mathSystems": {
+            pageTitle = "Системы счисления";
+            break;
+        }
+        case "qr": {
+            pageTitle = "Генератор QR";
+            break;
+        }
+        default : {
+            pageTitle = id;
+        }
+    }
+    document.title = "Шифрование онлайн | " + pageTitle;
+    document.getElementById("title").innerHTML = pageTitle;
+}

@@ -385,6 +385,11 @@
             height: 56px !important;
             padding: 0 40px 0 50px !important;
         }
+
+        .menuItemSelected{
+            background: rgba(0, 0, 0, 0.25);.
+            color: red !important;
+        }
     </style>
 
     <!--roboto-->
@@ -690,40 +695,41 @@
             <img class="menu-crypt-logo-image" src="public/img/logo.webp" alt="logo"></span>
 
         <nav class=" mdl-navigation">
-            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+            <a id="menu_home" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('home'); return false;" href="?page=home"><i class="mdl-color-text--blue-grey-400 material-icons">home</i>Главная</a>
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Без ключа</h3>
 
-            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+            <a id="menu_base64Form" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('base64Form'); return false;" href="?page=base64Form"><i class="mdl-color-text--blue-grey-400 material-icons">sports_baseball</i>base64</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+            <a id="menu_SHA" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('SHA'); return false;" href="?page=SHA"><i class="mdl-color-text--blue-grey-400 material-icons">inbox</i>SHA</a>
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Симметричные</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('AES'); return false;"
+
+            <a id="menu_AES" class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('AES'); return false;"
                href="?page=AES"><i class="mdl-color-text--blue-grey-400 material-icons">font_download</i>AES
                 (Rijndael)</a>
             <div class="drawer-separator"></div>
 
             <h3 class="section-header">Асимметричные</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+            <a id="menu_RSA" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('RSA'); return false;" href="?page=RSA"><i class="mdl-color-text--blue-grey-400 material-icons">question_answer</i>RSA</a>
 
             <h3 class="section-header">Математические</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+            <a id="menu_mathFunc" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('mathFunc'); return false;" href="?page=mathFunc"><i class="mdl-color-text--blue-grey-400 material-icons">functions</i>Функции</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+            <a id="menu_mathSystems" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('mathSystems'); return false;" href="?page=mathSystems"><i class="mdl-color-text--blue-grey-400 material-icons">point_of_sale</i>Системы
                 счисления</a>
 
             <h3 class="section-header">Утилиты</h3>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+            <a id="menu_timestamp" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('timestamp'); return false;" href="?page=timestamp"><i class="mdl-color-text--blue-grey-400 material-icons">event_note</i>Timestamp
                 в дату</a>
-            <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('qr'); return false;"
+            <a id="menu_qr" class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('qr'); return false;"
                href="?page=qr"><i class="mdl-color-text--blue-grey-400 material-icons">qr_code</i>QR
                 код</a>
         </nav>
@@ -746,7 +752,8 @@
     const page = $_GET("page");
     if (page) {
         ReplaceBlock(page, false);
-    } else {
+    }
+    else {
         const localPage = JSON.parse(localStorage.getItem("currentPage"));
         if (localPage) {
             ReplaceBlock(localPage, false);
@@ -756,6 +763,7 @@
     }
 
     function ReplaceBlock(id, isOpenMenu = true) {
+        const oldPage = JSON.parse(localStorage.getItem("currentPage"));
         xhr.open('GET', 'app/views/' + id + '.html', true);
         xhr.send();
 
@@ -766,6 +774,7 @@
                 document.getElementById("content").innerHTML = xhr.response
                 load_js();
                 setTitle(id);
+                setPageMarkers(oldPage, id);
 
                 document.getElementById("content").scrollTop = 0;
             }
@@ -784,53 +793,5 @@
         return p ? p[1] : false;
     }
 
-    function load_js() {
-        const head = document.getElementsByTagName('head')[0];
-
-        if (!(typeof (componentHandler) == 'undefined')) {
-            componentHandler.upgradeAllRegistered();
-        }
-
-        if (document.getElementById("DragAndDropScript") !== undefined) {
-            head.removeChild(document.getElementById("DragAndDropScript"));
-        }
-
-        const script = document.createElement('script');
-        script.src = 'public/js/DragAndDropScript.js';
-        script.id = 'DragAndDropScript';
-        head.appendChild(script);
-    }
-
-    function setTitle(id) {
-        let pageTitle;
-
-        switch (id) {
-            case "home": {
-                pageTitle = "Главная";
-                break;
-            }
-            case "base64Form": {
-                pageTitle = "Base 64";
-                break;
-            }
-            case "mathFunc": {
-                pageTitle = "Математические функции";
-                break;
-            }
-            case "mathSystems": {
-                pageTitle = "Системы счисления";
-                break;
-            }
-            case "qr": {
-                pageTitle = "Генератор QR";
-                break;
-            }
-            default : {
-                pageTitle = id;
-            }
-        }
-        document.title = "Шифрование онлайн | " + pageTitle;
-        document.getElementById("title").innerHTML = pageTitle;
-    }
 </script>
 </html>

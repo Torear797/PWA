@@ -511,6 +511,12 @@ function closeMenu(){
 function setPageMarkers(oldId, newId){
     document.getElementById("menu_"+oldId).classList.remove('menuItemSelected');
     document.getElementById("menu_"+newId).classList.add('menuItemSelected');
+
+    let oldNavigationTab = document.getElementById("nav_"+oldId)
+    let nextNavigationTab = document.getElementById("nav_"+newId)
+    if(oldNavigationTab) oldNavigationTab.classList.remove('navigationIsSelect');
+    if(nextNavigationTab) nextNavigationTab.classList.add('navigationIsSelect');
+
 }
 
 function load_js() {

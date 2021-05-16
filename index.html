@@ -168,6 +168,10 @@
             border-bottom: 4px solid #1565C0;
         }
 
+        .navigationIsSelect{
+            border-bottom: 4px solid #1565C0 !important;
+        }
+
         /**** Mobile layout ****/
         @media (max-width: 800px) {
             .crypt-navigation-container {
@@ -669,17 +673,17 @@
             <div class="mdl-layout-spacer"></div>
             <div class="crypt-navigation-container">
                 <nav class="crypt-navigation mdl-navigation">
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                    <a id="nav_home" class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock('home', false); return false;" href="?page=home">Главная</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="?page=AES"
+                    <a id="nav_AES" class="mdl-navigation__link mdl-typography--text-uppercase" href="?page=AES"
                        onclick="ReplaceBlock('AES', false); return false;">AES</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                    <a id="nav_RSA" class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock('RSA', false); return false;" href="?page=RSA">RSA</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                    <a id="nav_SHA" class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock('SHA', false); return false;" href="?page=SHA">SHA</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                    <a id="nav_base64Form" class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock('base64Form', false); return false;" href="?page=base64Form">base64</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                    <a id="nav_qr" class="mdl-navigation__link mdl-typography--text-uppercase"
                        onclick="ReplaceBlock('qr', false); return false;" href="?page=qr">QR код</a>
                 </nav>
             </div>

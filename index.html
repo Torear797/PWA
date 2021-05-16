@@ -79,6 +79,10 @@
             margin: 0 !important;
         }
 
+        .menuBorder {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
         .crypt-header {
             overflow: visible;
             background-color: white;
@@ -279,10 +283,10 @@
             margin: 0;
             color: #606060;
             display: block;
-            padding: 0 24px;
+            padding: 8px 24px;
             font-size: 1.1rem;
             font-weight: 500;
-            letter-spacing: 0;
+            letter-spacing: 0.007px;
             text-transform: uppercase;
         }
 
@@ -336,11 +340,41 @@
 
         .crypt-drawer {
             border-right: none;
+            overflow-x: hidden;
         }
 
         .imgSize{
             width: 100%;
             height: auto;
+        }
+
+
+        .crypt-drawer .mdl-navigation__link {
+            color: #030303 !important;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 1.1rem;
+            letter-spacing: normal;
+            padding: 7.25px 23px !important;
+            font-weight: 400;
+        }
+
+        .mdl-navigation__link .material-icons {
+            font-size: 24px;
+            color: rgba(0, 0, 0, 0.7) !important;
+            margin-right: 20px;
+        }
+
+        .mdl-layout-title{
+            line-height: 0 !important;
+            padding-left: 16px !important;
+        }
+
+        .menuBtn{
+            width: 40px;
+            height: 40px;
+            color: #606060 !important;
+            margin-right: 16px;
         }
     </style>
 
@@ -639,46 +673,49 @@
     </header>
 
     <div class="crypt-drawer mdl-layout__drawer">
-        <span class="mdl-layout-title">Шифры</span>
+
+        <span class="mdl-layout-title menuBorder">
+            <button class="menuBtn mdl-button mdl-button--icon mdl-button--colored" onclick="closeMenu(); return false;">
+                    <i class="material-icons">menu</i>
+                </button>
+            <img class="crypt-logo-image" src="public/img/logo.webp" alt="logo"></span>
+
         <nav class=" mdl-navigation">
-            <a class="mdl-navigation__link mdl-typography--text-uppercase mdl-navigation__link"
-               onclick="ReplaceBlock('home'); return false;" href="?page=home">Главная</a>
+            <a class="drawer-mdl-navigation__link mdl-navigation__link"
+               onclick="ReplaceBlock('home'); return false;" href="?page=home"><i class="mdl-color-text--blue-grey-400 material-icons">home</i>Главная</a>
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Без ключа</h3>
 
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('base64Form'); return false;" href="?page=base64Form">base64</a>
+               onclick="ReplaceBlock('base64Form'); return false;" href="?page=base64Form"><i class="mdl-color-text--blue-grey-400 material-icons">sports_baseball</i>base64</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('SHA'); return false;" href="?page=SHA">SHA</a>
-            <!--            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">Стрибог</a>-->
-            <!--            <a class="drawer-mdl-navigation__link mdl-navigation__link" href="#">BLAKE2b</a>-->
+               onclick="ReplaceBlock('SHA'); return false;" href="?page=SHA"><i class="mdl-color-text--blue-grey-400 material-icons">inbox</i>SHA</a>
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Симметричные</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('AES'); return false;"
-               href="?page=AES">AES
+               href="?page=AES"><i class="mdl-color-text--blue-grey-400 material-icons">font_download</i>AES
                 (Rijndael)</a>
             <div class="drawer-separator"></div>
 
             <h3 class="section-header">Асимметричные</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('RSA'); return false;" href="?page=RSA">RSA</a>
+               onclick="ReplaceBlock('RSA'); return false;" href="?page=RSA"><i class="mdl-color-text--blue-grey-400 material-icons">question_answer</i>RSA</a>
 
             <h3 class="section-header">Математические</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('mathFunc'); return false;" href="?page=mathFunc">Математические
-                функции</a>
+               onclick="ReplaceBlock('mathFunc'); return false;" href="?page=mathFunc"><i class="mdl-color-text--blue-grey-400 material-icons">functions</i>Функции</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('mathSystems'); return false;" href="?page=mathSystems">Системы
-                счисления BIN/OCT/DEC/HEX</a>
+               onclick="ReplaceBlock('mathSystems'); return false;" href="?page=mathSystems"><i class="mdl-color-text--blue-grey-400 material-icons">point_of_sale</i>Системы
+                счисления</a>
 
             <h3 class="section-header">Утилиты</h3>
             <a class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('timestamp'); return false;" href="?page=timestamp">Timestamp
+               onclick="ReplaceBlock('timestamp'); return false;" href="?page=timestamp"><i class="mdl-color-text--blue-grey-400 material-icons">event_note</i>Timestamp
                 в дату</a>
             <a class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('qr'); return false;"
-               href="?page=qr">QR
+               href="?page=qr"><i class="mdl-color-text--blue-grey-400 material-icons">qr_code</i>QR
                 код</a>
         </nav>
     </div>
@@ -726,7 +763,7 @@
         };
 
         if (isOpenMenu) {
-            document.querySelector(".mdl-layout__obfuscator").click();
+            closeMenu();
         }
 
         localStorage.setItem("currentPage", JSON.stringify(id));

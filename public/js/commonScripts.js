@@ -503,3 +503,7 @@ function b64_to_utf8(str) {
         return "Error";
     }
 }
+
+function closeMenu(){
+    document.querySelector(".mdl-layout__obfuscator").click();
+}

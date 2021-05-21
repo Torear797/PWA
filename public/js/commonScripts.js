@@ -257,15 +257,15 @@ function radToDeg(rad) {
 
 function checkPWA() {
     if (window.matchMedia('(display-mode: standalone)').matches) {
-        alert("Вы зашли с приложения PWA");
+        showToast("Вы зашли с приложения PWA");
     } else
-        alert("Вы зашли на сайт");
+    showToast("Вы зашли на сайт")
 }
 
 function checkSupportPWA() {
     if ('serviceWorker' in navigator)
-        alert("Ваше устройство поддерживает PWA");
-    else alert("Ваше устройство не поддерживает PWA");
+        showToast("Ваше устройство поддерживает PWA");
+    else showToast("Ваше устройство не поддерживает PWA");
 }
 
 /*AES*/
@@ -509,14 +509,17 @@ function closeMenu(){
 }
 
 function setPageMarkers(oldId, newId){
-    document.getElementById("menu_"+oldId).classList.remove('menuItemSelected');
-    document.getElementById("menu_"+newId).classList.add('menuItemSelected');
+    let oldMenuItem = document.getElementById("menu_"+oldId);
+    if(oldMenuItem)oldMenuItem.classList.remove('menuItemSelected');
+
+    let newMenuItem = document.getElementById("menu_"+newId);
+    if(newMenuItem)newMenuItem.classList.add('menuItemSelected');
 
     let oldNavigationTab = document.getElementById("nav_"+oldId)
     let nextNavigationTab = document.getElementById("nav_"+newId)
+
     if(oldNavigationTab) oldNavigationTab.classList.remove('navigationIsSelect');
     if(nextNavigationTab) nextNavigationTab.classList.add('navigationIsSelect');
-
 }
 
 function load_js() {

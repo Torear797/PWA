@@ -1,137 +1,141 @@
-<div class="mdl-grid content">
-    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-        <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">Описание</h2>
-        </div>
-        <div class="mdl-card__media">
-            <img src="public/img/crypt.webp" alt="Шифрование online" class="imgSize">
-        </div>
-        <div class="mdl-card__supporting-text no-padding">
-            <p>В криптографии шифрование - это процесс кодирования сообщения или информации таким образом,
-                что
-                только авторизованные стороны могут получить к нему доступ, а те, кто не авторизован, не
-                могут.
-                Шифрование само по себе не предотвращает помехи, но отрицает понятное содержимое
-                потенциальному
-                перехватчику. В схеме шифрования предполагаемая информация или сообщение, называемое
-                открытым
-                текстом, шифруется с помощью алгоритма шифрования - шифровального зашифрованного текста,
-                который
-                может быть прочитан только при расшифровке. По техническим причинам схема шифрования обычно
-                использует псевдослучайный ключ шифрования, сгенерированный алгоритмом. Расшифровать
-                сообщение в
-                принципе можно без ключа, но для хорошо продуманной схемы шифрования требуются значительные
-                вычислительные ресурсы и навыки. Авторизованный получатель может легко расшифровать
-                сообщение с
-                помощью ключа, предоставленного отправителем получателям, но не неавторизованным
-                пользователям.
-            </p>
-            <p>
-                В схемах симметричного ключа ключи шифрования и дешифрования одинаковы. Сообщающиеся стороны
-                должны иметь один и тот же ключ для обеспечения безопасной связи.
-            </p>
-            <p>
-                Схемы шифрования с открытым ключом ключ шифрования публикуется для всех, кто использует и
-                шифрует сообщения. Однако только получающая сторона имеет доступ к ключу расшифровки,
-                который
-                позволяет читать сообщения. Шифрование с открытым ключом было впервые описано в секретном
-                документе в 1973 году; до этого все схемы шифрования были симметричными ключами (также
-                называемыми закрытыми ключами).
-            </p>
-        </div>
+<div  class="description-section-paralax" >
+</div>
 
-        <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="checkSupportPWA()">
-                Проверка поддержки PWA
+<div class="description-band">
+    <div class="description-band-text">
+        <div class="mdl-typography--display-2 mdl-typography--font-thin">Описание</div>
+        <p>
+            Сайт был разработан для быстрого шифрования и преобразования текстов и файловов такими популярными алгоритмами,
+            как AES, RSA, base64, SHA. Также на сайте есть некоторые полезные утилиты, такие как генерация QR-кодов, работа с timestamp,
+            работа с системами счисления и базовыми математическими функциями.
+        </p>
+        <p>В криптографии шифрование - это процесс кодирования сообщения или информации таким образом,
+            что
+            только авторизованные стороны могут получить к нему доступ, а те, кто не авторизован, не
+            могут.
+            Шифрование само по себе не предотвращает помехи, но отрицает понятное содержимое
+            потенциальному
+            перехватчику. В схеме шифрования предполагаемая информация или сообщение, называемое
+            открытым
+            текстом, шифруется с помощью алгоритма шифрования - шифровального зашифрованного текста,
+            который
+            может быть прочитан только при расшифровке. По техническим причинам схема шифрования обычно
+            использует псевдослучайный ключ шифрования, сгенерированный алгоритмом. Расшифровать
+            сообщение в
+            принципе можно без ключа, но для хорошо продуманной схемы шифрования требуются значительные
+            вычислительные ресурсы и навыки. Авторизованный получатель может легко расшифровать
+            сообщение с
+            помощью ключа, предоставленного отправителем получателям, но не неавторизованным
+            пользователям.
+        </p>
+        <p>
+            В схемах симметричного ключа ключи шифрования и дешифрования одинаковы. Сообщающиеся стороны
+            должны иметь один и тот же ключ для обеспечения безопасной связи.
+        </p>
+        <p>
+            Схемы шифрования с открытым ключом ключ шифрования публикуется для всех, кто использует и
+            шифрует сообщения. Однако только получающая сторона имеет доступ к ключу расшифровки,
+            который
+            позволяет читать сообщения. Шифрование с открытым ключом было впервые описано в секретном
+            документе в 1973 году; до этого все схемы шифрования были симметричными ключами (также
+            называемыми закрытыми ключами).
+        </p>
+        <p>Сайт является PWA приложением и может быть установлен на любое устройство. Проверить поддержку PWA вашим устройством можно с помощью кнопок ниже.</p>
+        <p>
+            <a class="mdl-typography--font-regular mdl-button mdl-js-button mdl-js-ripple-effect home-check-Btn"
+               onclick="checkSupportPWA()">
+                Проверка поддержки PWA<i class="material-icons">chevron_right</i>
             </a>
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="checkPWA()">
-                Проверка PWA
+            <a class="mdl-typography--font-regular mdl-button mdl-js-button mdl-js-ripple-effect home-check-Btn"
+               onclick="checkPWA()">
+                Проверка PWA<i class="material-icons">chevron_right</i>
             </a>
-        </div>
+        </p>
     </div>
 
-    <div class="more-section">
-        <div class="section-title mdl-typography--display-1-color-contrast">Популярные алгоритмы</div>
-        <div class="card-container mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-                <div class="mdl-card__media">
-                    <img src="public/img/img_aes.webp" alt="Алгоритм AES" class="imgSize">
-                </div>
-                <div class="mdl-card__title">
-                    <h4 class="mdl-card__title-text">AES</h4>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    <span class="mdl-typography--font-light mdl-typography--subhead">Этот алгоритм хорошо проанализирован и сейчас широко используется, как это было с его предшественником DES.</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-typography--text-uppercase"
-                       href="?page=AES"
-                       onclick="ReplaceBlock('AES', false); return false;" data-upgraded=",MaterialButton">
-                        Перейти
-                        <i class="material-icons">chevron_right</i>
-                    </a>
-                </div>
-            </div>
+</div>
 
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-                <div class="mdl-card__media">
-                    <img src="public/img/img_rsa.webp" alt="Алгоритм RSA" class="imgSize">
-                </div>
-                <div class="mdl-card__title">
-                    <h4 class="mdl-card__title-text">RSA</h4>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    <span class="mdl-typography--font-light mdl-typography--subhead">RSA — криптографический алгоритм с открытым ключом, основывающийся на вычислительной сложности задачи факторизации больших целых чисел.</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock('RSA', false); return false;" href="?page=RSA"
-                       data-upgraded=",MaterialButton">
-                        Перейти
-                        <i class="material-icons">chevron_right</i>
-                    </a>
-                </div>
+<div class="more-section">
+    <div class="section-title mdl-typography--display-1-color-contrast">Популярные алгоритмы</div>
+    <div class="card-container mdl-grid">
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            <div class="mdl-card__media">
+                <img src="public/img/img_aes.webp" alt="Алгоритм AES" class="imgSize">
             </div>
+            <div class="mdl-card__title">
+                <h4 class="mdl-card__title-text">AES</h4>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <span class="mdl-typography--font-light mdl-typography--subhead">Этот алгоритм хорошо проанализирован и сейчас широко используется, как это было с его предшественником DES.</span>
+            </div>
+            <div class="mdl-card__actions">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-typography--text-uppercase"
+                   href="?page=AES"
+                   onclick="ReplaceBlock('AES', false); return false;" data-upgraded=",MaterialButton">
+                    Перейти
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </div>
+        </div>
 
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-                <div class="mdl-card__media">
-                    <img src="public/img/img_base64.webp" alt="Алгоритм base64" class="imgSize">
-                </div>
-                <div class="mdl-card__title">
-                    <h4 class="mdl-card__title-text">Base 64</h4>
-                </div>
-                <div class="mdl-card__supporting-text">
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            <div class="mdl-card__media">
+                <img src="public/img/img_rsa.webp" alt="Алгоритм RSA" class="imgSize">
+            </div>
+            <div class="mdl-card__title">
+                <h4 class="mdl-card__title-text">RSA</h4>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <span class="mdl-typography--font-light mdl-typography--subhead">RSA — криптографический алгоритм с открытым ключом, основывающийся на вычислительной сложности задачи факторизации больших целых чисел.</span>
+            </div>
+            <div class="mdl-card__actions">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-typography--text-uppercase"
+                   onclick="ReplaceBlock('RSA', false); return false;" href="?page=RSA"
+                   data-upgraded=",MaterialButton">
+                    Перейти
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            <div class="mdl-card__media">
+                <img src="public/img/img_base64.webp" alt="Алгоритм base64" class="imgSize">
+            </div>
+            <div class="mdl-card__title">
+                <h4 class="mdl-card__title-text">Base 64</h4>
+            </div>
+            <div class="mdl-card__supporting-text">
                     <span class="mdl-typography--font-light mdl-typography--subhead">
                         Base64 — стандарт кодирования двоичных данных при помощи только 64 символов ASCII.</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock('base64Form', false); return false;" href="?page=base64Form"
-                       data-upgraded=",MaterialButton">
-                        Перейти
-                        <i class="material-icons">chevron_right</i>
-                    </a>
-                </div>
             </div>
+            <div class="mdl-card__actions">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-typography--text-uppercase"
+                   onclick="ReplaceBlock('base64Form', false); return false;" href="?page=base64Form"
+                   data-upgraded=",MaterialButton">
+                    Перейти
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </div>
+        </div>
 
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-                <div class="mdl-card__media">
-                    <img src="public/img/img_qr.webp" alt="генератор QR кодов" class="imgSize">
-                </div>
-                <div class="mdl-card__title">
-                    <h4 class="mdl-card__title-text">Генератор GQ</h4>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    <span class="mdl-typography--font-light mdl-typography--subhead">QR-код (англ. Quick Response Code — код быстрого реагирования; сокр. QR code) — тип матричных штрихкодов.</span>
-                </div>
-                <div class="mdl-card__actions">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-typography--text-uppercase"
-                       onclick="ReplaceBlock('qr', false); return false;" href="?page=qr"
-                       data-upgraded=",MaterialButton">
-                        Перейти
-                        <i class="material-icons">chevron_right</i>
-                    </a>
-                </div>
+        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+            <div class="mdl-card__media">
+                <img src="public/img/img_qr.webp" alt="генератор QR кодов" class="imgSize">
+            </div>
+            <div class="mdl-card__title">
+                <h4 class="mdl-card__title-text">Генератор GQ</h4>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <span class="mdl-typography--font-light mdl-typography--subhead">QR-код (англ. Quick Response Code — код быстрого реагирования; сокр. QR code) — тип матричных штрихкодов.</span>
+            </div>
+            <div class="mdl-card__actions">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-typography--text-uppercase"
+                   onclick="ReplaceBlock('qr', false); return false;" href="?page=qr"
+                   data-upgraded=",MaterialButton">
+                    Перейти
+                    <i class="material-icons">chevron_right</i>
+                </a>
             </div>
         </div>
     </div>

@@ -92,7 +92,8 @@
         .rw-card--media{
             height: 400px;
         }
-        @media only screen and (min-width: 100px) {
+        @media only screen and (min-width: 480px) {
+
             .rw-card--media:hover .rw-card__content {
                 height: 320px
             }
@@ -189,6 +190,12 @@
             }
         }
 
+        @media only screen and (max-width: 480px) {
+            .rw-card--media{
+                height: 600px !important;
+            }
+        }
+
         .rw-card__content {
             background-color: #fff;
             bottom: 0;
@@ -247,7 +254,7 @@
 
         .description-band-text {
             max-width: 800px;
-            margin-left: 25%;
+            margin: 0 auto !important;
             padding: 24px;
             text-align: justify;
             color: white;

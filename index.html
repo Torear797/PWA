@@ -70,6 +70,24 @@
 
     <!--Общие стили-->
     <style>
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: darkgrey  slategrey;
+        }
+
+        /* для Chrome/Edge/Safari */
+        *::-webkit-scrollbar {
+            width: 7px;
+        }
+        *::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+        *::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            border-radius: 25px;
+            border: 1px solid slategrey;
+        }
+
         .rw-card--media {
             background: #000;
         }

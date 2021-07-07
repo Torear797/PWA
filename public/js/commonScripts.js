@@ -1,4 +1,3 @@
-
 function copyToClipboard() {
     if (document.getElementById("CryptText").value.length > 0) {
         document.getElementById("CryptText").select();
@@ -170,9 +169,8 @@ function generateRSAKeys() {
     }
 }
 
-function actionRSA(Choice, isFile = false) {
+function actionRSA(Choice) {
     // 0 - кодировать, 1 - декодировать
-
     const inputText = document.getElementById("InputText").value;
 
     const publicKey = document.getElementById("public_key").value;
@@ -211,11 +209,11 @@ function actionRSA(Choice, isFile = false) {
                 setCharCounterRSA()
             }
         } else {
-            showToast("Текст для шифрования не введен!");
+            showToast("Введите текст для шифрования");
             document.getElementById("InputText").focus();
         }
     } else {
-        showToast("Ключи заполнены некорректно!");
+        showToast("Ключи заполнены некорректно");
     }
 }
 
@@ -259,7 +257,7 @@ function checkPWA() {
     if (window.matchMedia('(display-mode: standalone)').matches) {
         showToast("Вы зашли с приложения PWA");
     } else
-    showToast("Вы зашли на сайт")
+        showToast("Вы зашли на сайт")
 }
 
 function checkSupportPWA() {
@@ -336,21 +334,20 @@ function ClickMathSystem() {
         document.getElementById('hash_answers').innerHTML = "<p>Результат: " + parseInt(inputText, sys1).toString(sys2) + "</p>";
     } else {
         if (inputText === "") {
-            showToast("Введите текст");
+            showToast("Введите число");
             document.getElementById("InputText").focus();
             return;
         }
 
         if (sys1 === "") {
-            showToast("Введите текст");
+            showToast("Введите начальную систему счисления");
             document.getElementById("sys1").focus();
             return;
         }
 
         if (sys2 === "") {
-            showToast("Введите текст");
+            showToast("Введите конечную систему счисления");
             document.getElementById("sys2").focus();
-            return;
         }
     }
 }
@@ -386,7 +383,7 @@ function ClickSHA(Choice) {
             document.getElementById('hash_answers').innerHTML = text;
         }
         setCharCounter();
-    } else{
+    } else {
         showToast("Введите текст");
         document.getElementById("InputText").focus();
     }
@@ -426,18 +423,18 @@ function ClickTimeStamp(Choice) {
     setCharCounter();
 }
 
-Date.prototype.format = function(format = 'yyyy-mm-dd') {
+Date.prototype.format = function (format = 'yyyy-mm-dd') {
     const replaces = {
         yyyy: this.getFullYear(),
-        mm: ('0'+(this.getMonth() + 1)).slice(-2),
-        dd: ('0'+this.getDate()).slice(-2),
-        hh: ('0'+this.getHours()).slice(-2),
-        MM: ('0'+this.getMinutes()).slice(-2),
-        ss: ('0'+this.getSeconds()).slice(-2)
+        mm: ('0' + (this.getMonth() + 1)).slice(-2),
+        dd: ('0' + this.getDate()).slice(-2),
+        hh: ('0' + this.getHours()).slice(-2),
+        MM: ('0' + this.getMinutes()).slice(-2),
+        ss: ('0' + this.getSeconds()).slice(-2)
     };
     let result = format;
-    for(const replace in replaces){
-        result = result.replace(replace,replaces[replace]);
+    for (const replace in replaces) {
+        result = result.replace(replace, replaces[replace]);
     }
     return result;
 };
@@ -519,22 +516,22 @@ function b64_to_utf8(str) {
     }
 }
 
-function closeMenu(){
+function closeMenu() {
     document.querySelector(".mdl-layout__obfuscator").click();
 }
 
-function setPageMarkers(oldId, newId){
-    let oldMenuItem = document.getElementById("menu_"+oldId);
-    if(oldMenuItem)oldMenuItem.classList.remove('menuItemSelected');
+function setPageMarkers(oldId, newId) {
+    let oldMenuItem = document.getElementById("menu_" + oldId);
+    if (oldMenuItem) oldMenuItem.classList.remove('menuItemSelected');
 
-    let newMenuItem = document.getElementById("menu_"+newId);
-    if(newMenuItem)newMenuItem.classList.add('menuItemSelected');
+    let newMenuItem = document.getElementById("menu_" + newId);
+    if (newMenuItem) newMenuItem.classList.add('menuItemSelected');
 
-    let oldNavigationTab = document.getElementById("nav_"+oldId)
-    let nextNavigationTab = document.getElementById("nav_"+newId)
+    let oldNavigationTab = document.getElementById("nav_" + oldId)
+    let nextNavigationTab = document.getElementById("nav_" + newId)
 
-    if(oldNavigationTab) oldNavigationTab.classList.remove('navigationIsSelect');
-    if(nextNavigationTab) nextNavigationTab.classList.add('navigationIsSelect');
+    if (oldNavigationTab) oldNavigationTab.classList.remove('navigationIsSelect');
+    if (nextNavigationTab) nextNavigationTab.classList.add('navigationIsSelect');
 }
 
 function load_js() {

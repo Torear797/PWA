@@ -403,8 +403,9 @@ function ClickTimeStamp(Choice) {
             if (inputText.length > 0)
                 value = String(Date.parse(inputText) / 1000);
             else
-                value = String(new Date().getTime() / 1000);
-            document.getElementById("CryptText").value = value.replace(".", "");
+                value = String(Date.now() / 1000);
+
+            document.getElementById("CryptText").value = value;
             break;
         }
         case 1: {

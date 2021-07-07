@@ -411,13 +411,11 @@ function ClickTimeStamp(Choice) {
             let date = 0;
 
             if (inputText.length > 0)
-                date = new Date(Number.parseInt(inputText) * 1000);
+                date = (new Date(Number.parseInt(inputText) * 1000)).format('yyyy-mm-dd hh:MM:ss');
             else
-                date = new Date();
+                date = (new Date()).format('yyyy-mm-dd hh:MM:ss');
 
-            const iso = date.toISOString().match(/(\d{4}\-\d{2}\-\d{2})T(\d{2}:\d{2}:\d{2})/);
-
-            document.getElementById("CryptText").value = iso[1] + ' ' + iso[2];
+            document.getElementById("CryptText").value = date;
             break;
         }
     }
@@ -426,6 +424,22 @@ function ClickTimeStamp(Choice) {
     document.getElementById("CryptText").parentNode.classList.add('is-dirty');
     setCharCounter();
 }
+
+Date.prototype.format = function(format = 'yyyy-mm-dd') {
+    const replaces = {
+        yyyy: this.getFullYear(),
+        mm: ('0'+(this.getMonth() + 1)).slice(-2),
+        dd: ('0'+this.getDate()).slice(-2),
+        hh: ('0'+this.getHours()).slice(-2),
+        MM: ('0'+this.getMinutes()).slice(-2),
+        ss: ('0'+this.getSeconds()).slice(-2)
+    };
+    let result = format;
+    for(const replace in replaces){
+        result = result.replace(replace,replaces[replace]);
+    }
+    return result;
+};
 
 function fileActionAES(action = 0, file, password = '') {
     const reader = new FileReader();

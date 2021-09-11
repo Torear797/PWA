@@ -18,14 +18,16 @@
 <!--          content="Сайт для быстрого шифрования текста и файлов популярными алгоритмами, такими как AES и RSA. Сайт является PWA приложением и может быть установлен на любое устройство | by torear"/>-->
 
     <script type="text/javascript">
-        document.write('<title>' + getTitle($_GET("page")) + "</title>");
+        const page = $_GET("page");
+
+        document.write('<title>' + getTitle(page) + "</title>");
 
         document.write('<meta name="keywords" content="');
-        document.write(getKeyWords($_GET("page")));
+        document.write(getKeyWords(page));
         document.write('"/>');
 
         document.write('<meta name="description" content="');
-        document.write(getDescription($_GET("page")));
+        document.write(getDescription(page));
         document.write('"/>');
     </script>
 
@@ -34,11 +36,11 @@
 
     <script type="text/javascript">
         document.write('<meta property="og:title" content="');
-        document.write(getTitle($_GET("page")));
+        document.write(getTitle(page));
         document.write('"/>');
 
         document.write('<meta property="og:description" content="');
-        document.write(getDescription($_GET("page")));
+        document.write(getDescription(page));
         document.write('"/>');
     </script>
 
@@ -989,6 +991,14 @@
 
     <div class="mdl-layout__content background-Grey" id="content">
         <!--            JS-->
+
+        <script type="text/javascript">
+            if(page){
+                document.write('<script type="text/javascript" src="app/views/'+page+'.js"></script');
+                document.write('>');
+            }
+        </script>
+
     </div>
 </div>
 
@@ -1001,15 +1011,21 @@
 <script type="text/javascript">
     const xhr = new XMLHttpRequest();
 
-    const page = $_GET("page");
     if (page) {
-        ReplaceBlock(page, false);
+        // ReplaceBlock(page, false);
+
+        const oldPage = JSON.parse(localStorage.getItem("currentPage"));
+        load_js();
+        setTitle(page, false);
+        setPageMarkers(oldPage, page);
+        localStorage.setItem("currentPage", JSON.stringify(page));
     }
     else {
         const localPage = JSON.parse(localStorage.getItem("currentPage"));
         if (localPage) {
             ReplaceBlock(localPage, false);
-        } else {
+        }
+        else {
             ReplaceBlock("home", false);
         }
     }
@@ -1024,8 +1040,9 @@
 
             if (xhr.status === 200 && document.getElementById("content").innerHTML !== xhr.response) {
                 document.getElementById("content").innerHTML = xhr.response
+
                 load_js();
-                // setTitle(id);
+                setTitle(id);
                 setPageMarkers(oldPage, id);
 
                 document.getElementById("content").scrollTop = 0;

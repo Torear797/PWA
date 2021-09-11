@@ -551,7 +551,7 @@ function load_js() {
     head.appendChild(script);
 }
 
-function setTitle(id) {
+function setTitle(id, changeTitle = true) {
     let pageTitle;
 
     switch (id) {
@@ -579,7 +579,9 @@ function setTitle(id) {
             pageTitle = id;
         }
     }
-    document.title = "Шифрование онлайн | " + pageTitle;
+    if(changeTitle) {
+        document.title = pageTitle + " | Шифрование онлайн";
+    }
     document.getElementById("title").innerHTML = pageTitle;
 }
 

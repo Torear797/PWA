@@ -551,22 +551,18 @@ function setPageMarkers(oldId, newId) {
     let oldNavigationTab = document.getElementById("nav_" + oldId)
     let nextNavigationTab = document.getElementById("nav_" + newId)
 
-    if (oldNavigationTab) {
-        oldNavigationTab.classList.remove('navigationIsSelect');
-    } else {
-        let item = document.getElementById("nav_home");
-        item.classList.remove('navigationIsSelect');
-        item = document.getElementById("nav_AES");
-        item.classList.remove('navigationIsSelect');
-        item = document.getElementById("nav_RSA");
-        item.classList.remove('navigationIsSelect');
-        item = document.getElementById("nav_SHA");
-        item.classList.remove('navigationIsSelect');
-        item = document.getElementById("nav_base64Form");
-        item.classList.remove('navigationIsSelect');
-        item = document.getElementById("nav_qr");
-        item.classList.remove('navigationIsSelect');
-    }
+    let item = document.getElementById("nav_home");
+    item.classList.remove('navigationIsSelect');
+    item = document.getElementById("nav_AES");
+    item.classList.remove('navigationIsSelect');
+    item = document.getElementById("nav_RSA");
+    item.classList.remove('navigationIsSelect');
+    item = document.getElementById("nav_SHA");
+    item.classList.remove('navigationIsSelect');
+    item = document.getElementById("nav_base64Form");
+    item.classList.remove('navigationIsSelect');
+    item = document.getElementById("nav_qr");
+    item.classList.remove('navigationIsSelect');
 
     if (nextNavigationTab) nextNavigationTab.classList.add('navigationIsSelect');
 }

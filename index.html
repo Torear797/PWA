@@ -994,8 +994,15 @@
 
         <script type="text/javascript">
             if(page){
-                document.write('<script type="text/javascript" src="app/views/'+page+'.js"></script');
+                const pages = ['base64Form', 'SHA', 'AES', 'RSA', 'mathFunc', 'mathSystems', 'timestamp', 'qr'];
+                if(pages.includes(page)) {
+                    document.write('<script type="text/javascript" src="app/views/' + page + '.js"></script');
+                } else {
+                    document.write('<script type="text/javascript" src="app/views/404.js"></script');
+                }
+
                 document.write('>');
+
             }
         </script>
 

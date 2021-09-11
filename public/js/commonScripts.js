@@ -590,6 +590,18 @@ function setTitle(id, changeTitle = true) {
             pageTitle = "Base 64";
             break;
         }
+        case "SHA": {
+            pageTitle = "SHA";
+            break;
+        }
+        case "AES": {
+            pageTitle = "AES (Rijndael)";
+            break;
+        }
+        case "RSA": {
+            pageTitle = "RSA";
+            break;
+        }
         case "mathFunc": {
             pageTitle = "Математические функции";
             break;
@@ -598,12 +610,16 @@ function setTitle(id, changeTitle = true) {
             pageTitle = "Системы счисления";
             break;
         }
+        case "timestamp": {
+            pageTitle = "Timestamp";
+            break;
+        }
         case "qr": {
             pageTitle = "Генератор QR";
             break;
         }
         default : {
-            pageTitle = id;
+            pageTitle = "Страница не найдена";
         }
     }
     if(changeTitle) {
@@ -626,6 +642,18 @@ function getTitle(id) {
             pageTitle = "Base 64";
             break;
         }
+        case "SHA": {
+            pageTitle = "SHA";
+            break;
+        }
+        case "AES": {
+            pageTitle = "AES (Rijndael)";
+            break;
+        }
+        case "RSA": {
+            pageTitle = "RSA";
+            break;
+        }
         case "mathFunc": {
             pageTitle = "Математические функции";
             break;
@@ -634,12 +662,16 @@ function getTitle(id) {
             pageTitle = "Системы счисления";
             break;
         }
+        case "timestamp": {
+            pageTitle = "Timestamp";
+            break;
+        }
         case "qr": {
             pageTitle = "Генератор QR";
             break;
         }
         default : {
-            pageTitle = id;
+            pageTitle = "Страница не найдена";
         }
     }
 

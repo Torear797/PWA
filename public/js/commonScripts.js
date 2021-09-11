@@ -582,3 +582,135 @@ function setTitle(id) {
     document.title = "Шифрование онлайн | " + pageTitle;
     document.getElementById("title").innerHTML = pageTitle;
 }
+
+function getTitle(id) {
+    if (!id) return "Шифрование онлайн";
+
+    let pageTitle;
+
+    switch (id) {
+        case "home": {
+            pageTitle = "Главная";
+            break;
+        }
+        case "base64Form": {
+            pageTitle = "Base 64";
+            break;
+        }
+        case "mathFunc": {
+            pageTitle = "Математические функции";
+            break;
+        }
+        case "mathSystems": {
+            pageTitle = "Системы счисления";
+            break;
+        }
+        case "qr": {
+            pageTitle = "Генератор QR";
+            break;
+        }
+        default : {
+            pageTitle = id;
+        }
+    }
+
+    return pageTitle + " | Шифрование онлайн";
+}
+
+function getKeyWords(id) {
+    if (!id) return "Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, torear, torear797, криптография";
+
+    let value;
+
+    switch (id) {
+        case "base64Form": {
+            value = "base64, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        case "SHA": {
+            value = "SHA, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        case "AES": {
+            value = "Advanced Encryption Standard, Rijndael, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        case "RSA": {
+            value = "Rivest-Shamir-Adleman, RSA, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        case "mathFunc": {
+            value = "Математические функции, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        case "mathSystems": {
+            value = "Системы счисления, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        case "timestamp": {
+            value = "timestamp, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        case "qr": {
+            value = "QR, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        default : {
+            value = "Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, torear, torear797, криптография";
+        }
+    }
+
+    return value;
+}
+
+function getDescription(id) {
+    if (!id) return "Сайт для быстрого шифрования текста и файлов популярными алгоритмами, такими как AES и RSA. Сайт является PWA приложением и может быть установлен на любое устройство | by torear";
+
+    let value;
+
+    switch (id) {
+        case "base64Form": {
+            value = "Base64 - это специальный метод кодирования информации в 64-разрядный код (6 бит), широко используемый в приложениях электронной почты для кодирования бинарных данных. Весь диапазон закодированных символов укладывается в английский алфавит, цифры и ряд специальных символов.";
+            break;
+        }
+        case "SHA": {
+            value = "SHA - Secure Hash Algorithm, семейство алгоритмов хеширования.";
+            break;
+        }
+        case "AES": {
+            value = "AES (англ. Advanced Encryption Standard; также Rijndael, [rɛindaːl] — рейндал) — симметричный алгоритм блочного шифрования (размер блока 128 бит, ключ 128/192/256 бит), принятый в качестве стандарта шифрования правительством США по результатам конкурса AES. Этот алгоритм хорошо проанализирован и сейчас широко используется, как это было с его предшественником DES.";
+            break;
+        }
+        case "RSA": {
+            value = "RSA (аббревиатура от фамилий Rivest, Shamir и Adleman) — криптографический алгоритм с открытым ключом, основывающийся на вычислительной сложности задачи факторизации больших целых чисел.";
+            break;
+        }
+        case "mathFunc": {
+            value = "Математические функции - синус, косинус, тангес, арксинус, арккосинус, арктангенс, логарифм, квадратный корень, степень и др.";
+            break;
+        }
+        case "mathSystems": {
+            value = "Системы счисления, перевод из одной системы в другую";
+            break;
+        }
+        case "timestamp": {
+            value = "Временная метка (также метка времени или timestamp) — это последовательность символов или закодированной информации, показывающей, когда произошло определённое событие. Обычно показывает дату и время (иногда с точностью до долей секунд).";
+            break;
+        }
+        case "qr": {
+            value = "QR-код (англ. Quick Response code — код быстрого реагирования; сокр. QR code) — тип матричных штрихкодов (или двумерных штрихкодов), изначально разработанных для автомобильной промышленности Японии.";
+            break;
+        }
+        default : {
+            value = "Сайт для быстрого шифрования текста и файлов популярными алгоритмами, такими как AES и RSA. Сайт является PWA приложением и может быть установлен на любое устройство | by torear";
+        }
+    }
+
+    return value;
+}
+
+function $_GET(key) {
+    let p = window.location.search;
+    p = p.match(new RegExp(key + '=([^&=]+)'));
+    return p ? p[1] : false;
+}

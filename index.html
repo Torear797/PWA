@@ -621,7 +621,7 @@
 
         .mdl-navigation__link .material-icons {
             font-size: 24px;
-            color: rgba(0, 0, 0, 0.7) !important;
+            color: rgba(0, 0, 0, 0.7);
             margin-right: 20px;
         }
 
@@ -643,9 +643,15 @@
         }
 
         .menuItemSelected{
-            background: rgba(0, 0, 0, 0.25);.
-            color: red !important;
+            background-color: #eeeeee;
+            color: #607d8b !important;
         }
+
+        .menuItemSelected  .material-icons{
+            color: #607d8b!important;
+        }
+
+
     </style>
 
     <!--roboto-->
@@ -950,41 +956,41 @@
 
         <nav class=" mdl-navigation">
             <a id="menu_home" class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('home'); return false;" href="/"><i class="mdl-color-text--blue-grey-400 material-icons">home</i>Главная</a>
+               onclick="ReplaceBlock('home'); return false;" href="/"><i class="material-icons">home</i>Главная</a>
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Без ключа</h3>
 
             <a id="menu_base64Form" class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('base64Form'); return false;" href="?page=base64Form"><i class="mdl-color-text--blue-grey-400 material-icons">sports_baseball</i>base64</a>
+               onclick="ReplaceBlock('base64Form'); return false;" href="?page=base64Form"><i class="material-icons">sports_baseball</i>base64</a>
             <a id="menu_SHA" class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('SHA'); return false;" href="?page=SHA"><i class="mdl-color-text--blue-grey-400 material-icons">inbox</i>SHA</a>
+               onclick="ReplaceBlock('SHA'); return false;" href="?page=SHA"><i class="material-icons">inbox</i>SHA</a>
 
             <div class="drawer-separator"></div>
             <h3 class="section-header">Симметричные</h3>
 
             <a id="menu_AES" class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('AES'); return false;"
-               href="?page=AES"><i class="mdl-color-text--blue-grey-400 material-icons">font_download</i>AES
+               href="?page=AES"><i class="material-icons">font_download</i>AES
                 (Rijndael)</a>
             <div class="drawer-separator"></div>
 
             <h3 class="section-header">Асимметричные</h3>
             <a id="menu_RSA" class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('RSA'); return false;" href="?page=RSA"><i class="mdl-color-text--blue-grey-400 material-icons">question_answer</i>RSA</a>
+               onclick="ReplaceBlock('RSA'); return false;" href="?page=RSA"><i class="material-icons">question_answer</i>RSA</a>
 
             <h3 class="section-header">Математические</h3>
             <a id="menu_mathFunc" class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('mathFunc'); return false;" href="?page=mathFunc"><i class="mdl-color-text--blue-grey-400 material-icons">functions</i>Функции</a>
+               onclick="ReplaceBlock('mathFunc'); return false;" href="?page=mathFunc"><i class="material-icons">functions</i>Функции</a>
             <a id="menu_mathSystems" class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('mathSystems'); return false;" href="?page=mathSystems"><i class="mdl-color-text--blue-grey-400 material-icons">point_of_sale</i>Системы
+               onclick="ReplaceBlock('mathSystems'); return false;" href="?page=mathSystems"><i class="material-icons">point_of_sale</i>Системы
                 счисления</a>
 
             <h3 class="section-header">Утилиты</h3>
             <a id="menu_timestamp" class="drawer-mdl-navigation__link mdl-navigation__link"
-               onclick="ReplaceBlock('timestamp'); return false;" href="?page=timestamp"><i class="mdl-color-text--blue-grey-400 material-icons">event_note</i>Timestamp
+               onclick="ReplaceBlock('timestamp'); return false;" href="?page=timestamp"><i class="material-icons">event_note</i>Timestamp
                 в дату</a>
             <a id="menu_qr" class="drawer-mdl-navigation__link mdl-navigation__link" onclick="ReplaceBlock('qr'); return false;"
-               href="?page=qr"><i class="mdl-color-text--blue-grey-400 material-icons">qr_code</i>QR
+               href="?page=qr"><i class="material-icons">qr_code</i>QR
                 код</a>
         </nav>
     </div>

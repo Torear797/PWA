@@ -726,13 +726,22 @@ function $_GET(key) {
     return p ? p[1] : false;
 }
 
-function updatePage(page){
-    document.getElementById("keywords").setAttribute("content", getKeyWords(page));
-    document.getElementById("description").setAttribute("content", getDescription(page));
-    document.getElementById("og_description").setAttribute("content", getDescription(page));
+function updatePage(page) {
+    let title = getTitle(page);
+    let description = getDescription(page);
 
-    document.getElementById("og_title").setAttribute("content", getTitle(page));
-    document.title = getTitle(page);
+    document.getElementById("keywords").setAttribute("content", getKeyWords(page));
+    document.getElementById("description").setAttribute("content", description);
+    document.getElementById("og_description").setAttribute("content", description);
+
+    document.getElementById("og_title").setAttribute("content", title);
+    document.title = title;
+
+    if (page !== "home") {
+        window.history.pushState(null, title, "?page=" + page);
+    } else {
+        window.history.pushState(null, title, "/PWA/");
+    }
 
     load_js();
     setPageMarkers(page);

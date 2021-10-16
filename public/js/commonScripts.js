@@ -578,56 +578,6 @@ function load_js() {
     head.appendChild(script);
 }
 
-function setTitle(id, changeTitle = true) {
-    let pageTitle;
-
-    switch (id) {
-        case "home": {
-            pageTitle = "Главная";
-            break;
-        }
-        case "base64Form": {
-            pageTitle = "Base 64";
-            break;
-        }
-        case "SHA": {
-            pageTitle = "SHA";
-            break;
-        }
-        case "AES": {
-            pageTitle = "AES (Rijndael)";
-            break;
-        }
-        case "RSA": {
-            pageTitle = "RSA";
-            break;
-        }
-        case "mathFunc": {
-            pageTitle = "Математические функции";
-            break;
-        }
-        case "mathSystems": {
-            pageTitle = "Системы счисления";
-            break;
-        }
-        case "timestamp": {
-            pageTitle = "Timestamp";
-            break;
-        }
-        case "qr": {
-            pageTitle = "Генератор QR";
-            break;
-        }
-        default : {
-            pageTitle = "Страница не найдена";
-        }
-    }
-    if(changeTitle) {
-        document.title = pageTitle + " | Шифрование онлайн";
-    }
-    document.getElementById("title").innerHTML = pageTitle;
-}
-
 function getTitle(id) {
     if (!id) return "Шифрование онлайн";
 
@@ -774,4 +724,16 @@ function $_GET(key) {
     let p = window.location.search;
     p = p.match(new RegExp(key + '=([^&=]+)'));
     return p ? p[1] : false;
+}
+
+function updatePage(page){
+    document.getElementById("keywords").setAttribute("content", getKeyWords(page));
+    document.getElementById("description").setAttribute("content", getDescription(page));
+    document.getElementById("og_description").setAttribute("content", getDescription(page));
+
+    document.getElementById("og_title").setAttribute("content", getTitle(page));
+    document.title = getTitle(page);
+
+    load_js();
+    setPageMarkers(page);
 }

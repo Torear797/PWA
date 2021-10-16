@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://torear797.github.io/PWA/</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
     </url>
     <url>
         <loc>https://torear797.github.io/PWA/?page=base64Form</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
     </url>
     <url>
         <loc>https://torear797.github.io/PWA/?page=SHA</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://torear797.github.io/PWA/?page=AES</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://torear797.github.io/PWA/?page=RSA</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
     </url>
     <url>
         <loc>https://torear797.github.io/PWA/?page=mathFunc</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://torear797.github.io/PWA/?page=mathSystems</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
     </url>
     <url>
         <loc>https://torear797.github.io/PWA/?page=timestamp</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
     </url>
     <url>
         <loc>https://torear797.github.io/PWA/?page=qr</loc>
-        <lastmod>2021-10-10</lastmod>
+        <lastmod>2021-10-16</lastmod>
         <priority>0.9</priority>
     </url>
 </urlset>

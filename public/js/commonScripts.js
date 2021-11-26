@@ -539,6 +539,8 @@ function setPageMarkers(newId) {
     item.classList.remove('menuItemSelected');
     item = document.getElementById("menu_qr");
     item.classList.remove('menuItemSelected');
+    item = document.getElementById("menu_userInfo");
+    item.classList.remove('menuItemSelected');
 
     let newMenuItem = document.getElementById("menu_" + newId);
     if (newMenuItem) newMenuItem.classList.add('menuItemSelected');
@@ -620,6 +622,10 @@ function getTitle(id) {
             pageTitle = "Генератор QR";
             break;
         }
+        case "userInfo": {
+            pageTitle = "Информация о пользователе";
+            break;
+        }
         default : {
             pageTitle = "Страница не найдена";
         }
@@ -664,6 +670,10 @@ function getKeyWords(id) {
         }
         case "qr": {
             value = "QR, torear, torear797, криптография, Кодирование, Декодирование";
+            break;
+        }
+        case "userInfo": {
+            value = "fingerprint, user agent, system language, timezone, available resolution";
             break;
         }
         default : {
@@ -712,6 +722,10 @@ function getDescription(id) {
             value = "QR-код (англ. Quick Response code — код быстрого реагирования; сокр. QR code) — тип матричных штрихкодов (или двумерных штрихкодов), изначально разработанных для автомобильной промышленности Японии.";
             break;
         }
+        case "userInfo": {
+            value = "Получение информации о пользователе, такой как ОС, версия браузера, движок, useragent и др.";
+            break;
+        }
         default : {
             value = "Сайт для быстрого шифрования текста и файлов популярными алгоритмами, такими как AES и RSA. Сайт является PWA приложением и может быть установлен на любое устройство | by torear";
         }
@@ -745,4 +759,24 @@ function updatePage(page) {
 
     load_js();
     setPageMarkers(page);
+}
+
+function setUserInfo() {
+    const client = new ClientJS();
+
+    document.getElementById("userAgent").innerHTML = client.getUserAgent();
+    document.getElementById("Browser").innerHTML = client.getBrowser();
+    document.getElementById("BrowserVersion").innerHTML = client.getBrowserVersion();
+    document.getElementById("Engine").innerHTML = client.getEngine();
+    document.getElementById("EngineVersion").innerHTML = client.getEngineVersion();
+    document.getElementById("OS").innerHTML = client.getOS();
+    document.getElementById("OSVersion").innerHTML = client.getOSVersion();
+    document.getElementById("Device").innerHTML = client.getDevice();
+    document.getElementById("DeviceType").innerHTML = client.getDeviceType();
+    document.getElementById("DeviceVendor").innerHTML = client.getDeviceVendor();
+    document.getElementById("CPU").innerHTML = client.getCPU();
+    document.getElementById("ScreenPrint").innerHTML = client.getScreenPrint();
+    document.getElementById("Fonts").innerHTML = client.getFonts();
+    document.getElementById("TimeZone").innerHTML = client.getTimeZone();
+    document.getElementById("Language").innerHTML = "Текущий язык: " + client.getLanguage() + " Системный язык: " + client.getSystemLanguage();
 }

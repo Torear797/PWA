@@ -68,6 +68,9 @@
     <script defer src="public/js/sha384.js" type="text/javascript"></script>
     <script defer src="public/js/sha3.js" type="text/javascript"></script>
 
+    <!-- -->
+    <script async src="public/js/client.min.js"></script>
+
     <!--material css-->
     <style>
         html {
@@ -7691,6 +7694,60 @@
 
     <!--Общие стили-->
     <style>
+
+        .mdl-card__actions-bordered {
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        .mdl-card__actions-margin {
+            margin: 0;
+            padding: 4px 40px;
+            color: inherit;
+        }
+
+        .my-1 {
+            margin-top: 5rem;
+        }
+
+        .mdl-card__supporting-text {
+            margin: 40px;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            padding: 0;
+            color: inherit;
+            width: calc(100% - 80px);
+        }
+
+        .section__text {
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            padding-top: 8px;
+        }
+
+        .section__text:not(:last-child) {
+            border-bottom: 1px solid rgba(0, 0, 0, .13);
+        }
+
+        .section__text h5 {
+            font-size: inherit;
+            margin: 0;
+            margin-bottom: 0.5em;
+        }
+
+        .mdl-card__supporting-text h1 {
+            margin-top: 0;
+            margin-bottom: 20px !important;
+        }
+
+        .userInfoSection {
+            color: #616161 !important;;
+        }
+
         * {
             scrollbar-width: thin;
             scrollbar-color: darkgrey slategrey;
@@ -8616,13 +8673,19 @@
                 счисления</a>
 
             <h3 class="section-header">Утилиты</h3>
+
             <a id="menu_timestamp" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('timestamp'); return false;" href="?page=timestamp"><i class="material-icons">event_note</i>Timestamp
                 в дату</a>
+
             <a id="menu_qr" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('qr'); return false;"
                href="?page=qr"><i class="material-icons">qr_code</i>QR
                 код</a>
+
+            <a id="menu_userInfo" class="drawer-mdl-navigation__link mdl-navigation__link"
+               onclick="ReplaceBlock('userInfo'); return false;"
+               href="?page=userInfo"><i class="material-icons">person_search</i>Информация о вас</a>
         </nav>
     </div>
 
@@ -8640,7 +8703,7 @@
 <script type="text/javascript">
     const xhr = new XMLHttpRequest();
     const page = $_GET("page");
-    const pages = ['base64Form', 'SHA', 'AES', 'RSA', 'mathFunc', 'mathSystems', 'timestamp', 'qr'];
+    const pages = ['base64Form', 'SHA', 'AES', 'RSA', 'mathFunc', 'mathSystems', 'timestamp', 'qr', 'userInfo'];
 
     if (page) {
         if (pages.includes(page)) {
@@ -8668,6 +8731,10 @@
                 document.getElementById("content").innerHTML = xhr.response
 
                 updatePage(id);
+
+                if (id === 'userInfo') {
+                    setUserInfo()
+                }
 
                 document.getElementById("content").scrollTop = 0;
             }

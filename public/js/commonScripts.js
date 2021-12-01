@@ -541,6 +541,8 @@ function setPageMarkers(newId) {
     item.classList.remove('menuItemSelected');
     item = document.getElementById("menu_userInfo");
     item.classList.remove('menuItemSelected');
+    item = document.getElementById("menu_colorPicker");
+    item.classList.remove('menuItemSelected');
 
     let newMenuItem = document.getElementById("menu_" + newId);
     if (newMenuItem) newMenuItem.classList.add('menuItemSelected');

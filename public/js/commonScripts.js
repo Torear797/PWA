@@ -626,6 +626,10 @@ function getTitle(id) {
             pageTitle = "Информация о пользователе";
             break;
         }
+        case "colorPicker": {
+            pageTitle = "Цветовая палитра";
+            break;
+        }
         default : {
             pageTitle = "Страница не найдена";
         }
@@ -676,6 +680,10 @@ function getKeyWords(id) {
             value = "fingerprint, user agent, system language, timezone, available resolution";
             break;
         }
+        case "colorPicker": {
+            value = "color picker, Цветовая палитра, HEX, RGB, RGBA, HSLA, HSVA";
+            break;
+        }
         default : {
             value = "Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, torear, torear797, криптография";
         }
@@ -724,6 +732,10 @@ function getDescription(id) {
         }
         case "userInfo": {
             value = "Получение информации о пользователе, такой как ОС, версия браузера, движок, useragent и др.";
+            break;
+        }
+        case "colorPicker": {
+            value = "Палитра цветов помогает подобрать цвет в виде HEX, RGB, RGBA, HSV и CMYK записи цветовой модели";
             break;
         }
         default : {

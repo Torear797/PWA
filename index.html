@@ -2,30 +2,39 @@
 <html class="mdl-js" lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#FFFFFF"/>
+
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#FFFFFF"/>
+
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#FFFFFF"/>
 
     <!--Общие скрипты-->
     <script src="public/js/commonScripts.js" type="text/javascript"></script>
 
     <!--    Для индексации-->
+    <meta name="audience" lang="ru" content="all"/>
     <title>Шифрование ONLINE</title>
     <meta id="keywords" name="keywords"
           content="Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, torear, torear797, криптография"/>
     <meta id="description" name="description"
           content="Сайт для быстрого шифрования текста и файлов популярными алгоритмами, такими как AES и RSA. Сайт является PWA приложением и может быть установлен на любое устройство | by torear"/>
+    <meta name="author" content="Torear"/>
 
     <!--    og разметка-->
     <meta id="og_title" property="og:title"
           content="Сайт для быстрого шифрования текста и файлов популярными алгоритмами, такими как AES и RSA."/>
-
     <meta id="og_description" property="og:description"
           content="Сайт для быстрого шифрования текста и файлов популярными алгоритмами, такими как AES и RSA. Сайт является PWA приложением и может быть установлен на любое устройство | by torear"/>
-
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://torear797.github.io/PWA/"/>
-    <meta property="og:image" content="https://torear797.github.io/PWA/public/img/home_background.webp"/>
+    <meta property="og:image" content="public/img/home_background.webp"/>
     <meta property="og:site_name"
           content="Сайт для быстрого шифрования текста и файлов популярными алгоритмами, такими как AES и RSA."/>
 
@@ -70,6 +79,8 @@
 
     <!-- -->
     <script async src="public/js/client.min.js"></script>
+
+    <link rel="stylesheet" href="public/css/classic.min.css" type="text/css">
 
     <!--material css-->
     <style>
@@ -7695,6 +7706,18 @@
     <!--Общие стили-->
     <style>
 
+        .pcr-app {
+            margin: 0 auto !important;
+            width: 50em !important;
+            max-width: 80vw !important;
+            border: 1px solid #e0e0e0 !important;
+            box-shadow: none !important;
+        }
+
+        .pcr-button {
+            display: none;
+        }
+
         .mdl-card__actions-bordered {
             border-top: 1px solid rgba(0, 0, 0, 0.12);
         }
@@ -8604,6 +8627,7 @@
 </head>
 
 <body>
+
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="crypt-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
@@ -8686,6 +8710,10 @@
             <a id="menu_userInfo" class="drawer-mdl-navigation__link mdl-navigation__link"
                onclick="ReplaceBlock('userInfo'); return false;"
                href="?page=userInfo"><i class="material-icons">person_search</i>Информация о вас</a>
+
+            <a id="menu_colorPicker" class="drawer-mdl-navigation__link mdl-navigation__link"
+               onclick="ReplaceBlock('colorPicker'); return false;"
+               href="?page=menu_colorPicker"><i class="material-icons">palette</i>Выбор цвета</a>
         </nav>
     </div>
 
@@ -8698,12 +8726,14 @@
     <div class="mdl-snackbar__text"></div>
     <button class="mdl-snackbar__action" type="button"></button>
 </div>
+
+<script src="public/js/pickr.es5.min.js"></script>
 </body>
 
-<script type="text/javascript">
+<script>
     const xhr = new XMLHttpRequest();
     const page = $_GET("page");
-    const pages = ['base64Form', 'SHA', 'AES', 'RSA', 'mathFunc', 'mathSystems', 'timestamp', 'qr', 'userInfo'];
+    const pages = ['base64Form', 'SHA', 'AES', 'RSA', 'mathFunc', 'mathSystems', 'timestamp', 'qr', 'userInfo', 'colorPicker'];
 
     if (page) {
         if (pages.includes(page)) {
@@ -8734,6 +8764,60 @@
 
                 if (id === 'userInfo') {
                     setUserInfo()
+                }
+
+                if (id === 'colorPicker') {
+                    const pickrContainer = document.querySelector('.palette-container');
+
+                    new Pickr({
+                        el: pickrContainer,
+                        container: 'main',
+                        theme: 'classic',
+                        default: '#F44336',
+                        useAsButton: false,
+                        showAlways: true,
+                        inline: true,
+                        position: 'bottom-middle',
+                        swatches: [
+                            'rgb(244, 67, 54)',
+                            'rgb(233, 30, 99)',
+                            'rgb(156, 39, 176)',
+                            'rgb(103, 58, 183)',
+                            'rgb(63, 81, 181)',
+                            'rgb(33, 150, 243)',
+                            'rgb(3, 169, 244)',
+                            'rgb(0, 188, 212)',
+                            'rgb(0, 150, 136)',
+                            'rgb(76, 175, 80)',
+                            'rgb(139, 195, 74)',
+                            'rgb(205, 220, 57)',
+                            'rgb(255, 235, 59)',
+                            'rgb(255, 193, 7)',
+                            'rgb(255, 152, 0)',
+                            'rgb(255, 152, 0)',
+                            'rgb(255, 87, 34)',
+                            'rgb(121, 85, 72)',
+                            'rgb(158, 158, 158)',
+                            'rgb(96, 125, 139)',
+                        ],
+
+                        components: {
+                            preview: false,
+                            opacity: true,
+                            hue: true,
+
+                            interaction: {
+                                hex: true,
+                                cmyk: true,
+                                rgba: true,
+                                hsla: true,
+                                hsva: true,
+                                input: true,
+                                clear: false,
+                                save: false
+                            }
+                        },
+                    });
                 }
 
                 document.getElementById("content").scrollTop = 0;

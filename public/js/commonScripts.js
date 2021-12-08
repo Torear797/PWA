@@ -579,7 +579,7 @@ function getTitle(id) {
             break;
         }
         case "AES": {
-            pageTitle = "AES (Rijndael)";
+            pageTitle = "AES";
             break;
         }
         case "RSA": {
@@ -619,41 +619,41 @@ function getTitle(id) {
 }
 
 function getKeyWords(id) {
-    if (!id) return "Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, torear, torear797, криптография";
+    if (!id) return "Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, криптография";
 
     let value;
 
     switch (id) {
         case "base64Form": {
-            value = "base64, torear, torear797, криптография, Кодирование, Декодирование";
+            value = "base64, криптография, Кодирование, Декодирование";
             break;
         }
         case "SHA": {
-            value = "SHA, torear, torear797, криптография, Кодирование, Декодирование";
+            value = "SHA, криптография, Кодирование, Декодирование";
             break;
         }
         case "AES": {
-            value = "Advanced Encryption Standard, Rijndael, torear, torear797, криптография, Кодирование, Декодирование";
+            value = "Advanced Encryption Standard, AES, Rijndael, криптография, Кодирование, Декодирование";
             break;
         }
         case "RSA": {
-            value = "Rivest-Shamir-Adleman, RSA, torear, torear797, криптография, Кодирование, Декодирование";
+            value = "Rivest-Shamir-Adleman, RSA, криптография, Кодирование, Декодирование";
             break;
         }
         case "mathFunc": {
-            value = "Математические функции, torear, torear797, криптография, Кодирование, Декодирование";
+            value = "Математические функции, криптография, Кодирование, Декодирование";
             break;
         }
         case "mathSystems": {
-            value = "Системы счисления, torear, torear797, криптография, Кодирование, Декодирование";
+            value = "Системы счисления, криптография, Кодирование, Декодирование";
             break;
         }
         case "timestamp": {
-            value = "timestamp, torear, torear797, криптография, Кодирование, Декодирование";
+            value = "timestamp, криптография, Кодирование, Декодирование";
             break;
         }
         case "qr": {
-            value = "QR, torear, torear797, криптография, Кодирование, Декодирование";
+            value = "QR, криптография, Кодирование, Декодирование, коды";
             break;
         }
         case "userInfo": {
@@ -665,7 +665,7 @@ function getKeyWords(id) {
             break;
         }
         default : {
-            value = "Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, torear, torear797, криптография";
+            value = "Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, криптография";
         }
     }
 
@@ -687,7 +687,7 @@ function getDescription(id) {
             break;
         }
         case "AES": {
-            value = "AES (англ. Advanced Encryption Standard; также Rijndael, [rɛindaːl] — рейндал) — симметричный алгоритм блочного шифрования (размер блока 128 бит, ключ 128/192/256 бит), принятый в качестве стандарта шифрования правительством США по результатам конкурса AES. Этот алгоритм хорошо проанализирован и сейчас широко используется, как это было с его предшественником DES.";
+            value = "Данная страница позволяет использовать алгоритм шифрования AES для кодирования своих файлов и текстов онлайн";
             break;
         }
         case "RSA": {
@@ -707,7 +707,7 @@ function getDescription(id) {
             break;
         }
         case "qr": {
-            value = "QR-код (англ. Quick Response code — код быстрого реагирования; сокр. QR code) — тип матричных штрихкодов (или двумерных штрихкодов), изначально разработанных для автомобильной промышленности Японии.";
+            value = "Данная страница позволяет создавать/генерировать свои собственные QR коды онлайн";
             break;
         }
         case "userInfo": {

@@ -521,46 +521,24 @@ function closeMenu() {
 }
 
 function setPageMarkers(newId) {
-    let item = document.getElementById("menu_home");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_base64Form");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_SHA");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_AES");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_RSA");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_mathFunc");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_mathSystems");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_timestamp");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_qr");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_userInfo");
-    item.classList.remove('menuItemSelected');
-    item = document.getElementById("menu_colorPicker");
-    item.classList.remove('menuItemSelected');
 
+    /* Убрать текущий маркер с меню */
+    const selectedMenuItem = document.querySelectorAll('.menuItemSelected');
+    if (selectedMenuItem.length) {
+        selectedMenuItem[0].classList.remove('menuItemSelected');
+    }
+
+    /* Добавление нового маркера */
     let newMenuItem = document.getElementById("menu_" + newId);
     if (newMenuItem) newMenuItem.classList.add('menuItemSelected');
 
+    /* Убрать текущий маркер с nav меню */
+    const selectedNavigationItem = document.querySelectorAll('.navigationIsSelect');
+    if (selectedNavigationItem.length) {
+        selectedNavigationItem[0].classList.remove('navigationIsSelect');
+    }
 
-    item = document.getElementById("nav_home");
-    item.classList.remove('navigationIsSelect');
-    item = document.getElementById("nav_AES");
-    item.classList.remove('navigationIsSelect');
-    item = document.getElementById("nav_RSA");
-    item.classList.remove('navigationIsSelect');
-    item = document.getElementById("nav_SHA");
-    item.classList.remove('navigationIsSelect');
-    item = document.getElementById("nav_base64Form");
-    item.classList.remove('navigationIsSelect');
-    item = document.getElementById("nav_qr");
-    item.classList.remove('navigationIsSelect');
-
+    /* Добавление нового маркера */
     let nextNavigationTab = document.getElementById("nav_" + newId)
     if (nextNavigationTab) nextNavigationTab.classList.add('navigationIsSelect');
 }

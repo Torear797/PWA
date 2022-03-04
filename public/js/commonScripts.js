@@ -7,140 +7,81 @@ function copyToClipboard() {
     }
 }
 
-function setCharCounter(isPassword = false) {
-    const inputField = document.getElementById("InputText").value.length;
-    let outputField = document.getElementById("CryptText");
-    if (outputField !== null)
-        outputField = outputField.value.length;
+function setCharCounter(input = 'InputText', label = 'LabelText', labelText = 'Текст') {
+    const passField = document.getElementById(input).value.length;
+    const passLabel = document.getElementById(label);
+    passLabel.innerHTML = labelText + " (" + passField + ")";
+}
 
-    const inputLabel = document.getElementById("LabelText");
-    const outputLabel = document.getElementById("CryptLabel");
+function clearAESForm() {
+    clearField();
+    clearField('password', 'password_label', 'Пароль');
+    clearField('CryptText', 'CryptLabel', 'Результат');
+}
 
-    if (outputField !== null)
-        outputLabel.innerHTML = "Результат" + " (" + outputField + ")";
+function ClearFieldsRSA() {
+    clearField();
+    clearField('public_key','public-key-label','Открытый ключ');
+    clearField('private_key','private-key-label','Секретный ключ');
+    clearField('lengthKey','lengthKeyLabel','Длина ключей (бит)');
+    clearField('CryptText','CryptLabel','Результат');
+}
 
-    inputLabel.innerHTML = "Текст" + " (" + inputField + ")";
+function ClearFieldsBase() {
+    clearField();
+    clearField('CryptText','CryptLabel','Результат');
+}
 
-    if (isPassword) {
-        const passField = document.getElementById("password").value.length;
-        const passLabel = document.getElementById("password_label");
-        passLabel.innerHTML = "Пароль" + " (" + passField + ")";
+function clearField(input = 'InputText', label = 'LabelText', labelText = 'Текст'){
+    const inputText = document.getElementById(input);
+    if (inputText != null) {
+        inputText.value = '';
+        inputText.blur();
+        inputText.parentNode.classList.remove('is-dirty');
+        setCharCounter(input, label, labelText);
     }
 }
 
-function setCharCounterRSA() {
-    const outputField = document.getElementById("CryptText");
-    const inputField = document.getElementById("InputText");
+function generatePassword(length) {
 
-    const public_key = document.getElementById("public_key");
+    const charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$";
 
-    const private_key = document.getElementById("private_key");
-    const lengthKey = document.getElementById("lengthKey");
+    if (window.crypto && window.crypto.getRandomValues) {
+        return Array(length)
+            .fill(charset)
+            .map(x => x[Math.floor(crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1) * (x.length + 1))])
+            .join('');
 
-    if (inputField !== null) {
-        const inputtLabel = document.getElementById("LabelText");
-        inputtLabel.innerHTML = "Текст" + " (" + inputField.value.length + ")";
+    } else {
+        res = '';
+        let i = 0, n = charset.length;
+        for (; i < length; ++i) {
+            res += charset.charAt(Math.floor(Math.random() * n));
+        }
+        return res;
     }
+}
 
-    if (outputField !== null) {
-        const outputLabel = document.getElementById("CryptLabel");
-        outputLabel.innerHTML = "Результат" + " (" + outputField.value.length + ")";
+function clickPasswordGenerate() {
+    const passwordLength = document.getElementById("passwordLength").value;
+    if (passwordLength !== "") {
+        if (parseInt(passwordLength) && passwordLength > 0) {
+            document.getElementById('CryptText').value = generatePassword(parseInt(passwordLength));
+            document.getElementById('CryptText').focus();
+            document.getElementById('CryptText').parentNode.classList.add('is-dirty');
+            setCharCounter('CryptText', 'CryptLabel', 'Пароль');
+        } else {
+            showToast("Введите целое число");
+            document.getElementById("passwordLength").focus();
+        }
+    } else {
+        showToast("Введите длину пароля")
+        document.getElementById("passwordLength").focus();
     }
-
-    if (public_key !== null) {
-        const publicKeyLabel = document.getElementById("public-key-label");
-        publicKeyLabel.innerHTML = "Открытый ключ" + " (" + public_key.value.length + ")";
-    }
-
-    if (private_key !== null) {
-        const privateKeyLabel = document.getElementById("private-key-label");
-        privateKeyLabel.innerHTML = "Секретный ключ" + " (" + private_key.value.length + ")";
-    }
-
-    if (lengthKey !== null) {
-        const lengthKeyLabel = document.getElementById("lengthKeyLabel");
-        lengthKeyLabel.innerHTML = "Длина ключей (бит)" + " (" + lengthKey.value.length + ")";
-    }
-
 }
 
 function NewClick() {
     document.getElementById("CryptText").value = "";
-}
-
-function ClearFields(isPassword = false) {
-    const cryptText = document.getElementById("CryptText");
-    const inputText = document.getElementById("InputText");
-
-    if (inputText.value !== '') {
-        if (cryptText !== null && cryptText.value !== '') {
-            cryptText.value = '';
-            cryptText.blur();
-            cryptText.parentNode.classList.remove('is-dirty');
-        }
-
-        inputText.value = '';
-        inputText.blur();
-        inputText.parentNode.classList.remove('is-dirty');
-
-        if (isPassword) {
-            const password = document.getElementById("password");
-            password.value = '';
-            password.blur();
-            password.parentNode.classList.remove('is-dirty');
-        }
-
-        setCharCounter(isPassword);
-        showToast("Поля очищены");
-    }
-}
-
-function ClearFieldsRSA() {
-    const cryptText = document.getElementById("CryptText");
-    const inputText = document.getElementById("InputText");
-
-    const public_key = document.getElementById("public_key");
-    const private_key = document.getElementById("private_key");
-
-    const lengthKey = document.getElementById("lengthKey");
-
-    if ((cryptText !== null && cryptText.value !== '') ||
-        (public_key !== null && public_key.value !== "") ||
-        (private_key !== null && private_key.value !== "") || (inputText !== null && inputText.value !== "")) {
-
-        if (public_key !== null && public_key.value !== "") {
-            public_key.value = '';
-            public_key.blur();
-            public_key.parentNode.classList.remove('is-dirty');
-        }
-
-        if (private_key !== null && private_key.value !== "") {
-            private_key.value = '';
-            private_key.blur();
-            private_key.parentNode.classList.remove('is-dirty');
-        }
-
-        if (inputText !== null && inputText.value !== "") {
-            inputText.value = '';
-            inputText.blur();
-            inputText.parentNode.classList.remove('is-dirty');
-        }
-
-        if (cryptText !== null && cryptText.value !== '') {
-            cryptText.value = '';
-            cryptText.blur();
-            cryptText.parentNode.classList.remove('is-dirty');
-        }
-
-        if (lengthKey !== null && lengthKey.value !== "") {
-            lengthKey.value = '';
-            lengthKey.blur();
-            lengthKey.parentNode.classList.remove('is-dirty');
-        }
-
-        setCharCounterRSA();
-        showToast("Поля очищены");
-    }
 }
 
 function showToast(text) {
@@ -161,7 +102,8 @@ function generateRSAKeys() {
             document.getElementById("private-key-label").parentNode.classList.add('is-dirty');
             document.getElementById("public-key-label").parentNode.classList.add('is-dirty');
 
-            setCharCounterRSA()
+            setCharCounter('public_key','public-key-label','Открытый ключ');
+            setCharCounter('private_key','private-key-label','Секретный ключ');
         }
     } else {
         showToast("Длина ключей не введена!");
@@ -206,7 +148,7 @@ function actionRSA(Choice) {
                     cryptText.focus();
                     cryptText.parentNode.classList.add('is-dirty');
                 }
-                setCharCounterRSA()
+                setCharCounter('CryptText','CryptLabel','Результат');
             }
         } else {
             showToast("Введите текст для шифрования");
@@ -295,7 +237,7 @@ function ClickAES(Choice) {
             document.getElementById("CryptText").focus();
             document.getElementById("CryptText").parentNode.classList.add('is-dirty');
         }
-        setCharCounter(true);
+        setCharCounter('CryptText', 'CryptLabel', 'Результат');
     } else {
         showToast("Текст не введен");
         document.getElementById("InputText").focus();
@@ -319,7 +261,7 @@ function ClickBase64(Choice) {
         }
         document.getElementById("CryptText").focus();
         document.getElementById("CryptText").parentNode.classList.add('is-dirty');
-        setCharCounter();
+        setCharCounter('CryptText', 'CryptLabel', 'Результат');
     } else {
         showToast("Введите текст");
         document.getElementById("InputText").focus();
@@ -420,7 +362,7 @@ function ClickTimeStamp(Choice) {
 
     document.getElementById("CryptText").focus();
     document.getElementById("CryptText").parentNode.classList.add('is-dirty');
-    setCharCounter();
+    setCharCounter('CryptText', 'CryptLabel', 'Результат');
 }
 
 Date.prototype.format = function (format = 'yyyy-mm-dd') {
@@ -610,6 +552,10 @@ function getTitle(id) {
             pageTitle = "Цветовая палитра";
             break;
         }
+        case "passwordGenerator": {
+            pageTitle = "Генератор паролей";
+            break;
+        }
         default : {
             pageTitle = "Страница не найдена";
         }
@@ -664,6 +610,10 @@ function getKeyWords(id) {
             value = "color picker, Цветовая палитра, HEX, RGB, RGBA, HSLA, HSVA";
             break;
         }
+        case "passwordGenerator": {
+            value = "генератор, пароль, онлайн";
+            break;
+        }
         default : {
             value = "Шифрование, AES, RSA, base64, SHA, Кодирование, Декодирование, online, PWA, криптография";
         }
@@ -716,6 +666,10 @@ function getDescription(id) {
         }
         case "colorPicker": {
             value = "Палитра цветов помогает подобрать цвет в виде HEX, RGB, RGBA, HSV и CMYK записи цветовой модели";
+            break;
+        }
+        case "passwordGenerator": {
+            value = "Онлайн генератор позволяет создать надежный пароль на все случаи жизни";
             break;
         }
         default : {

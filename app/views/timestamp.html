@@ -7,13 +7,13 @@
             </div>
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
                 <textarea class="mdl-textfield__input" type="text" rows="5" id="InputText"
-                          onkeyup="setCharCounter(false)"></textarea>
+                          onkeyup="setCharCounter()"></textarea>
                 <label id="LabelText" class="mdl-textfield__label" for="InputText">Текст (0)</label>
             </div>
 
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
                 <textarea class="mdl-textfield__input" type="text" rows="5" id="CryptText"
-                          onkeyup="setCharCounter(false)"></textarea>
+                          onkeyup="setCharCounter('CryptText','CryptLabel','Результат')"></textarea>
                 <label id="CryptLabel" class="mdl-textfield__label" for="CryptText">Результат (0)</label>
             </div>
 
@@ -21,10 +21,10 @@
             <div class="mdl-card__actions">
 
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                   onclick="ClickTimeStamp(0); return false;">Encode</a>
+                   onclick="ClickTimeStamp(0); return false;">Кодировать</a>
 
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                   onclick="ClickTimeStamp(1); return false;">Decode</a>
+                   onclick="ClickTimeStamp(1); return false;">Декодировать</a>
 
                 <div class="mdl-layout-spacer"></div>
 
@@ -33,7 +33,7 @@
                 </button>
 
                 <button class="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="margin-right: 1%"
-                        onclick="ClearFields(); return false;">
+                        onclick="ClearFieldsBase(); return false;">
                     <i class="material-icons">clear</i>
                 </button>
             </div>

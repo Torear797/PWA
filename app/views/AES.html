@@ -7,27 +7,27 @@
             </div>
 
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
-                <textarea class="mdl-textfield__input" type="text" rows="5" id="InputText" onkeyup="setCharCounter(true)"></textarea>
+                <textarea class="mdl-textfield__input" type="text" rows="5" id="InputText" onkeyup="setCharCounter()"></textarea>
                 <label id="LabelText" class="mdl-textfield__label" for="InputText">Текст (0)</label>
             </div>
 
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
-                <input class="mdl-textfield__input" type="text" id="password" onkeyup="setCharCounter(true)">
+                <input class="mdl-textfield__input" type="text" id="password" onkeyup="setCharCounter('password', 'password_label', 'Пароль')">
                 <label class="mdl-textfield__label" for="password" id="password_label">Пароль (0)</label>
             </div>
 
             <div class="mdl-textfield--floating-label mdl-js-textfield mdl-textfield">
-                <textarea class="mdl-textfield__input" type="text" rows="5" id="CryptText" onkeyup="setCharCounter(true)"></textarea>
+                <textarea class="mdl-textfield__input" type="text" rows="5" id="CryptText" onkeyup="setCharCounter('CryptText', 'CryptLabel', 'Результат')"></textarea>
                 <label id="CryptLabel" class="mdl-textfield__label" for="CryptText">Результат (0)</label>
             </div>
 
             <div class="mdl-card__actions">
 
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                   onclick="ClickAES(0); return false;">Encode</a>
+                   onclick="ClickAES(0); return false;">Кодировать</a>
 
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                   onclick="ClickAES(1); return false;">Decode</a>
+                   onclick="ClickAES(1); return false;">Декодировать</a>
 
                 <div class="mdl-layout-spacer"></div>
 
@@ -36,7 +36,7 @@
                 </button>
 
                 <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--colored" style="margin-right: 1%"
-                        onclick="ClearFields(true); return false;">
+                        onclick="clearAESForm(); return false;">
                     <i class="material-icons">clear</i>
                 </button>
             </div>

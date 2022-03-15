@@ -44,7 +44,7 @@ function clearField(input = 'InputText', label = 'LabelText', labelText = 'Те�
 
 function generatePassword(length) {
 
-    const charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$";
+    const charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`!@#$%^&*()-_=+[]{};:\"|,.<>/?";
 
     if (window.crypto && window.crypto.getRandomValues) {
         return Array(length)
